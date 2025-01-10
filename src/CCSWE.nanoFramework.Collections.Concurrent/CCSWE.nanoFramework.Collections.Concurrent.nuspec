@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CCSWE.nanoFramework.Collections.Concurrent</id>
+    <title>CCSWE.nanoFramework.Collections.Concurrent</title>
+    <version>1.0</version>
+    <authors>Cory Charlton</authors>
+    <owners>Cory Charlton,CCSWE</owners>
+    <license type="file">LICENSE.md</license>
+	<projectUrl>https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework</projectUrl>
+    <icon>images\ccswe-logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>README.md</readme>
+    <developmentDependency>false</developmentDependency>
+    <description>Simple thread-safe collections.</description>
+    <repository type="git" url="https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework" commit="$commit$" />
+    <copyright>Copyright (c) Cory Charlton</copyright>
+    <tags>nanoFramework C# csharp netmf netnf ccswe collections concurrent thread</tags>
+    <dependencies>
+      <dependency id="CCSWE.nanoFramework.Core" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+      <dependency id="nanoFramework.System.Collections" version="1.5.45" />
+      <dependency id="nanoFramework.System.Text" version="1.3.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\CCSWE.nanoFramework.Collections.Concurrent.*" target="lib" />
+    <file src="..\..\ccswe-logo.png" target="images" />
+    <file src="..\..\LICENSE.md" target="" />
+    <file src="README.md" target="" />
+  </files>
+</package>

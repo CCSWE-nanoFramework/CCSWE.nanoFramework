@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{5B368C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{F2BD527A-994B-4BBF-97B1-9CF79D2D9F6B}"
 	ProjectSection(SolutionItems) = preProject
+		src\CCSWE.nanoFramework.Collections.Concurrent\CCSWE.nanoFramework.Collections.Concurrent.nuspec = src\CCSWE.nanoFramework.Collections.Concurrent\CCSWE.nanoFramework.Collections.Concurrent.nuspec
 		src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nuspec = src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nuspec
 		version.json = version.json
 	EndProjectSection
@@ -35,6 +36,10 @@ EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Core.UnitTests", "test\CCSWE.nanoFramework.Core.UnitTests\CCSWE.nanoFramework.Core.UnitTests.nfproj", "{FE933B5A-345C-4E81-AB76-CF9DB50D0238}"
 EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Core.Benchmarks", "bench\CCSWE.nanoFramework.Core.Benchmarks\CCSWE.nanoFramework.Core.Benchmarks.nfproj", "{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Collections.Concurrent", "src\CCSWE.nanoFramework.Collections.Concurrent\CCSWE.nanoFramework.Collections.Concurrent.nfproj", "{810E1BB8-BA2D-4568-A203-F4207F2F5878}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Collections.Concurrent.UnitTests", "test\CCSWE.nanoFramework.Collections.Concurrent.UnitTests\CCSWE.nanoFramework.Collections.Concurrent.UnitTests.nfproj", "{7E264216-11B7-4F7C-9FC1-D550708F5475}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +65,18 @@ Global
 		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{810E1BB8-BA2D-4568-A203-F4207F2F5878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{810E1BB8-BA2D-4568-A203-F4207F2F5878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{810E1BB8-BA2D-4568-A203-F4207F2F5878}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{810E1BB8-BA2D-4568-A203-F4207F2F5878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{810E1BB8-BA2D-4568-A203-F4207F2F5878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{810E1BB8-BA2D-4568-A203-F4207F2F5878}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7E264216-11B7-4F7C-9FC1-D550708F5475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E264216-11B7-4F7C-9FC1-D550708F5475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E264216-11B7-4F7C-9FC1-D550708F5475}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7E264216-11B7-4F7C-9FC1-D550708F5475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E264216-11B7-4F7C-9FC1-D550708F5475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E264216-11B7-4F7C-9FC1-D550708F5475}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +88,8 @@ Global
 		{C331C500-04B7-4766-BA1F-02E00400EBF2} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
 		{FE933B5A-345C-4E81-AB76-CF9DB50D0238} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
 		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2} = {E958B80F-112E-472F-93C7-29F00BE1A633}
+		{810E1BB8-BA2D-4568-A203-F4207F2F5878} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
+		{7E264216-11B7-4F7C-9FC1-D550708F5475} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97E85E43-6CB8-48DC-8A37-E0A6CE82419A}
