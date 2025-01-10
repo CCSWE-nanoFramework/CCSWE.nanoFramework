@@ -1,0 +1,20 @@
+name: Update dependencies
+
+on: 
+  schedule:
+  # At 20:30 UTC every day.
+  - cron: '30 20 * * *'
+  
+  repository_dispatch:
+    types: update-dependencies
+
+  workflow_dispatch:
+
+jobs:
+  update-dependencies:
+    name: Update dependencies
+    uses: CCSWE-nanoframework/actions-nanoframework/.github/workflows/update-dependencies.yml@master
+    secrets: inherit
+    with:
+      solution: 'template_nanoframework.sln'
+      branchToPr: 'master'

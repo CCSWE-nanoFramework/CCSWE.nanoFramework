@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>template_nanoframework</id>
+    <title>template_nanoframework</title>
+    <version>1.0</version>
+    <!--<version>$version$</version>-->
+    <authors>Cory Charlton</authors>
+    <owners>Cory Charlton,CCSWE</owners>
+    <license type="file">LICENSE.md</license>
+    <projectUrl>https://github.com/CCSWE-nanoFramework/template_nanoframework</projectUrl>
+    <icon>images\ccswe-logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>README.md</readme>
+    <developmentDependency>false</developmentDependency>
+    <description>Enter description here.</description>
+    <repository type="git" url="https://github.com/CCSWE-nanoFramework/template_nanoframework" commit="$commit$" />
+    <copyright>Copyright (c) Cory Charlton</copyright>
+    <tags>nanoFramework C# csharp netmf netnf ccswe </tags>
+    <dependencies>
+      <!--<dependency id="CCSWE.nanoFramework.Core" version="0.2.31" />-->
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="template_nanoframework\bin\Release\template_nanoframework.*" target="lib" />
+    <file src="ccswe-logo.png" target="images" />
+    <file src="LICENSE.md" target="" />
+    <file src="README.md" target="" />
+  </files>
+</package>

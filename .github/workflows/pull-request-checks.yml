@@ -1,0 +1,11 @@
+name: Pull Request
+
+on:
+  pull_request:
+
+jobs:
+  pull_request_checks:
+    name: Checks
+    uses: CCSWE-nanoframework/actions-nanoframework/.github/workflows/pull-request-checks.yml@master
+    with:
+      solution: 'template_nanoframework.sln'

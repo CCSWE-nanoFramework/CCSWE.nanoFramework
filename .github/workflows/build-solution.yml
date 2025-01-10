@@ -1,0 +1,20 @@
+name: Build
+
+on:
+  push:
+    branches: 
+    - master
+
+  pull_request:
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  build-solution:
+    name: Solution
+    uses: CCSWE-nanoframework/actions-nanoframework/.github/workflows/build-solution.yml@master
+    secrets: inherit
+    with:
+      solution: 'template_nanoframework.sln'
