@@ -1,0 +1,78 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eng", "eng", "{31FB4C84-40C4-4140-8E05-424C6AD78964}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{3AFE6611-D70C-459B-863D-CBF050CCF57E}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{5B368C0C-6DA6-4D81-A1EB-83389AC2F9B4}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-solution.yml = .github\workflows\build-solution.yml
+		.github\config.yml = .github\config.yml
+		.github\workflows\pull-request-checks.yml = .github\workflows\pull-request-checks.yml
+		.github\workflows\update-dependencies.yml = .github\workflows\update-dependencies.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{F2BD527A-994B-4BBF-97B1-9CF79D2D9F6B}"
+	ProjectSection(SolutionItems) = preProject
+		src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nuspec = src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nuspec
+		version.json = version.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1B6C75FB-0A46-4027-9BA0-13BC61F06C78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bench", "bench", "{E958B80F-112E-472F-93C7-29F00BE1A633}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{430AC1C7-199B-4517-A7E1-25CCEF66F84A}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Core", "src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nfproj", "{C331C500-04B7-4766-BA1F-02E00400EBF2}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Core.UnitTests", "test\CCSWE.nanoFramework.Core.UnitTests\CCSWE.nanoFramework.Core.UnitTests.nfproj", "{FE933B5A-345C-4E81-AB76-CF9DB50D0238}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Core.Benchmarks", "bench\CCSWE.nanoFramework.Core.Benchmarks\CCSWE.nanoFramework.Core.Benchmarks.nfproj", "{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C331C500-04B7-4766-BA1F-02E00400EBF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C331C500-04B7-4766-BA1F-02E00400EBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C331C500-04B7-4766-BA1F-02E00400EBF2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C331C500-04B7-4766-BA1F-02E00400EBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C331C500-04B7-4766-BA1F-02E00400EBF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C331C500-04B7-4766-BA1F-02E00400EBF2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FE933B5A-345C-4E81-AB76-CF9DB50D0238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE933B5A-345C-4E81-AB76-CF9DB50D0238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE933B5A-345C-4E81-AB76-CF9DB50D0238}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FE933B5A-345C-4E81-AB76-CF9DB50D0238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE933B5A-345C-4E81-AB76-CF9DB50D0238}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE933B5A-345C-4E81-AB76-CF9DB50D0238}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3AFE6611-D70C-459B-863D-CBF050CCF57E} = {31FB4C84-40C4-4140-8E05-424C6AD78964}
+		{5B368C0C-6DA6-4D81-A1EB-83389AC2F9B4} = {31FB4C84-40C4-4140-8E05-424C6AD78964}
+		{F2BD527A-994B-4BBF-97B1-9CF79D2D9F6B} = {31FB4C84-40C4-4140-8E05-424C6AD78964}
+		{C331C500-04B7-4766-BA1F-02E00400EBF2} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
+		{FE933B5A-345C-4E81-AB76-CF9DB50D0238} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
+		{CA39AF66-B733-4E26-9D2D-D4FAC81B8BE2} = {E958B80F-112E-472F-93C7-29F00BE1A633}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97E85E43-6CB8-48DC-8A37-E0A6CE82419A}
+	EndGlobalSection
+EndGlobal

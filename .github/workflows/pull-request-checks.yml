@@ -8,4 +8,4 @@ jobs:
     name: Checks
     uses: CCSWE-nanoframework/actions-nanoframework/.github/workflows/pull-request-checks.yml@master
     with:
-      solution: 'template_nanoframework.sln'
+      solution: 'CCSWE.nanoFramework.sln'

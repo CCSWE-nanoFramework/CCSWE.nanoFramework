@@ -17,4 +17,4 @@ jobs:
     uses: CCSWE-nanoframework/actions-nanoframework/.github/workflows/build-solution.yml@master
     secrets: inherit
     with:
-      solution: 'template_nanoframework.sln'
+      solution: 'CCSWE.nanoFramework.sln'
