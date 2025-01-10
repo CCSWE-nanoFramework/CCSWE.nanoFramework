@@ -27,6 +27,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CCSWE.nanoFramework.Core, Version=1.1.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\CCSWE.nanoFramework.Core.1.1.5\lib\CCSWE.nanoFramework.Core.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.15.5\lib\mscorlib.dll</HintPath>
     </Reference>
