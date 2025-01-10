@@ -24,7 +24,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="CCSWE.nanoFramework.Core\bin\Release\CCSWE.nanoFramework.Core.*" target="lib" />
+    <file src="bin\Release\CCSWE.nanoFramework.Core.*" target="lib" />
     <file src="ccswe-logo.png" target="images" />
     <file src="LICENSE.md" target="" />
     <file src="README.md" target="" />
