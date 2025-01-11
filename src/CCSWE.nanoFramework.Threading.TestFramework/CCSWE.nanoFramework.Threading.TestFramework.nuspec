@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>CCSWE.nanoFramework.Logging</id>
-    <title>CCSWE.nanoFramework.Logging</title>
+    <id>CCSWE.nanoFramework.Threading.TestFramework</id>
+    <title>CCSWE.nanoFramework.Threading.TestFramework</title>
     <version>1.0</version>
     <authors>Cory Charlton</authors>
     <owners>Cory Charlton,CCSWE</owners>
@@ -12,18 +12,17 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <readme>README.md</readme>
     <developmentDependency>false</developmentDependency>
-    <description>Logging infrastructure default implementation for Microsoft.Extensions.Logging.</description>
+    <description>A helper for managing ThreadPool during unit tests.</description>
     <repository type="git" url="https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework" commit="$commit$" />
     <copyright>Copyright (c) Cory Charlton</copyright>
-    <tags>nanoFramework C# csharp netmf netnf ccswe logging</tags>
+    <tags>nanoFramework C# csharp netmf netnf ccswe threading asynchronous</tags>
     <dependencies>
+	  <dependency id="CCSWE.nanoFramework.Threading" version="[1.1,)" />
       <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
-      <dependency id="nanoFramework.DependencyInjection" version="1.1.11" />
-      <dependency id="nanoFramework.Logging" version="1.1.124" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\CCSWE.nanoFramework.Logging.*" target="lib" />
+    <file src="bin\Release\CCSWE.nanoFramework.Threading.TestFramework.*" target="lib" />
     <file src="..\..\ccswe-logo.png" target="images" />
     <file src="..\..\LICENSE.md" target="" />
     <file src="README.md" target="" />
