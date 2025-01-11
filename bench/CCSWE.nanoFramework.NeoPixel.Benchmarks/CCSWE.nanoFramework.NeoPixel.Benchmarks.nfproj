@@ -8,46 +8,69 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>2a0f3de3-635f-49f7-aae9-b0e8fc082b7a</ProjectGuid>
+    <ProjectGuid>9ad16da6-28d2-40b8-bd43-a83eddf7717f</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
-    <RootNamespace>CCSWE.nanoFramework.Threading.Benchmarks</RootNamespace>
-    <AssemblyName>CCSWE.nanoFramework.Threading.Benchmarks</AssemblyName>
+    <RootNamespace>CCSWE.nanoFramework.NeoPixel.Benchmarks</RootNamespace>
+    <AssemblyName>CCSWE.nanoFramework.NeoPixel.Benchmarks</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
+    <Compile Include="BenchmarkBase.cs" />
+    <Compile Include="ColorConverterBenchmarks.cs" />
+    <Compile Include="DevelopmentBenchmarks.cs" />
+    <Compile Include="Reference\SampleNeoPixelStrip.cs" />
+    <Compile Include="TestData.cs" />
+    <Compile Include="Reference\Ws28xxNeoPixelStripBenchmarks.cs" />
+    <Compile Include="NeoPixelStripBenchmarkBase.cs" />
+    <Compile Include="NeoPixelStripBenchmarks.cs" />
+    <Compile Include="StripParameters.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BenchmarkBase.cs" />
-    <Compile Include="ThreadPoolBenchmarks.cs" />
+    <Compile Include="Reference\SampleNeoPixelStripBenchmarks.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Iot.Device.Ws28xx.Esp32">
+      <HintPath>..\..\packages\nanoFramework.Iot.Device.Ws28xx.Esp32.1.2.696\lib\Iot.Device.Ws28xx.Esp32.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.15.5\lib\mscorlib.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.Benchmark">
       <HintPath>..\..\packages\nanoFramework.Benchmark.1.0.84\lib\nanoFramework.Benchmark.dll</HintPath>
     </Reference>
-    <Reference Include="nanoFramework.Logging, Version=1.1.125.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+    <Reference Include="nanoFramework.Graphics.Core">
+      <HintPath>..\..\packages\nanoFramework.Graphics.Core.1.2.22\lib\nanoFramework.Graphics.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Hardware.Esp32.Rmt, Version=2.0.13.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.Hardware.Esp32.Rmt.2.0.13\lib\nanoFramework.Hardware.Esp32.Rmt.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Logging">
       <HintPath>..\..\packages\nanoFramework.Logging.1.1.125\lib\nanoFramework.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="nanoFramework.Runtime.Native, Version=1.7.1.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+    <Reference Include="nanoFramework.Runtime.Events">
+      <HintPath>..\..\packages\nanoFramework.Runtime.Events.1.11.18\lib\nanoFramework.Runtime.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Runtime.Native">
       <HintPath>..\..\packages\nanoFramework.Runtime.Native.1.7.1\lib\nanoFramework.Runtime.Native.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.System.Collections">
       <HintPath>..\..\packages\nanoFramework.System.Collections.1.5.45\lib\nanoFramework.System.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="nanoFramework.System.Text, Version=1.3.1.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+    <Reference Include="nanoFramework.System.Text">
       <HintPath>..\..\packages\nanoFramework.System.Text.1.3.1\lib\nanoFramework.System.Text.dll</HintPath>
     </Reference>
-    <Reference Include="System.Diagnostics.Stopwatch, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+    <Reference Include="System.Device.Gpio">
+      <HintPath>..\..\packages\nanoFramework.System.Device.Gpio.1.1.41\lib\System.Device.Gpio.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Stopwatch">
       <HintPath>..\..\packages\nanoFramework.System.Diagnostics.Stopwatch.1.2.693\lib\System.Diagnostics.Stopwatch.dll</HintPath>
     </Reference>
-    <Reference Include="System.Threading">
-      <HintPath>..\..\packages\nanoFramework.System.Threading.1.1.32\lib\System.Threading.dll</HintPath>
+    <Reference Include="System.Math">
+      <HintPath>..\..\packages\nanoFramework.System.Math.1.5.43\lib\System.Math.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -57,7 +80,8 @@
     <Content Include="packages.lock.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CCSWE.nanoFramework.Threading\CCSWE.nanoFramework.Threading.nfproj" />
+    <ProjectReference Include="..\..\src\CCSWE.nanoFramework.Math\CCSWE.nanoFramework.Math.nfproj" />
+    <ProjectReference Include="..\..\src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nfproj" />
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
   <ProjectExtensions>
