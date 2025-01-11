@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{F2BD527A
 	ProjectSection(SolutionItems) = preProject
 		src\CCSWE.nanoFramework.Collections.Concurrent\CCSWE.nanoFramework.Collections.Concurrent.nuspec = src\CCSWE.nanoFramework.Collections.Concurrent\CCSWE.nanoFramework.Collections.Concurrent.nuspec
 		src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nuspec = src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nuspec
+		src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nuspec = src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nuspec
 		src\CCSWE.nanoFramework.Math\CCSWE.nanoFramework.Math.nuspec = src\CCSWE.nanoFramework.Math\CCSWE.nanoFramework.Math.nuspec
 		version.json = version.json
 	EndProjectSection
@@ -47,6 +48,10 @@ EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Math.UnitTests", "test\CCSWE.nanoFramework.Math.UnitTests\CCSWE.nanoFramework.Math.UnitTests.nfproj", "{240FBB40-ACD7-475A-9DD1-DE6AC1EB0541}"
 EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Math.Benchmarks", "bench\CCSWE.nanoFramework.Math.Benchmarks\CCSWE.nanoFramework.Math.Benchmarks.nfproj", "{1B385C5B-1219-442F-B896-F925D2BA489C}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Logging", "src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nfproj", "{B332A930-C330-410A-9F92-958FC5BBED24}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Logging.UnitTests", "test\CCSWE.nanoFramework.Logging.UnitTests\CCSWE.nanoFramework.Logging.UnitTests.nfproj", "{9C22DBE2-6DAC-462B-942E-BF483D37BD92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,6 +107,18 @@ Global
 		{1B385C5B-1219-442F-B896-F925D2BA489C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B385C5B-1219-442F-B896-F925D2BA489C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B385C5B-1219-442F-B896-F925D2BA489C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B332A930-C330-410A-9F92-958FC5BBED24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B332A930-C330-410A-9F92-958FC5BBED24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B332A930-C330-410A-9F92-958FC5BBED24}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B332A930-C330-410A-9F92-958FC5BBED24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B332A930-C330-410A-9F92-958FC5BBED24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B332A930-C330-410A-9F92-958FC5BBED24}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9C22DBE2-6DAC-462B-942E-BF483D37BD92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C22DBE2-6DAC-462B-942E-BF483D37BD92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C22DBE2-6DAC-462B-942E-BF483D37BD92}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9C22DBE2-6DAC-462B-942E-BF483D37BD92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C22DBE2-6DAC-462B-942E-BF483D37BD92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C22DBE2-6DAC-462B-942E-BF483D37BD92}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +135,8 @@ Global
 		{949FCF3B-0F2B-45ED-91B4-50319A795B7B} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
 		{240FBB40-ACD7-475A-9DD1-DE6AC1EB0541} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
 		{1B385C5B-1219-442F-B896-F925D2BA489C} = {E958B80F-112E-472F-93C7-29F00BE1A633}
+		{B332A930-C330-410A-9F92-958FC5BBED24} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
+		{9C22DBE2-6DAC-462B-942E-BF483D37BD92} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97E85E43-6CB8-48DC-8A37-E0A6CE82419A}

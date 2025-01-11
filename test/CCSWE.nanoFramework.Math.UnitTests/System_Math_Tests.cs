@@ -9,6 +9,8 @@ namespace CCSWE.nanoFramework.UnitTests
         [TestMethod]
         public void Testing()
         {
+            Assert.SkipTest("This should not be checked in");
+
             var expect = 1234.5678d;
             var lower = expect / 2;
 

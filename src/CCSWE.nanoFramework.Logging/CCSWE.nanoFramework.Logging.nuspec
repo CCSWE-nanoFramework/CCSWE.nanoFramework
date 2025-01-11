@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CCSWE.nanoFramework.Logging</id>
+    <title>CCSWE.nanoFramework.Logging</title>
+    <version>1.0</version>
+    <authors>Cory Charlton</authors>
+    <owners>Cory Charlton,CCSWE</owners>
+    <license type="file">LICENSE.md</license>
+    <projectUrl>https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework</projectUrl>
+    <icon>images\ccswe-logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>README.md</readme>
+    <developmentDependency>false</developmentDependency>
+    <description>Logging infrastructure default implementation for Microsoft.Extensions.Logging.</description>
+    <repository type="git" url="https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework" commit="$commit$" />
+    <copyright>Copyright (c) Cory Charlton</copyright>
+    <tags>nanoFramework C# csharp netmf netnf ccswe logging</tags>
+    <dependencies>
+      <!--<dependency id="CCSWE.nanoFramework.Core" version="0.2.31" />-->
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+      <dependency id="nanoFramework.DependencyInjection" version="1.1.11" />
+      <dependency id="nanoFramework.Logging" version="1.1.124" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\CCSWE.nanoFramework.Logging.*" target="lib" />
+    <file src="..\..\ccswe-logo.png" target="images" />
+    <file src="..\..\LICENSE.md" target="" />
+    <file src="README.md" target="" />
+  </files>
+</package>
