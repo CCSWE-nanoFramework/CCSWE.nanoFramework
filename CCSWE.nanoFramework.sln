@@ -67,6 +67,10 @@ Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.DhcpSer
 EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.DhcpServer.UnitTests", "test\CCSWE.nanoFramework.DhcpServer.UnitTests\CCSWE.nanoFramework.DhcpServer.UnitTests.nfproj", "{536B0576-DB5C-4B35-AD9D-470A05C5F51C}"
 EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.FileStorage", "src\CCSWE.nanoFramework.FileStorage\CCSWE.nanoFramework.FileStorage.nfproj", "{123FD035-D0D1-4426-9139-03DCA69ED69E}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.FileStorage.UnitTests", "test\CCSWE.nanoFramework.FileStorage.UnitTests\CCSWE.nanoFramework.FileStorage.UnitTests.nfproj", "{B593B301-43F1-4889-B693-EC029936F526}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -199,6 +203,18 @@ Global
 		{536B0576-DB5C-4B35-AD9D-470A05C5F51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{536B0576-DB5C-4B35-AD9D-470A05C5F51C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{536B0576-DB5C-4B35-AD9D-470A05C5F51C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{123FD035-D0D1-4426-9139-03DCA69ED69E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{123FD035-D0D1-4426-9139-03DCA69ED69E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{123FD035-D0D1-4426-9139-03DCA69ED69E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{123FD035-D0D1-4426-9139-03DCA69ED69E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{123FD035-D0D1-4426-9139-03DCA69ED69E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{123FD035-D0D1-4426-9139-03DCA69ED69E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B593B301-43F1-4889-B693-EC029936F526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B593B301-43F1-4889-B693-EC029936F526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B593B301-43F1-4889-B693-EC029936F526}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B593B301-43F1-4889-B693-EC029936F526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B593B301-43F1-4889-B693-EC029936F526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B593B301-43F1-4889-B693-EC029936F526}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -226,6 +242,8 @@ Global
 		{1D08C8BF-BC0C-4710-9350-6495079A4571} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
 		{A5363782-6F29-4557-8E71-7A4D6C164458} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
 		{536B0576-DB5C-4B35-AD9D-470A05C5F51C} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
+		{123FD035-D0D1-4426-9139-03DCA69ED69E} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
+		{B593B301-43F1-4889-B693-EC029936F526} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97E85E43-6CB8-48DC-8A37-E0A6CE82419A}
