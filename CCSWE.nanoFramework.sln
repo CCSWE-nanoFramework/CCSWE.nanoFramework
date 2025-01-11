@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{F2BD527A
 	ProjectSection(SolutionItems) = preProject
 		src\CCSWE.nanoFramework.Collections.Concurrent\CCSWE.nanoFramework.Collections.Concurrent.nuspec = src\CCSWE.nanoFramework.Collections.Concurrent\CCSWE.nanoFramework.Collections.Concurrent.nuspec
 		src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nuspec = src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nuspec
+		src\CCSWE.nanoFramework.Hosting\CCSWE.nanoFramework.Hosting.nuspec = src\CCSWE.nanoFramework.Hosting\CCSWE.nanoFramework.Hosting.nuspec
 		src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nuspec = src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nuspec
 		src\CCSWE.nanoFramework.Math\CCSWE.nanoFramework.Math.nuspec = src\CCSWE.nanoFramework.Math\CCSWE.nanoFramework.Math.nuspec
 		version.json = version.json
@@ -52,6 +53,10 @@ EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Logging", "src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nfproj", "{B332A930-C330-410A-9F92-958FC5BBED24}"
 EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Logging.UnitTests", "test\CCSWE.nanoFramework.Logging.UnitTests\CCSWE.nanoFramework.Logging.UnitTests.nfproj", "{9C22DBE2-6DAC-462B-942E-BF483D37BD92}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Hosting", "src\CCSWE.nanoFramework.Hosting\CCSWE.nanoFramework.Hosting.nfproj", "{E1C6DCFA-C35A-44C8-B55D-8ECFBBF5D229}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Hosting.UnitTests", "test\CCSWE.nanoFramework.Hosting.UnitTests\CCSWE.nanoFramework.Hosting.UnitTests.nfproj", "{30254EA4-B92D-4481-8708-98E99A20E198}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +124,18 @@ Global
 		{9C22DBE2-6DAC-462B-942E-BF483D37BD92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C22DBE2-6DAC-462B-942E-BF483D37BD92}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9C22DBE2-6DAC-462B-942E-BF483D37BD92}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E1C6DCFA-C35A-44C8-B55D-8ECFBBF5D229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C6DCFA-C35A-44C8-B55D-8ECFBBF5D229}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C6DCFA-C35A-44C8-B55D-8ECFBBF5D229}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E1C6DCFA-C35A-44C8-B55D-8ECFBBF5D229}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C6DCFA-C35A-44C8-B55D-8ECFBBF5D229}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1C6DCFA-C35A-44C8-B55D-8ECFBBF5D229}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{30254EA4-B92D-4481-8708-98E99A20E198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30254EA4-B92D-4481-8708-98E99A20E198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30254EA4-B92D-4481-8708-98E99A20E198}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{30254EA4-B92D-4481-8708-98E99A20E198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30254EA4-B92D-4481-8708-98E99A20E198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30254EA4-B92D-4481-8708-98E99A20E198}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +154,8 @@ Global
 		{1B385C5B-1219-442F-B896-F925D2BA489C} = {E958B80F-112E-472F-93C7-29F00BE1A633}
 		{B332A930-C330-410A-9F92-958FC5BBED24} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
 		{9C22DBE2-6DAC-462B-942E-BF483D37BD92} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
+		{E1C6DCFA-C35A-44C8-B55D-8ECFBBF5D229} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
+		{30254EA4-B92D-4481-8708-98E99A20E198} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97E85E43-6CB8-48DC-8A37-E0A6CE82419A}

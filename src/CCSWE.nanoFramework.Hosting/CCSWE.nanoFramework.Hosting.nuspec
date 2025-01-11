@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CCSWE.nanoFramework.Hosting</id>
+    <title>CCSWE.nanoFramework.Hosting</title>
+    <version>1.0</version>
+    <authors>Cory Charlton</authors>
+    <owners>Cory Charlton,CCSWE</owners>
+    <license type="file">LICENSE.md</license>
+    <projectUrl>https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework</projectUrl>
+    <icon>images\ccswe-logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>README.md</readme>
+    <developmentDependency>false</developmentDependency>
+    <description>Hosting and startup infrastructures for applications.</description>
+    <repository type="git" url="https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework" commit="$commit$" />
+    <copyright>Copyright (c) Cory Charlton</copyright>
+    <tags>nanoFramework C# csharp netmf netnf ccswe hosting</tags>
+    <dependencies>
+      <dependency id="CCSWE.nanoFramework.Core" version="[1.1,)" />
+      <dependency id="CCSWE.nanoFramework.Logging" version="[1.1,)" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+      <dependency id="nanoFramework.Hosting" version="1.0.55" />
+      <dependency id="nanoFramework.Logging" version="1.1.125" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\CCSWE.nanoFramework.Hosting.*" target="lib" />
+    <file src="..\..\ccswe-logo.png" target="images" />
+    <file src="..\..\LICENSE.md" target="" />
+    <file src="README.md" target="" />
+  </files>
+</package>
