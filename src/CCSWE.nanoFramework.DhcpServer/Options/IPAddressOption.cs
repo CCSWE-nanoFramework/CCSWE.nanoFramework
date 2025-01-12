@@ -6,7 +6,7 @@ namespace CCSWE.nanoFramework.DhcpServer.Options
     /// <summary>
     /// Represents a DHCP option with a single <see cref="IPAddress"/> value.
     /// </summary>
-    public class IPAddressOption : OptionBase
+    public class IPAddressOption : Option
     {
         private IPAddress? _value;
 

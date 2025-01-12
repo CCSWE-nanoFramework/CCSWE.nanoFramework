@@ -2,7 +2,7 @@
 
 namespace CCSWE.nanoFramework.DhcpServer.Options
 {
-    internal class ParameterRequestListOption : OptionBase
+    internal class ParameterRequestListOption : Option
     {
         private string? _valueAsString;
 

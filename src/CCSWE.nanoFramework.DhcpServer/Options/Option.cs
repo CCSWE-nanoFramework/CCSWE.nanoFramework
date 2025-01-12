@@ -3,17 +3,17 @@
     /// <summary>
     /// A base class for implementing <see cref="IOption"/>.
     /// </summary>
-    public abstract class OptionBase: IOption
+    public abstract class Option: IOption
     {
         /// <summary>
-        /// Creates a new <see cref="OptionBase"/> with the specified <paramref name="code"/> and <paramref name="data"/>.
+        /// Creates a new <see cref="Option"/> with the specified <paramref name="code"/> and <paramref name="data"/>.
         /// </summary>
-        protected OptionBase(byte code, byte[] data): this(code, data, (byte)data.Length) { }
+        protected Option(byte code, byte[] data): this(code, data, (byte)data.Length) { }
 
         /// <summary>
-        /// Creates a new <see cref="OptionBase"/> with the specified <paramref name="code"/>, <paramref name="data"/>, and <paramref name="length"/>.
+        /// Creates a new <see cref="Option"/> with the specified <paramref name="code"/>, <paramref name="data"/>, and <paramref name="length"/>.
         /// </summary>
-        protected OptionBase(byte code, byte[] data, byte length)
+        protected Option(byte code, byte[] data, byte length)
         {
             Code = code;
             Data = data;
@@ -21,10 +21,9 @@
         }
 
         /// <summary>
-        /// Creates a new <see cref="OptionBase"/> with the specified <paramref name="code"/> and <paramref name="data"/>.
+        /// Creates a new <see cref="Option"/> with the specified <paramref name="code"/> and <paramref name="data"/>.
         /// </summary>
-        protected OptionBase(OptionCode code, byte[] data) : this((byte)code, data) { }
-
+        protected Option(OptionCode code, byte[] data) : this((byte)code, data) { }
 
         /// <inheritdoc />
         public byte Code { get; }
@@ -54,7 +53,7 @@
         public abstract override string ToString();
 
         /// <summary>
-        /// Provides common formatting for <see cref="OptionBase.ToString"/>.
+        /// Provides common formatting for <see cref="Option.ToString"/>.
         /// </summary>
         protected string ToString(object value) => $"{Code}: {value}";
     }

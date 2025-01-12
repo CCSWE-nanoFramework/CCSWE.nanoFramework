@@ -6,7 +6,7 @@ namespace CCSWE.nanoFramework.DhcpServer.Options
     /// Represents a DHCP option with a <see cref="TimeSpan"/> value.
     /// </summary>
     /// <remarks>The <see cref="TimeSpan"/> is serialized as positive seconds.</remarks>
-    public class TimeSpanOption: OptionBase
+    public class TimeSpanOption: Option
     {
         private bool _deserialized;
         private TimeSpan _value;

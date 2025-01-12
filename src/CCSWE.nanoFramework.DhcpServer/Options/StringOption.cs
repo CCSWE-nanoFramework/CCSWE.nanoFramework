@@ -4,7 +4,7 @@
     /// Represents a DHCP option with a <see cref="string"/> value.
     /// </summary>
     /// <remarks>This option does not support strings that need to be null terminated.</remarks>
-    public class StringOption: OptionBase
+    public class StringOption: Option
     {
         private string? _value;
 

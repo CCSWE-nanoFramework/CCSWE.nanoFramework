@@ -1,6 +1,6 @@
 ﻿namespace CCSWE.nanoFramework.DhcpServer.Options
 {
-    internal class UnknownOption: OptionBase
+    internal class UnknownOption: Option
     {
         public UnknownOption(byte code, byte[] data): base(code, data)
         {

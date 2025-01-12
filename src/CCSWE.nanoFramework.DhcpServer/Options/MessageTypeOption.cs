@@ -2,7 +2,7 @@
 
 namespace CCSWE.nanoFramework.DhcpServer.Options
 {
-    internal class MessageTypeOption : OptionBase
+    internal class MessageTypeOption : Option
     {
         public MessageTypeOption(byte[] data): base(OptionCode.DhcpMessageType, data)
         {

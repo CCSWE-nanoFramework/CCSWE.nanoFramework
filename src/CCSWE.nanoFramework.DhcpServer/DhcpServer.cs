@@ -14,13 +14,10 @@ namespace CCSWE.nanoFramework.DhcpServer
     {
         private static readonly IPAddress DefaultSubnetMask = new(new byte[] { 255, 255, 255, 0 });
 
-        // TODO: Replace with IPAddress.Broadcast when it's merged in
-        private static readonly IPAddress Broadcast = new(new byte[] { 255, 255, 255, 255 });
-
         private const int ServerPort = 67;
         private const int ClientPort = 68;
 
-        private static readonly IPEndPoint BroadcastEndpoint = new(Broadcast, ClientPort);
+        private static readonly IPEndPoint BroadcastEndpoint = new(IPAddress.Broadcast, ClientPort);
 
         private readonly IPAddressPool _addressPool;
         private Timer? _addressPoolTimer;
@@ -422,7 +419,7 @@ namespace CCSWE.nanoFramework.DhcpServer
 
                         Response.Bind(new IPEndPoint(ServerAddress, 0));
                         Response.SetSocketOption(SocketOptionLevel.Udp, SocketOptionName.Broadcast, true);
-                        Response.Connect(new IPEndPoint(Broadcast, ClientPort));
+                        Response.Connect(new IPEndPoint(IPAddress.Broadcast, ClientPort));
 
                         _addressPoolTimer = new Timer(_ => { _addressPool.Evict(); }, null, TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(5));
 

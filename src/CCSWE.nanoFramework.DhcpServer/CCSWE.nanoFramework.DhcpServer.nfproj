@@ -32,7 +32,7 @@
     <Compile Include="MessageType.cs" />
     <Compile Include="Operation.cs" />
     <Compile Include="Options\ParameterRequestListOption.cs" />
-    <Compile Include="Options\OptionBase.cs" />
+    <Compile Include="Options\Option.cs" />
     <Compile Include="Options\OptionCollection.cs" />
     <Compile Include="Options\TimeSpanOption.cs" />
     <Compile Include="Options\StringOption.cs" />
