@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETnanoFramework,Version=v1.0": {
+      "nanoFramework.System.Device.Wifi": {
+        "type": "Direct",
+        "requested": "[1.5.105, 1.5.105]",
+        "resolved": "1.5.105",
+        "contentHash": "/AyX35SAtmime3YWDCVxB9GTZoDiBbFh+gONJER3skaQAf7ouaMdfqg3D/7T0arrNLuQ+lyjySr3LZXvsHRusw=="
+      }
+    }
+  }
+}
