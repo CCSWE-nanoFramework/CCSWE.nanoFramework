@@ -42,8 +42,8 @@
     <Reference Include="nanoFramework.DependencyInjection, Version=1.1.11.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.DependencyInjection.1.1.11\lib\nanoFramework.DependencyInjection.dll</HintPath>
     </Reference>
-    <Reference Include="nanoFramework.Json, Version=2.2.154.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-      <HintPath>..\..\packages\nanoFramework.Json.2.2.154\lib\nanoFramework.Json.dll</HintPath>
+    <Reference Include="nanoFramework.Json, Version=2.2.160.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.Json.2.2.160\lib\nanoFramework.Json.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.Logging">
       <HintPath>..\..\packages\nanoFramework.Logging.1.1.125\lib\nanoFramework.Logging.dll</HintPath>
