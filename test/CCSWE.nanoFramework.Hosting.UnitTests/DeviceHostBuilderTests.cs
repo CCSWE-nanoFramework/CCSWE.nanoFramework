@@ -101,7 +101,7 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests
                 Assert.AreEqual(expected1, (string)context.Properties[1]);
             });
 
-            sut.Properties = new object[] { expected0, expected1 };
+            sut.Properties = [expected0, expected1];
 
             Assert.AreEqual(expected0, (string)sut.Properties[0]);
             Assert.AreEqual(expected1, (string)sut.Properties[1]);

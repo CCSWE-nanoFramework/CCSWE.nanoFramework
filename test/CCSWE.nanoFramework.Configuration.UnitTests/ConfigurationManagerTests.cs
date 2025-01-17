@@ -11,7 +11,7 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests
     [TestClass]
     public class ConfigurationManagerTests
     {
-        private ConfigurationManager CreateConfigurationManager(out ILogger logger, out ConfigurationStorageMock storage, bool validatesSuccessfully = true)
+        private static ConfigurationManager CreateConfigurationManager(out ILogger logger, out ConfigurationStorageMock storage, bool validatesSuccessfully = true)
         {
             logger = new LoggerMock();
             storage = new ConfigurationStorageMock();
@@ -41,7 +41,7 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests
 
                 Assert.AreEqual(ConfigurationMock.Default, postClear, "Cleared correctly");
                 Assert.IsTrue(storage.DeleteConfigurationCalled, "Delete called");
-                Assert.AreEqual(ConfigurationMock.Section.ToLower(), storage.DeleteConfigurationSection.ToLower(), "Delete section");
+                Assert.AreEqual(ConfigurationMock.Section.ToLower(), storage.DeleteConfigurationSection?.ToLower(), "Delete section");
             });
         }
 
@@ -63,7 +63,7 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests
 
                 Assert.AreEqual(ConfigurationMock.Default, postClear, "Cleared correctly");
                 Assert.IsTrue(storage.DeleteConfigurationCalled, "Delete called");
-                Assert.AreEqual(ConfigurationMock.Section2.ToLower(), storage.DeleteConfigurationSection.ToLower(), "Delete section");
+                Assert.AreEqual(ConfigurationMock.Section2.ToLower(), storage.DeleteConfigurationSection?.ToLower(), "Delete section");
             });
         }
 
@@ -85,7 +85,7 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests
             ThreadPoolTestHelper.ExecuteAndReset(() =>
             {
                 using var sut = CreateConfigurationManager(out _, out _);
-                Assert.IsFalse(sut.Contains("InvalidSection"), "sut.Contains('InvalidSection')");
+                Assert.IsFalse(sut.Contains("InvalidSection"));
             });
         }
 
@@ -95,7 +95,7 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests
             ThreadPoolTestHelper.ExecuteAndReset(() =>
             {
                 using var sut = CreateConfigurationManager(out _, out _);
-                Assert.IsTrue(sut.Contains(ConfigurationMock.Section), "sut.Contains(ConfigurationMock.Section)");
+                Assert.IsTrue(sut.Contains(ConfigurationMock.Section));
             });
         }
 
@@ -111,7 +111,7 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests
 
                 Assert.AreEqual(expect, actual);
                 Assert.IsTrue(storage.ReadConfigurationCalled, "Read called");
-                Assert.AreEqual(ConfigurationMock.Section.ToLower(), storage.ReadConfigurationSection.ToLower(), "Read section");
+                Assert.AreEqual(ConfigurationMock.Section.ToLower(), storage.ReadConfigurationSection?.ToLower(), "Read section");
                 Assert.AreEqual(typeof(ConfigurationMock), storage.ReadConfigurationType, "Read type");
             });
         }
@@ -176,7 +176,7 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests
                 Assert.AreEqual(expect, actual, "Saved correctly");
                 Assert.IsTrue(storage.WriteConfigurationCalled, "Write called");
                 Assert.AreEqual(storage.WriteConfigurationConfiguration, expect);
-                Assert.AreEqual(ConfigurationMock.Section.ToLower(), storage.WriteConfigurationSection.ToLower(), "Write section");
+                Assert.AreEqual(ConfigurationMock.Section.ToLower(), storage.WriteConfigurationSection?.ToLower(), "Write section");
             });
         }
 
@@ -233,7 +233,7 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests
                 Assert.AreEqual(expect, actual, "Saved correctly");
                 Assert.IsTrue(storage.WriteConfigurationCalled, "Write called");
                 Assert.AreEqual(storage.WriteConfigurationConfiguration, expect);
-                Assert.AreEqual(ConfigurationMock.Section.ToLower(), storage.WriteConfigurationSection.ToLower(), "Write section");
+                Assert.AreEqual(ConfigurationMock.Section.ToLower(), storage.WriteConfigurationSection?.ToLower(), "Write section");
             });
         }
 

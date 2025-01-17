@@ -10,10 +10,12 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests.Mocks
         public const string Section = nameof(ConfigurationMock);
         public const string Section2 = nameof(ConfigurationMock) + "2";
 
+        /*
         public ConfigurationMock()
         {
 
         }
+        */
 
         public ConfigurationMock(
             bool boolSetting,

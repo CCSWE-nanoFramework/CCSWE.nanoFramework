@@ -18,7 +18,7 @@ namespace CCSWE.nanoFramework.Logging.UnitTests
 
             Assert.IsNotNull(actual[0]);
             Assert.AreEqual(1, actual.Length);
-            Assert.IsInstanceOfType(actual[0], typeof(DebugLogger));
+            Assert.IsInstanceOfType(actual[0], typeof(ConsoleLogger));
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace CCSWE.nanoFramework.Logging.UnitTests
 
             Assert.IsNotNull(actualLogger[0]);
             Assert.AreEqual(1, actualLogger.Length);
-            Assert.IsInstanceOfType(actualLogger[0], typeof(DebugLogger));
+            Assert.IsInstanceOfType(actualLogger[0], typeof(ConsoleLogger));
 
             var actualOptions = serviceProvider.GetServices(typeof(LoggerOptions));
 

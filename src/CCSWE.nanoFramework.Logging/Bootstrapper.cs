@@ -9,11 +9,12 @@ namespace CCSWE.nanoFramework.Logging
     public static class Bootstrapper
     {
         /// <summary>
-        /// Adds an <see cref="DebugLogger"/> to the <see cref="IServiceCollection"/>.
+        /// Adds an <see cref="ConsoleLogger"/> to the <see cref="IServiceCollection"/>.
         /// </summary>
         public static IServiceCollection AddLogging(this IServiceCollection services, ConfigureLoggerOptions? configureOptions = null)
         {
             var options = new LoggerOptions();
+
             if (configureOptions is null)
             {
                 options.MinLogLevel = LogLevel.Debug;
@@ -21,8 +22,8 @@ namespace CCSWE.nanoFramework.Logging
 
             configureOptions?.Invoke(options);
 
-            services.TryAdd(new ServiceDescriptor(typeof(ILogger), typeof(DebugLogger), ServiceLifetime.Singleton));
-            services.TryAdd(new ServiceDescriptor(typeof(ILoggerFactory), typeof(DebugLoggerFactory), ServiceLifetime.Singleton));
+            services.TryAdd(new ServiceDescriptor(typeof(ILogger), typeof(ConsoleLogger), ServiceLifetime.Singleton));
+            services.TryAdd(new ServiceDescriptor(typeof(ILoggerFactory), typeof(ConsoleLoggerFactory), ServiceLifetime.Singleton));
             services.TryAdd(new ServiceDescriptor(typeof(LoggerOptions), options));
 
             LoggerFormatter.Initialize();

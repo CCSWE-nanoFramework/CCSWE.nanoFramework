@@ -178,7 +178,7 @@ namespace CCSWE.nanoFramework.Threading.Internal
         /// </summary>
         /// <param name="callback">A <see cref="WaitCallback"/> representing the method to execute.</param>
         /// <param name="state">An object containing data to be used by the method.</param>
-        /// <returns><see langword="true"/> if the method is successfully queued; <see langword="false"/> otherwise.</returns>
+        /// <returns><see langword="true"/> if the method is successfully queued; otherwise, <see langword="false"/>.</returns>
         public bool QueueUserWorkItem(WaitCallback callback, object? state = null)
         {
             ThrowIfDisposed();

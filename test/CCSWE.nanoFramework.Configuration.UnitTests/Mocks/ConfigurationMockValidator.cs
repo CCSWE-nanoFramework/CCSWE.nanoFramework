@@ -11,7 +11,7 @@
 
         public bool ValidateCalled { get; set; }
 
-        public ValidateConfigurationResult Validate(object configuration)
+        public ValidateConfigurationResult Validate(object? configuration)
         {
             ValidateCalled = true;
 
