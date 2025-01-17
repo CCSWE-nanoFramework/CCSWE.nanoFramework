@@ -104,7 +104,7 @@ namespace CCSWE.nanoFramework.DhcpServer
         /// </summary>
         /// <param name="clientAddress">The IP address to check.</param>
         /// <param name="hardwareAddress">The hardware address to check.</param>
-        /// <returns><see langword="true"/> if the <paramref name="clientAddress"/> is leased to the <paramref name="hardwareAddress"/>; otherwise <see langword="false"/>.</returns>
+        /// <returns><see langword="true"/> if the <paramref name="clientAddress"/> is leased to the <paramref name="hardwareAddress"/>; otherwise, <see langword="false"/>.</returns>
         public bool IsLeasedTo(IPAddress clientAddress, string hardwareAddress) => IsLeasedTo(clientAddress, hardwareAddress, out _);
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace CCSWE.nanoFramework.DhcpServer
         /// <param name="clientAddress">The IP address to check.</param>
         /// <param name="hardwareAddress">The hardware address to check.</param>
         /// <param name="lease">The matching <see cref="IPAddressLease"/> if leased.</param>
-        /// <returns><see langword="true"/> if the <paramref name="clientAddress"/> is leased to the <paramref name="hardwareAddress"/>; otherwise <see langword="false"/>.</returns>
+        /// <returns><see langword="true"/> if the <paramref name="clientAddress"/> is leased to the <paramref name="hardwareAddress"/>; otherwise, <see langword="false"/>.</returns>
         public bool IsLeasedTo(IPAddress clientAddress, string hardwareAddress, [NotNullWhen(true)] out IPAddressLease? lease)
         {
             lease = null;

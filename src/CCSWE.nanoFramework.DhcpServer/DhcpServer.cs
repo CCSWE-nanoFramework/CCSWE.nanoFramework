@@ -398,7 +398,7 @@ namespace CCSWE.nanoFramework.DhcpServer
         /// Starts the DHCP server.
         /// </summary>
         /// <returns>
-        /// <see langword="true"/> if started successfully; otherwise <see langword="false"/>.
+        /// <see langword="true"/> if started successfully; otherwise, <see langword="false"/>.
         /// </returns>
         public bool Start()
         {

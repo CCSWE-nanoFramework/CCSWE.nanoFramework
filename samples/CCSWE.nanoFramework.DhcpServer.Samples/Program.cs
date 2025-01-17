@@ -1,6 +1,4 @@
-using System;
 using System.Diagnostics;
-using System.Net;
 using System.Threading;
 
 namespace CCSWE.nanoFramework.DhcpServer.Samples

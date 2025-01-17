@@ -8,7 +8,7 @@
         /// <summary>Compares two values to determine equality.</summary>
         /// <param name="left">The value to compare with <paramref name="right" />.</param>
         /// <param name="right">The value to compare with <paramref name="left" />.</param>
-        /// <returns><c>true</c> if <paramref name="left" /> is equal to <paramref name="right" />; otherwise, <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if <paramref name="left" /> is equal to <paramref name="right" />; otherwise, <see langword="false"/>.</returns>
         public static bool Equals(double left, double right)
         {
             return FastMath.Abs(left - right) < double.Epsilon;
@@ -17,7 +17,7 @@
         /// <summary>Compares two values to determine equality.</summary>
         /// <param name="left">The value to compare with <paramref name="right" />.</param>
         /// <param name="right">The value to compare with <paramref name="left" />.</param>
-        /// <returns><c>true</c> if <paramref name="left" /> is equal to <paramref name="right" />; otherwise, <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if <paramref name="left" /> is equal to <paramref name="right" />; otherwise, <see langword="false"/>.</returns>
         public static bool Equals(float left, float right)
         {
             return FastMath.Abs(left - right) < float.Epsilon;

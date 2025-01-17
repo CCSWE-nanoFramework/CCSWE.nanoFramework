@@ -9,7 +9,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
     {
         private const float Brightness = 0.1f;
 
-        private NeoPixelStrip _sut;
+        private NeoPixelStrip _sut = null!;
 
         [Setup]
         public override void Setup()

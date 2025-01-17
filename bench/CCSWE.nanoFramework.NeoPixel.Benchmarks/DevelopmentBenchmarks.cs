@@ -1,8 +1,6 @@
 ﻿using nanoFramework.Benchmark;
 using nanoFramework.Benchmark.Attributes;
 using System;
-using System.Device.Gpio;
-using System.Text;
 
 namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
 {

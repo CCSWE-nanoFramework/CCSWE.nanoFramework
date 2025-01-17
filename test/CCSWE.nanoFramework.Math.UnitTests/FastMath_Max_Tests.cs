@@ -1,5 +1,6 @@
 ﻿using nanoFramework.TestFramework;
 using System;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 namespace CCSWE.nanoFramework.UnitTests
 {

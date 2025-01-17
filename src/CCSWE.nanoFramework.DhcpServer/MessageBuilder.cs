@@ -98,7 +98,7 @@ namespace CCSWE.nanoFramework.DhcpServer
         /// <param name="requestType">The request message type.</param>
         /// <param name="responseType">The response message type.</param>
         /// <param name="option">The option to check.</param>
-        /// <returns><see langword="true"/> if the option is allowed; otherwise <see langword="false"/>.</returns>
+        /// <returns><see langword="true"/> if the option is allowed; otherwise, <see langword="false"/>.</returns>
         private static bool IsOptionAllowedInResponse(MessageType requestType, MessageType responseType, IOption option)
         {
             return (OptionCode)option.Code switch

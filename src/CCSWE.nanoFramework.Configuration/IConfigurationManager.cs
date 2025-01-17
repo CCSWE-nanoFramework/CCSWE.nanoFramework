@@ -27,7 +27,7 @@ namespace CCSWE.nanoFramework.Configuration
         /// Checks if a configuration has been registered.
         /// </summary>
         /// <param name="section">The configuration section to check.</param>
-        /// <returns>true if the configuration is registered; otherwise false.</returns>
+        /// <returns><see langword="true"/> if the configuration is registered; otherwise, <see langword="false"/>.</returns>
         public bool Contains(string section);
 
         /// <summary>
