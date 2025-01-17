@@ -133,7 +133,7 @@ namespace CCSWE.nanoFramework.Collections.Concurrent
         /// Determines whether an element is in the <see cref="ConcurrentList"/>.
         /// </summary>
         /// <param name="item">The object to locate in the <see cref="ConcurrentList"/>.</param>
-        /// <returns>true if <paramref name="item"/> is found in the <see cref="ConcurrentList"/>; otherwise, false.</returns>
+        /// <returns><see langword="true"/> if <paramref name="item"/> is found in the <see cref="ConcurrentList"/>; otherwise, <see langword="false"/>.</returns>
         public bool Contains(object? item)
         {
             lock (_lock)

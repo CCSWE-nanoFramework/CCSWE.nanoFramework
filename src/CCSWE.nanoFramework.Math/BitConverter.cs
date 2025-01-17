@@ -37,7 +37,7 @@ namespace CCSWE.nanoFramework
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>A 64-bit unsigned integer whose bits are identical to <paramref name="value"/>.</returns>
-        [CLSCompliant(false)]
+        //[CLSCompliant(false)]
         public static unsafe ulong DoubleToUInt64Bits(double value) => *((ulong*)&value);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace CCSWE.nanoFramework
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>A double-precision floating point number whose bits are identical to <paramref name="value"/>.</returns>
-        [CLSCompliant(false)]
+        //[CLSCompliant(false)]
         public static unsafe double UInt64BitsToDouble(ulong value) => *((double*)&value);
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace CCSWE.nanoFramework
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>A 32-bit unsigned integer whose bits are identical to <paramref name="value"/>.</returns>
-        [CLSCompliant(false)]
+        //[CLSCompliant(false)]
         public static unsafe uint SingleToUInt32Bits(float value) => *((uint*)&value);
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace CCSWE.nanoFramework
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>A single-precision floating point number whose bits are identical to <paramref name="value"/>.</returns>
-        [CLSCompliant(false)]
+        //[CLSCompliant(false)]
         public static unsafe float UInt32BitsToSingle(uint value) => *((float*)&value);
     }
 }

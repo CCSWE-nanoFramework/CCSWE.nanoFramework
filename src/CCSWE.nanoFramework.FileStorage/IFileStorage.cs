@@ -21,7 +21,7 @@ namespace CCSWE.nanoFramework.FileStorage
         /// Determines whether the specified file exists.
         /// </summary>
         /// <param name="path">The file to check.</param>
-        /// <returns><c>true</c> if the file exists; otherwise <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if the file exists; otherwise, <see langword="false"/>.</returns>
         bool Exists(string path);
 
         /// <summary>

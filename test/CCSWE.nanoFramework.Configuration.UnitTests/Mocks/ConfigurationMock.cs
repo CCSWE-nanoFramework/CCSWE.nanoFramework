@@ -46,12 +46,12 @@ namespace CCSWE.nanoFramework.Configuration.UnitTests.Mocks
             return new ConfigurationMock(true, DateTime.UtcNow, 0.1234d, 0.4321f, 1234, "A String", TimeSpan.FromMinutes(1234));
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as ConfigurationMock);
         }
 
-        public bool Equals(ConfigurationMock other)
+        public bool Equals(ConfigurationMock? other)
         {
             if (other is null)
             {

@@ -1,5 +1,6 @@
 ﻿using nanoFramework.Benchmark;
 using nanoFramework.Benchmark.Attributes;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 namespace CCSWE.nanoFramework.Benchmarks
 {

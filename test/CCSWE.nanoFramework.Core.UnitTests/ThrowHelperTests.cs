@@ -16,7 +16,7 @@ namespace CCSWE.nanoFramework.Core.UnitTests
         [TestMethod]
         public void ThrowIfNull_throws_ArgumentNullException_with_correct_ParamName_when_argument_is_null()
         {
-            object unitTestParameter = null;
+            object? unitTestParameter = null;
             const string expect = nameof(unitTestParameter);
             var testExecuted = false;
 
@@ -74,7 +74,7 @@ namespace CCSWE.nanoFramework.Core.UnitTests
         [TestMethod]
         public void ThrowIfNullOrEmpty_throws_ArgumentNullException_with_correct_ParamName_when_argument_is_null()
         {
-            string unitTestParameter = null;
+            string? unitTestParameter = null;
             const string expect = nameof(unitTestParameter);
             var testExecuted = false;
 

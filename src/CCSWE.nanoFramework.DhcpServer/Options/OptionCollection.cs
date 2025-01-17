@@ -43,21 +43,21 @@ namespace CCSWE.nanoFramework.DhcpServer.Options
         /// Determines whether the <see cref="OptionCollection"/> contains an <see cref="IOption"/>.
         /// </summary>
         /// <param name="code">The <see cref="OptionCode"/> to check.</param>
-        /// <returns><see langword="true"/> if the <see cref="OptionCollection"/> contains the option; otherwise <see langword="false"/>.</returns>
+        /// <returns><see langword="true"/> if the <see cref="OptionCollection"/> contains the option; otherwise, <see langword="false"/>.</returns>
         public bool Contains(byte code) => _options.Contains(code);
 
         /// <summary>
         /// Determines whether the <see cref="OptionCollection"/> contains an <see cref="IOption"/>.
         /// </summary>
         /// <param name="code">The <see cref="OptionCode"/> to check.</param>
-        /// <returns><see langword="true"/> if the <see cref="OptionCollection"/> contains the option; otherwise <see langword="false"/>.</returns>
+        /// <returns><see langword="true"/> if the <see cref="OptionCollection"/> contains the option; otherwise, <see langword="false"/>.</returns>
         public bool Contains(OptionCode code) => Contains((byte)code);
 
         /// <summary>
         /// Gets an <see cref="IOption"/>.
         /// </summary>
         /// <param name="code">The <see cref="OptionCode"/> to get.</param>
-        /// <returns>An <see cref="IOption"/> if it exists; otherwise <see langword="null"/>.</returns>
+        /// <returns>An <see cref="IOption"/> if it exists; otherwise, <see langword="null"/>.</returns>
         public IOption? Get(byte code)
         {
             lock (_lock)
@@ -70,7 +70,7 @@ namespace CCSWE.nanoFramework.DhcpServer.Options
         /// Gets an <see cref="IOption"/>.
         /// </summary>
         /// <param name="code">The <see cref="OptionCode"/> to get.</param>
-        /// <returns>An <see cref="IOption"/> if it exists; otherwise <see langword="null"/>.</returns>
+        /// <returns>An <see cref="IOption"/> if it exists; otherwise, <see langword="null"/>.</returns>
         public IOption? Get(OptionCode code) => Get((byte)code);
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace CCSWE.nanoFramework.DhcpServer.Options
         /// <summary>
         /// Gets the value set for an <see cref="IOption"/>.
         /// </summary>
-        /// <returns>The value if set; otherwise <paramref name="defaultValue"/>.</returns>
+        /// <returns>The value if set; otherwise, <paramref name="defaultValue"/>.</returns>
         public IPAddress GetOrDefault(OptionCode code, IPAddress defaultValue)
         {
             if (!TryGet(code, out var option))
@@ -124,7 +124,7 @@ namespace CCSWE.nanoFramework.DhcpServer.Options
         /// <summary>
         /// Gets the value set for an <see cref="IOption"/>.
         /// </summary>
-        /// <returns>The value if set; otherwise <paramref name="defaultValue"/>.</returns>
+        /// <returns>The value if set; otherwise, <paramref name="defaultValue"/>.</returns>
         public string GetOrDefault(OptionCode code, string defaultValue)
         {
             if (!TryGet(code, out var option))
@@ -143,7 +143,7 @@ namespace CCSWE.nanoFramework.DhcpServer.Options
         /// <summary>
         /// Gets the value set for an <see cref="IOption"/>.
         /// </summary>
-        /// <returns>The value if set; otherwise <paramref name="defaultValue"/>.</returns>
+        /// <returns>The value if set; otherwise, <paramref name="defaultValue"/>.</returns>
         public TimeSpan GetOrDefault(OptionCode code, TimeSpan defaultValue)
         {
             if (!TryGet(code, out var option))
@@ -235,7 +235,7 @@ namespace CCSWE.nanoFramework.DhcpServer.Options
         /// </summary>
         /// <param name="code">The <see cref="OptionCode"/> to retrieve.</param>
         /// <param name="option">The <see cref="IOption"/>.</param>
-        /// <returns><see langword="true"/> if the option exists; otherwise <see langword="false"/>.</returns>
+        /// <returns><see langword="true"/> if the option exists; otherwise, <see langword="false"/>.</returns>
         public bool TryGet(byte code, [NotNullWhen(true)] out IOption? option)
         {
             option = Get(code);
@@ -248,7 +248,7 @@ namespace CCSWE.nanoFramework.DhcpServer.Options
         /// </summary>
         /// <param name="code">The <see cref="OptionCode"/> to retrieve.</param>
         /// <param name="option">The <see cref="IOption"/>.</param>
-        /// <returns><see langword="true"/> if the option exists; otherwise <see langword="false"/>.</returns>
+        /// <returns><see langword="true"/> if the option exists; otherwise, <see langword="false"/>.</returns>
         public bool TryGet(OptionCode code, [NotNullWhen(true)] out IOption? option) => TryGet((byte)code, out option);
     }
 }

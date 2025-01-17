@@ -46,6 +46,7 @@ namespace CCSWE.nanoFramework
             return value;
         }
 
+        /// <inheritdoc cref="Math.Clamp(long,long,long)"/>
         public static int Clamp(int value, int min, int max)
         {
             if (min > max)

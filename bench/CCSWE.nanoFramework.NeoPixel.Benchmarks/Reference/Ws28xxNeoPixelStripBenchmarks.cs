@@ -9,7 +9,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks.Reference
     [IterationCount(IterationCount)]
     public class Ws28xxNeoPixelStripBenchmarks : NeoPixelStripBenchmarkBase
     {
-        private Ws28xxNeoPixelStrip _sut;
+        private Ws28xxNeoPixelStrip _sut = null!;
 
         [Setup]
         public override void Setup()

@@ -23,6 +23,7 @@
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
+    <Compile Include="Collections\ArrayListExtensions.cs" />
     <Compile Include="Ensure.IsInRange.cs">
       <DependentUpon>Ensure.cs</DependentUpon>
     </Compile>
@@ -34,6 +35,7 @@
     <Compile Include="Strings.cs" />
     <Compile Include="ThrowHelper.cs" />
     <Compile Include="Text\TimeSpanConverter.cs" />
+    <Compile Include="Types.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib">
