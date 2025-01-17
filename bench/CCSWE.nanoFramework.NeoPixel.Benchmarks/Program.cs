@@ -2,7 +2,6 @@
 using System;
 using System.Diagnostics;
 #endif
-using System;
 using System.Device.Gpio;
 using System.Threading;
 using CCSWE.nanoFramework.NeoPixel.Benchmarks.Reference;
