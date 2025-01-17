@@ -29,7 +29,7 @@ namespace CCSWE.nanoFramework.Logging
 
         public static void Initialize()
         {
-            LoggerExtensions.MessageFormatter = typeof(LoggerFormatter).GetMethod(nameof(Formatter));
+            Microsoft.Extensions.Logging.LoggerExtensions.MessageFormatter = typeof(LoggerFormatter).GetMethod(nameof(Formatter));
         }
     }
 }

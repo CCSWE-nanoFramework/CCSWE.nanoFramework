@@ -2,7 +2,6 @@
 using CCSWE.nanoFramework.Hosting.UnitTests.Mocks;
 using CCSWE.nanoFramework.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using nanoFramework.Hosting;
 using nanoFramework.TestFramework;
 
@@ -13,15 +12,16 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests.Internal
     public class DeviceHostTests
     {
         [TestMethod]
-        public void ctor_throws_if_loggerFactory_is_null()
+        public void ctor_throws_if_logger_is_null()
         {
-            Assert.ThrowsException(typeof(ArgumentNullException), () => new CCSWE.nanoFramework.Hosting.Internal.DeviceHost(new ServiceCollection().BuildServiceProvider(), null!));
+            Assert.ThrowsException(typeof(ArgumentNullException), () => new Hosting.Internal.DeviceHost(new ServiceCollection().BuildServiceProvider(), null!));
         }
 
         [TestMethod]
         public void ctor_throws_if_services_is_null()
         {
-            Assert.ThrowsException(typeof(ArgumentNullException), () => new CCSWE.nanoFramework.Hosting.Internal.DeviceHost(null!, new DebugLogger(new LoggerOptions(LogLevel.Debug))));
+            // ReSharper disable once RedundantArgumentDefaultValue
+            Assert.ThrowsException(typeof(ArgumentNullException), () => new Hosting.Internal.DeviceHost(null!, new ConsoleLogger()));
         }
 
         [TestMethod]
@@ -37,7 +37,6 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests.Internal
             sut.Start();
 
             Assert.IsNotNull(registeredService);
-            // TODO: Bug someone to publish the test framework changes :P
             Assert.IsTrue(registeredService.IsStarted);
             Assert.IsFalse(registeredService.IsStopped);
         }

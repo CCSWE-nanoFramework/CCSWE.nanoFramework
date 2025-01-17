@@ -5,33 +5,34 @@ using Microsoft.Extensions.Logging;
 namespace CCSWE.nanoFramework.Logging
 {
     /// <summary>
-    /// A logger that prints to the debug console
+    /// A logger that prints to the console
     /// </summary>
-    public class DebugLogger : ILogger
+    public class ConsoleLogger : ILogger
     {
         /// <summary>
-        /// Creates a new instance of the <see cref="DebugLogger"/>
+        /// Creates a new instance of the <see cref="ConsoleLogger"/>
         /// </summary>
         /// <param name="loggerOptions">The logger options</param>
-        public DebugLogger(LoggerOptions? loggerOptions) : this(string.Empty, loggerOptions)
+        public ConsoleLogger(LoggerOptions? loggerOptions = null) : this(string.Empty, loggerOptions)
         {
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="DebugLogger"/>
+        /// Creates a new instance of the <see cref="ConsoleLogger"/>
         /// </summary>
         /// <param name="loggerName">The logger name</param>
         /// <param name="loggerOptions">The logger options</param>
-        private DebugLogger(string loggerName, LoggerOptions? loggerOptions): this(loggerName, loggerOptions is not null ? loggerOptions.MinLogLevel : LogLevel.Debug)
+        // ReSharper disable once MergeConditionalExpression
+        private ConsoleLogger(string loggerName, LoggerOptions? loggerOptions): this(loggerName, loggerOptions is not null ? loggerOptions.MinLogLevel : LogLevel.Debug)
         {
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="DebugLogger"/>
+        /// Creates a new instance of the <see cref="ConsoleLogger"/>
         /// </summary>
         /// <param name="loggerName">The logger name</param>
         /// <param name="minLogLevel">The minimum <see cref="LogLevel"/></param>
-        private DebugLogger(string loggerName, LogLevel minLogLevel = LogLevel.Debug)
+        private ConsoleLogger(string loggerName, LogLevel minLogLevel = LogLevel.Debug)
         {
             LoggerName = loggerName;
             MinLogLevel = minLogLevel;
@@ -58,23 +59,24 @@ namespace CCSWE.nanoFramework.Logging
                 return;
             }
 
-            string msg;
-            if (format == null)
+            string message;
+
+            if (format is null)
             {
-                msg = exception is null ? state : $"{state} {exception}";
+                message = exception is null ? state : $"{state} {exception}";
             }
             else
             {
-                msg = (string)format.Invoke(null, new object?[] { LoggerName, logLevel, eventId, state, exception });
+                message = (string)format.Invoke(null, [LoggerName, logLevel, eventId, state, exception]);
             }
 
-            Console.WriteLine(msg);
+            Console.WriteLine(message);
         }
 
         /// <summary>
-        /// Create a new <see cref="DebugLogger"/>.
+        /// Create a new <see cref="ConsoleLogger"/>.
         /// </summary>
-        /// <returns>A new <see cref="DebugLogger"/>.</returns>
-        public static ILogger Create(string loggerName, LoggerOptions? loggerOptions = null) => new DebugLogger(loggerName, loggerOptions);
+        /// <returns>A new <see cref="ConsoleLogger"/>.</returns>
+        public static ILogger Create(string loggerName, LoggerOptions? loggerOptions = null) => new ConsoleLogger(loggerName, loggerOptions);
     }
 }

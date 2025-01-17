@@ -3,17 +3,17 @@
 namespace CCSWE.nanoFramework.Logging
 {
     /// <summary>
-    /// Provides a <see cref="DebugLogger"/>.
+    /// Provides a <see cref="ConsoleLogger"/>.
     /// </summary>
-    public class DebugLoggerFactory : ILoggerFactory
+    public class ConsoleLoggerFactory : ILoggerFactory
     {
         private readonly LoggerOptions _loggerOptions;
 
         /// <summary>
-        /// Create a new <see cref="DebugLoggerFactory"/>.
+        /// Create a new <see cref="ConsoleLoggerFactory"/>.
         /// </summary>
         /// <param name="loggerOptions">The <see cref="LoggerOptions"/> used when creating new <see cref="ILogger"/>.</param>
-        public DebugLoggerFactory(LoggerOptions loggerOptions)
+        public ConsoleLoggerFactory(LoggerOptions loggerOptions)
         {
             _loggerOptions = loggerOptions;
         }
@@ -21,7 +21,7 @@ namespace CCSWE.nanoFramework.Logging
         /// <inheritdoc/>
         public ILogger CreateLogger(string categoryName)
         {
-            return DebugLogger.Create(categoryName, _loggerOptions);
+            return ConsoleLogger.Create(categoryName, _loggerOptions);
         }
 
         /// <inheritdoc />

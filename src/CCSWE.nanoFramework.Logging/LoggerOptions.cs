@@ -3,7 +3,7 @@
 namespace CCSWE.nanoFramework.Logging
 {
     /// <summary>
-    /// Options used with <see cref="DebugLogger"/>.
+    /// Options used with <see cref="ILogger"/>.
     /// </summary>
     public class LoggerOptions
     {
@@ -21,4 +21,9 @@ namespace CCSWE.nanoFramework.Logging
             MinLogLevel = minLogLevel;
         }
     }
+
+    /// <summary>
+    /// An action for configuring the <see cref="ILogger"/>.
+    /// </summary>
+    public delegate void ConfigureLoggerOptions(LoggerOptions options);
 }
