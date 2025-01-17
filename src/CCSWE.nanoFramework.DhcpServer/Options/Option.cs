@@ -49,11 +49,11 @@
             return data;
         }
 
-        /// <inheritdoc cref="object.ToString" />
+        /// <inheritdoc cref="object.ToString()" />
         public abstract override string ToString();
 
         /// <summary>
-        /// Provides common formatting for <see cref="Option.ToString"/>.
+        /// Provides common formatting for <see cref="Option.ToString()"/>.
         /// </summary>
         protected string ToString(object value) => $"{Code}: {value}";
     }
