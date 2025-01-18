@@ -8,7 +8,7 @@
        <TargetPlatform>x64</TargetPlatform>
    </RunConfiguration>
    <nanoFrameworkAdapter>
-       <Logging>Detailed</Logging> <!--Set to the desired level of logging for Unit Test execution. Possible values are: None, Detailed, Verbose, Error. -->
+       <Logging>None</Logging> <!--Set to the desired level of logging for Unit Test execution. Possible values are: None, Detailed, Verbose, Error. -->
        <IsRealHardware>False</IsRealHardware><!--Set to true to run tests on real hardware. -->
        <RealHardwarePort>COM3</RealHardwarePort><!--Specify the COM port to use to connect to a nanoDevice. If none is specified, a device detection is performed and the 1st available one will be used. -->
        <CLRVersion></CLRVersion><!--Specify the nanoCLR version to use. If not specified, the latest available will be used. -->

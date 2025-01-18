@@ -85,6 +85,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{8FEE3952
 		src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nuspec = src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nuspec
 		src\CCSWE.nanoFramework.Threading\CCSWE.nanoFramework.Threading.nuspec = src\CCSWE.nanoFramework.Threading\CCSWE.nanoFramework.Threading.nuspec
 		src\CCSWE.nanoFramework.Threading.TestFramework\CCSWE.nanoFramework.Threading.TestFramework.nuspec = src\CCSWE.nanoFramework.Threading.TestFramework\CCSWE.nanoFramework.Threading.TestFramework.nuspec
+		src\CCSWE.nanoFramework.WebServer\CCSWE.nanoFramework.WebServer.nuspec = src\CCSWE.nanoFramework.WebServer\CCSWE.nanoFramework.WebServer.nuspec
 	EndProjectSection
 EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.NeoPixel", "src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nfproj", "{C38D145B-4310-47DE-83DD-3925BC824532}"
@@ -98,6 +99,12 @@ EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Threading.Benchmarks", "bench\CCSWE.nanoFramework.Threading.Benchmarks\CCSWE.nanoFramework.Threading.Benchmarks.nfproj", "{2A0F3DE3-635F-49F7-AAE9-B0E8FC082B7A}"
 EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.DhcpServer.Samples", "samples\CCSWE.nanoFramework.DhcpServer.Samples\CCSWE.nanoFramework.DhcpServer.Samples.nfproj", "{2C844739-78E4-43DB-89E1-4DCFB088DF57}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.WebServer", "src\CCSWE.nanoFramework.WebServer\CCSWE.nanoFramework.WebServer.nfproj", "{92D7EFE0-03FD-47FB-AFA4-6CEE89E2DD9C}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.WebServer.Samples", "samples\CCSWE.nanoFramework.WebServer.Samples\CCSWE.nanoFramework.WebServer.Samples.nfproj", "{F1166824-D460-4AFD-909A-CFE490FD5434}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.WebServer.UnitTests", "test\CCSWE.nanoFramework.WebServer.UnitTests\CCSWE.nanoFramework.WebServer.UnitTests.nfproj", "{CE907869-7D32-484C-B363-F29D95B76095}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -279,6 +286,24 @@ Global
 		{2C844739-78E4-43DB-89E1-4DCFB088DF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C844739-78E4-43DB-89E1-4DCFB088DF57}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C844739-78E4-43DB-89E1-4DCFB088DF57}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{92D7EFE0-03FD-47FB-AFA4-6CEE89E2DD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92D7EFE0-03FD-47FB-AFA4-6CEE89E2DD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92D7EFE0-03FD-47FB-AFA4-6CEE89E2DD9C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{92D7EFE0-03FD-47FB-AFA4-6CEE89E2DD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92D7EFE0-03FD-47FB-AFA4-6CEE89E2DD9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92D7EFE0-03FD-47FB-AFA4-6CEE89E2DD9C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F1166824-D460-4AFD-909A-CFE490FD5434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1166824-D460-4AFD-909A-CFE490FD5434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1166824-D460-4AFD-909A-CFE490FD5434}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F1166824-D460-4AFD-909A-CFE490FD5434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1166824-D460-4AFD-909A-CFE490FD5434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1166824-D460-4AFD-909A-CFE490FD5434}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CE907869-7D32-484C-B363-F29D95B76095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE907869-7D32-484C-B363-F29D95B76095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE907869-7D32-484C-B363-F29D95B76095}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CE907869-7D32-484C-B363-F29D95B76095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE907869-7D32-484C-B363-F29D95B76095}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE907869-7D32-484C-B363-F29D95B76095}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -315,6 +340,9 @@ Global
 		{9AD16DA6-28D2-40B8-BD43-A83EDDF7717F} = {E958B80F-112E-472F-93C7-29F00BE1A633}
 		{2A0F3DE3-635F-49F7-AAE9-B0E8FC082B7A} = {E958B80F-112E-472F-93C7-29F00BE1A633}
 		{2C844739-78E4-43DB-89E1-4DCFB088DF57} = {D6EE9DC0-9D3A-4B35-B51C-FF8CD1DCA4D9}
+		{92D7EFE0-03FD-47FB-AFA4-6CEE89E2DD9C} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
+		{F1166824-D460-4AFD-909A-CFE490FD5434} = {D6EE9DC0-9D3A-4B35-B51C-FF8CD1DCA4D9}
+		{CE907869-7D32-484C-B363-F29D95B76095} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97E85E43-6CB8-48DC-8A37-E0A6CE82419A}

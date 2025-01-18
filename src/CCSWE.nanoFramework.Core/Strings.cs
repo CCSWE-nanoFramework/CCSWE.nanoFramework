@@ -15,7 +15,7 @@ namespace CCSWE.nanoFramework
         /// <param name="value">The string to test.</param>
         /// <returns><see langword="true"/> if the value parameter is <see langword="null"/> or an empty string (""); otherwise, <see langword="false"/>.</returns>
         /// <remarks>This only exists in order to apply the <see cref="NotNullWhenAttribute"/> to <paramref name="value"/>.</remarks>
-        [Obsolete("string.IsNullOrEmpty is now properly attributed")]
+        [Obsolete("string.IsNullOrEmpty is properly attributed now so this is no longer needed")]
         public static bool IsNullOrEmpty([NotNullWhen(false)] string? value) => string.IsNullOrEmpty(value);
 
         /* TODO: Come back to this

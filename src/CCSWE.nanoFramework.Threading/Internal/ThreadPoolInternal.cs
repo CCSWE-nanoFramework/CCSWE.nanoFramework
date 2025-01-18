@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading;
 
 namespace CCSWE.nanoFramework.Threading.Internal
@@ -165,10 +164,6 @@ namespace CCSWE.nanoFramework.Threading.Internal
             worker = new ThreadWorker(this);
 
             _threadWorkers.Enqueue(worker);
-
-#if DEBUG
-            Debug.WriteLine($"{_threadWorkers.Count} workers started");
-#endif
 
             return worker;
         }
