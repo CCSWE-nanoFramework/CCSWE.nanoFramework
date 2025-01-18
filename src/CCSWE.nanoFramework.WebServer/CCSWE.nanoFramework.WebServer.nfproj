@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Nerdbank.GitVersioning.3.7.115\build\Nerdbank.GitVersioning.props" Condition="Exists('..\..\packages\Nerdbank.GitVersioning.3.7.115\build\Nerdbank.GitVersioning.props')" />
+  <PropertyGroup Label="Globals">
+    <NanoFrameworkProjectSystemPath>$(MSBuildExtensionsPath)\nanoFramework\v1.0\</NanoFrameworkProjectSystemPath>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>92d7efe0-03fd-47fb-afa4-6cee89e2dd9c</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>CCSWE.nanoFramework</RootNamespace>
+    <AssemblyName>CCSWE.nanoFramework.WebServer</AssemblyName>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <DocumentationFile>bin\$(Configuration)\CCSWE.nanoFramework.WebServer.xml</DocumentationFile>
+    <Nullable>enable</Nullable>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
+  <ItemGroup>
+    <Compile Include="IO\StreamExtensions.cs" />
+    <Compile Include="WebServer\Authentication\AuthenticationMiddleware.cs" />
+    <Compile Include="WebServer\Diagnostics\ExceptionHandlerMiddleware.cs" />
+    <Compile Include="WebServer\Http\Headers\CorsConstants.cs" />
+    <Compile Include="WebServer\Http\Headers\HeaderNames.cs" />
+    <Compile Include="WebServer\Http\HttpContext.cs" />
+    <Compile Include="WebServer\Http\HttpMethods.cs" />
+    <Compile Include="WebServer\Http\HttpResponseExtensions.cs" />
+    <Compile Include="WebServer\Http\HttpRequest.cs" />
+    <Compile Include="WebServer\Http\HttpResponse.cs" />
+    <Compile Include="WebServer\Http\Internal\HttpContext.cs" />
+    <Compile Include="WebServer\Http\Internal\HttpRequest.cs" />
+    <Compile Include="WebServer\Http\Internal\HttpResponse.cs" />
+    <Compile Include="WebServer\Authentication\AuthenticationHandler.cs" />
+    <Compile Include="WebServer\Authentication\AuthenticateResult.cs" />
+    <Compile Include="WebServer\Authentication\AuthenticationService.cs" />
+    <Compile Include="WebServer\Authentication\IAuthenticationHandler.cs" />
+    <Compile Include="WebServer\Authorization\AllowAnonymousAttribute.cs" />
+    <Compile Include="WebServer\Bootstrapper.cs" />
+    <Compile Include="WebServer\ControllerBase.cs" />
+    <Compile Include="Net\MimeType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebServer\HttpProtocol.cs" />
+    <Compile Include="WebServer\IMiddleware.cs" />
+    <Compile Include="WebServer\Routing\EndpointHandler.cs" />
+    <Compile Include="WebServer\Routing\EndpointMiddleware.cs" />
+    <Compile Include="WebServer\Routing\EndpointProvider.cs" />
+    <Compile Include="WebServer\Authentication\AuthenticationHandlerDescriptor.cs" />
+    <Compile Include="WebServer\Routing\ControllerDescriptor.cs" />
+    <Compile Include="WebServer\Internal\UrlHelper.cs" />
+    <Compile Include="WebServer\Internal\WebServerLogger.cs" />
+    <Compile Include="WebServer\Middleware\MiddlewareFactory.cs" />
+    <Compile Include="WebServer\Middleware\CorsMiddleware.cs" />
+    <Compile Include="WebServer\Middleware\CreateMiddlewareDelegate.cs" />
+    <Compile Include="WebServer\RequestPipeline.cs" />
+    <Compile Include="WebServer\Reflection\ReflectionExtensions.cs" />
+    <Compile Include="WebServer\IWebServer.cs" />
+    <Compile Include="WebServer\Reflection\ReflectionHelper.cs" />
+    <Compile Include="WebServer\Routing\Endpoint.cs" />
+    <Compile Include="WebServer\RequestDelegate.cs" />
+    <Compile Include="WebServer\Routing\RoutingMiddleware.cs" />
+    <Compile Include="WebServer\WebServer.cs" />
+    <Compile Include="WebServer\WebServerOptions.cs" />
+    <Compile Include="WebServer\RouteAttribute.cs" />
+    <Compile Include="WebServer\HttpDeleteAttribute.cs" />
+    <Compile Include="WebServer\HttpHeadAttribute.cs" />
+    <Compile Include="WebServer\HttpOptionsAttribute.cs" />
+    <Compile Include="WebServer\HttpPatchAttribute.cs" />
+    <Compile Include="WebServer\HttpPutAttribute.cs" />
+    <Compile Include="WebServer\HttpPostAttribute.cs" />
+    <Compile Include="WebServer\HttpGetAttribute.cs" />
+    <Compile Include="WebServer\Routing\HttpMethodAttribute.cs" />
+    <Compile Include="WebServer\Routing\IHttpMethodProvider.cs" />
+    <Compile Include="WebServer\Routing\IRouteTemplateProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.lock.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nfproj" />
+    <ProjectReference Include="..\CCSWE.nanoFramework.Threading\CCSWE.nanoFramework.Threading.nfproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.16.1\lib\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.DependencyInjection">
+      <HintPath>..\..\packages\nanoFramework.DependencyInjection.1.1.23\lib\nanoFramework.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Json">
+      <HintPath>..\..\packages\nanoFramework.Json.2.2.164\lib\nanoFramework.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Logging">
+      <HintPath>..\..\packages\nanoFramework.Logging.1.1.131\lib\nanoFramework.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Runtime.Events">
+      <HintPath>..\..\packages\nanoFramework.Runtime.Events.1.11.26\lib\nanoFramework.Runtime.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.System.Collections">
+      <HintPath>..\..\packages\nanoFramework.System.Collections.1.5.56\lib\nanoFramework.System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.System.Text">
+      <HintPath>..\..\packages\nanoFramework.System.Text.1.3.9\lib\nanoFramework.System.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Streams">
+      <HintPath>..\..\packages\nanoFramework.System.IO.Streams.1.1.82\lib\System.IO.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net">
+      <HintPath>..\..\packages\nanoFramework.System.Net.1.11.23\lib\System.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\packages\nanoFramework.System.Net.Http.1.5.172\lib\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>..\..\packages\nanoFramework.System.Threading.1.1.45\lib\System.Threading.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
+  <ProjectExtensions>
+    <ProjectCapabilities>
+      <ProjectConfigurationsDeclaredAsItems />
+    </ProjectCapabilities>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Nerdbank.GitVersioning.3.7.115\build\Nerdbank.GitVersioning.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Nerdbank.GitVersioning.3.7.115\build\Nerdbank.GitVersioning.props'))" />
+    <Error Condition="!Exists('..\..\packages\Nerdbank.GitVersioning.3.7.115\build\Nerdbank.GitVersioning.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Nerdbank.GitVersioning.3.7.115\build\Nerdbank.GitVersioning.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Nerdbank.GitVersioning.3.7.115\build\Nerdbank.GitVersioning.targets" Condition="Exists('..\..\packages\Nerdbank.GitVersioning.3.7.115\build\Nerdbank.GitVersioning.targets')" />
+</Project>

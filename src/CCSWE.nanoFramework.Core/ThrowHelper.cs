@@ -7,7 +7,7 @@ namespace CCSWE.nanoFramework
     /// <summary>
     /// Helper methods for <see cref="ArgumentException"/> and <see cref="ArgumentNullException"/>
     /// </summary>
-    [Obsolete("Use ArgumentException and ArgumentNullException instead.")]
+    [Obsolete("ArgumentException and ArgumentNullException methods should be used instead.")]
     public static class ThrowHelper
     {
         /// <summary>Throws an <see cref="ArgumentNullException"/> if <paramref name="argument"/> is null.</summary>
@@ -28,17 +28,17 @@ namespace CCSWE.nanoFramework
         {
             ThrowIfNull(argument, paramName);
 
-            if (Strings.IsNullOrEmpty(argument))
+            if (string.IsNullOrEmpty(argument))
             {
                 ThrowArgumentException($"'{paramName}' is empty.", paramName);
             }
         }
 
-        // TODO: Uncomment this when new mscorlib is released
+        // TODO: Uncomment when new mscorlib is released
         //[DoesNotReturn]
         private static void ThrowArgumentException(string? message, string? paramName) => throw new ArgumentException(message, paramName);
 
-        // TODO: Uncomment this when new mscorlib is released
+        // TODO: Uncomment when new mscorlib is released
         //[DoesNotReturn]
         private static void ThrowArgumentNullException(string? paramName) => throw new ArgumentNullException(paramName);
     }

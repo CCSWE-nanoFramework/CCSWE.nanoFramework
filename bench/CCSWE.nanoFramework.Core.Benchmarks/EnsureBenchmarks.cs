@@ -22,7 +22,6 @@ namespace CCSWE.nanoFramework.Core.Benchmarks
             const double max = 1d;
 
             #pragma warning disable CS8794 // The input always matches the provided pattern.
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             Ensure.IsInRange(value is >= min and <= max, nameof(IsInRange_Expression));
             #pragma warning restore CS8794 // The input always matches the provided pattern.
         }

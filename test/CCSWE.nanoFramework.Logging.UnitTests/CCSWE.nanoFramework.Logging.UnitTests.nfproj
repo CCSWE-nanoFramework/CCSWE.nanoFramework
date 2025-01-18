@@ -34,23 +34,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="mscorlib, Version=1.16.1.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-      <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.16.1\lib\mscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="nanoFramework.DependencyInjection, Version=1.1.23.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-      <HintPath>..\..\packages\nanoFramework.DependencyInjection.1.1.23\lib\nanoFramework.DependencyInjection.dll</HintPath>
-    </Reference>
-    <Reference Include="nanoFramework.Logging, Version=1.1.131.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-      <HintPath>..\..\packages\nanoFramework.Logging.1.1.131\lib\nanoFramework.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="nanoFramework.TestFramework, Version=3.0.57.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-      <HintPath>..\..\packages\nanoFramework.TestFramework.3.0.57\lib\nanoFramework.TestFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="nanoFramework.UnitTestLauncher, Version=0.0.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-      <HintPath>..\..\packages\nanoFramework.TestFramework.3.0.57\lib\nanoFramework.UnitTestLauncher.exe</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="nano.runsettings" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -59,6 +42,23 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nfproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.16.1\lib\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.DependencyInjection">
+      <HintPath>..\..\packages\nanoFramework.DependencyInjection.1.1.23\lib\nanoFramework.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Logging">
+      <HintPath>..\..\packages\nanoFramework.Logging.1.1.131\lib\nanoFramework.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.TestFramework">
+      <HintPath>..\..\packages\nanoFramework.TestFramework.3.0.57\lib\nanoFramework.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.UnitTestLauncher">
+      <HintPath>..\..\packages\nanoFramework.TestFramework.3.0.57\lib\nanoFramework.UnitTestLauncher.exe</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
 </Project>

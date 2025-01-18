@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CCSWE.nanoFramework.WebServer</id>
+    <title>CCSWE.nanoFramework.WebServer</title>
+    <version>1.0</version>
+    <authors>Cory Charlton</authors>
+    <owners>Cory Charlton,CCSWE</owners>
+    <license type="file">LICENSE.md</license>
+    <projectUrl>https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework</projectUrl>
+    <icon>images\ccswe-logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>README.md</readme>
+    <developmentDependency>false</developmentDependency>
+    <description>A simple asynchronous web server implementation for nanoFramework.</description>
+    <repository type="git" url="https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework" commit="$commit$" />
+    <copyright>Copyright (c) Cory Charlton</copyright>
+    <tags>nanoFramework C# csharp netmf netnf ccswe web server http</tags>
+    <dependencies>
+	  <dependency id="CCSWE.nanoFramework.Core" version="[1.1,)" />
+	  <dependency id="CCSWE.nanoFramework.Threading" version="[1.1,)" />
+	  <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+      <dependency id="nanoFramework.Json" version="2.2.154" />
+      <dependency id="nanoFramework.Runtime.Events" version="1.11.18" />
+      <dependency id="nanoFramework.System.Collections" version="1.5.45" />
+      <dependency id="nanoFramework.System.IO.Streams" version="1.1.75" />
+      <dependency id="nanoFramework.System.Net" version="1.11.12" />
+      <dependency id="nanoFramework.System.Net.Http" version="1.5.157" />
+      <dependency id="nanoFramework.System.Net.Http.Server" version="1.5.113" />
+      <dependency id="nanoFramework.System.Text" version="1.2.54" />
+      <dependency id="nanoFramework.System.Threading" version="1.1.32" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\CCSWE.nanoFramework.WebServer.*" target="lib" />
+    <file src="..\..\ccswe-logo.png" target="images" />
+    <file src="..\..\LICENSE.md" target="" />
+    <file src="README.md" target="" />
+  </files>
+</package>

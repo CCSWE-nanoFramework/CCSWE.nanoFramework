@@ -38,7 +38,7 @@
     <ProjectReference Include="..\CCSWE.nanoFramework.Threading\CCSWE.nanoFramework.Threading.nfproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="mscorlib, Version=1.16.1.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+    <Reference Include="mscorlib">
       <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.16.1\lib\mscorlib.dll</HintPath>
     </Reference>
   </ItemGroup>
