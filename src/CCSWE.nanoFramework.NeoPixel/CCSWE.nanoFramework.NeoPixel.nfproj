@@ -19,7 +19,7 @@
     <DocumentationFile>bin\$(Configuration)\CCSWE.nanoFramework.NeoPixel.xml</DocumentationFile>
     <Nullable>enable</Nullable>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-	<LangVersion>default</LangVersion>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>

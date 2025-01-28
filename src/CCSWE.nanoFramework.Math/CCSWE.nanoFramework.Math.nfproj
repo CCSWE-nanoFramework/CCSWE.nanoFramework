@@ -20,7 +20,7 @@
     <Nullable>enable</Nullable>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	<LangVersion>default</LangVersion>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>

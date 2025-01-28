@@ -19,7 +19,7 @@
     <DocumentationFile>bin\$(Configuration)\CCSWE.nanoFramework.DhcpServer.xml</DocumentationFile>
     <Nullable>enable</Nullable>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-	<LangVersion>default</LangVersion>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
@@ -67,8 +67,8 @@
     <Reference Include="System.IO.Streams, Version=1.1.77.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.System.IO.Streams.1.1.77\lib\System.IO.Streams.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net">
-      <HintPath>..\..\packages\nanoFramework.System.Net.1.11.15\lib\System.Net.dll</HintPath>
+    <Reference Include="System.Net, Version=1.11.17.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Net.1.11.17\lib\System.Net.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading">
       <HintPath>..\..\packages\nanoFramework.System.Threading.1.1.32\lib\System.Threading.dll</HintPath>
