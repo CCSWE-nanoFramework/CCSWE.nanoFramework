@@ -41,7 +41,7 @@ namespace CCSWE.nanoFramework.Hosting
         }
 
         /// <inheritdoc />
-        public object[] Properties { get; set; } = new object[0];
+        public object[] Properties { get; set; } = [];
 
         // TODO: Look at copying this to nanoFramework.Hosting for improvements
         /// <inheritdoc />
@@ -73,13 +73,15 @@ namespace CCSWE.nanoFramework.Hosting
             return this;
         }
 
-        [MemberNotNull(nameof(_hostBuilderContext))]
+        // TODO: Uncomment this when new mscorlib is released
+        //[MemberNotNull(nameof(_hostBuilderContext))]
         private void InitializeHostBuilderContext()
         {
             _hostBuilderContext = new HostBuilderContext(Properties);
         }
 
-        [MemberNotNull(nameof(_appServices))]
+        // TODO: Uncomment this when new mscorlib is released
+        //[MemberNotNull(nameof(_appServices))]
         private void InitializeServiceProvider()
         {
             var services = new ServiceCollection();

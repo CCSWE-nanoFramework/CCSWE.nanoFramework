@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace CCSWE.nanoFramework
@@ -14,7 +15,7 @@ namespace CCSWE.nanoFramework
         /// <param name="value">The string to test.</param>
         /// <returns><see langword="true"/> if the value parameter is <see langword="null"/> or an empty string (""); otherwise, <see langword="false"/>.</returns>
         /// <remarks>This only exists in order to apply the <see cref="NotNullWhenAttribute"/> to <paramref name="value"/>.</remarks>
-        // TODO: Update string.IsNullOrEmpty to have the [NotNull] attribute too. Actually can't do this currently due to cyclic dependency :(
+        [Obsolete("string.IsNullOrEmpty is now properly attributed")]
         public static bool IsNullOrEmpty([NotNullWhen(false)] string? value) => string.IsNullOrEmpty(value);
 
         /* TODO: Come back to this
