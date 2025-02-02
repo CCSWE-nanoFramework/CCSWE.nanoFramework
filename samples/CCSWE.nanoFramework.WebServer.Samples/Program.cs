@@ -2,10 +2,8 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using CCSWE.nanoFramework.Logging;
-using CCSWE.nanoFramework.WebServer.Internal;
-using CCSWE.nanoFramework.WebServer.Samples.Authentication;
-using CCSWE.nanoFramework.WebServer.Samples.Controllers;
 using CCSWE.nanoFramework.WebServer.Samples.Networking;
+using CCSWE.nanoFramework.WebServer.Samples.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using nanoFramework.Runtime.Native;
@@ -21,7 +19,6 @@ namespace CCSWE.nanoFramework.WebServer.Samples
         public static void Main()
         {
             Console.WriteLine("Starting CCSWE.nanoFramework.WebServer.Samples");
-
 
             if (!InitializeNetwork())
             {
@@ -42,40 +39,24 @@ namespace CCSWE.nanoFramework.WebServer.Samples
                 options.Protocol = HttpProtocol.Http;
             });
 
-            // Routes require authentication by default if an AuthenticationHandler has been registered
-            serviceCollection.AddAuthentication(typeof(QueryStringAuthenticationHandler));
+            // Add AuthenticationHandler
+            // Routes require authentication by default if registered
+            serviceCollection.AddAuthentication(typeof(ExampleAuthenticationHandler));
 
-            serviceCollection.AddController(typeof(AllowAnonymousController));
-            serviceCollection.AddController(typeof(AuthenticatedController));
+            // Add controllers
+            serviceCollection.AddController(typeof(ExampleController));
 
-            serviceCollection.AddSingleton(typeof(ITestClass), typeof(TestClass));
+            // Add custom middleware
+            serviceCollection.AddMiddleware(typeof(ExampleMiddleware));
+
+            // Add your other dependencies
+            serviceCollection.AddSingleton(typeof(IDataService), typeof(DataService));
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var authenticationHandlers = serviceProvider.GetServices(typeof(AuthenticationHandlerDescriptor));
-            var controllers = serviceProvider.GetServices(typeof(ControllerDescriptor));
-
-            /*            foreach (var authenticationHandler in authenticationHandlers)
-            {
-                Console.WriteLine(authenticationHandler.ToString());
-                //Console.WriteLine("Authentication handler: " + authenticationHandler.ImplementationType.FullName);
-            }
-
-            foreach (var controller in controllers)
-            {
-                Console.WriteLine(controller.ToString());
-                //Console.WriteLine("Controller: " + controller.ImplementationType.FullName);
-            }
-*/
-            var testClass = (ITestClass)serviceProvider.GetService(typeof(ITestClass));
-
-            foreach (var controllerDescriptor in testClass.ControllerDescriptors)
-            {
-                Console.WriteLine("Controller: " + controllerDescriptor.ImplementationType.FullName);
-            }
-
             var webServer = (IWebServer) serviceProvider.GetService(typeof(IWebServer));
 
+            // Start the web server
             webServer.Start();
 
             Thread.Sleep(Timeout.Infinite);
@@ -126,29 +107,5 @@ namespace CCSWE.nanoFramework.WebServer.Samples
             Power.RebootDevice();
             Thread.Sleep(Timeout.Infinite);
         }
-    }
-
-    internal interface ITestClass
-    {
-        AuthenticationHandlerDescriptor[] AuthenticationHandlerDescriptors { get; }
-        ControllerDescriptor[] ControllerDescriptors { get; }
-    }
-
-    /*
-            AuthenticationHandlerDescriptors = (AuthenticationHandlerDescriptor[]) authenticationHandlerDescriptors.ConvertAll(typeof(AuthenticationHandlerDescriptor));
-       ControllerDescriptors = (ControllerDescriptor[]) controllerDescriptors.ConvertAll(typeof(ControllerDescriptor));
-     */
-    internal class TestClass: ITestClass
-    {
-        public TestClass(AuthenticationHandlerDescriptor[] authenticationHandlerDescriptors, ControllerDescriptor[] controllerDescriptors)
-        {
-            AuthenticationHandlerDescriptors = authenticationHandlerDescriptors;
-
-            AuthenticationHandlerDescriptors = (AuthenticationHandlerDescriptor[]) authenticationHandlerDescriptors.ToArray(typeof(AuthenticationHandlerDescriptor));
-            ControllerDescriptors = (ControllerDescriptor[])controllerDescriptors.ToArray(typeof(ControllerDescriptor));
-        }
-
-        public AuthenticationHandlerDescriptor[] AuthenticationHandlerDescriptors { get; }
-        public ControllerDescriptor[] ControllerDescriptors { get; }
     }
 }
