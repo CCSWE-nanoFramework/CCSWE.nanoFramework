@@ -1,7 +1,7 @@
 ﻿namespace CCSWE.nanoFramework.Configuration
 {
     /// <summary>
-    /// Represents the result of an configuration validation.
+    /// Represents the result of a configuration validation.
     /// </summary>
     public class ValidateConfigurationResult
     {
@@ -36,7 +36,7 @@
         /// <param name="failureMessage">The reason for the failure.</param>
         /// <returns>The failure result.</returns>
         public static ValidateConfigurationResult Fail(string failureMessage)
-            => new() { Failed = true, FailureMessage = failureMessage, Failures = new[] { failureMessage } };
+            => new() { Failed = true, FailureMessage = failureMessage, Failures = [failureMessage] };
 
         /// <summary>
         /// Returns a failure result.

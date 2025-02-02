@@ -17,8 +17,8 @@ namespace CCSWE.nanoFramework.NeoPixel
         {
             return order switch
             {
-                ColorOrder.RGB => new[] { color.R, color.G, color.B },
-                ColorOrder.GRB => new[] { color.G, color.R, color.B },
+                ColorOrder.RGB => [color.R, color.G, color.B],
+                ColorOrder.GRB => [color.G, color.R, color.B],
                 _ => throw new ArgumentOutOfRangeException(nameof(order))
             };
         }

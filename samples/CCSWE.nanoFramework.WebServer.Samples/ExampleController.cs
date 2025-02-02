@@ -1,7 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Text;
-using System.Threading;
+﻿using System.Net;
 using CCSWE.nanoFramework.IO;
 using CCSWE.nanoFramework.WebServer.Authorization;
 using CCSWE.nanoFramework.WebServer.Samples.Services;

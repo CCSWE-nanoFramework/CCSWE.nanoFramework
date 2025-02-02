@@ -3,10 +3,8 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading;
 using CCSWE.nanoFramework.Threading.Internal;
-using CCSWE.nanoFramework.WebServer.Authentication;
 using CCSWE.nanoFramework.WebServer.Http;
 using CCSWE.nanoFramework.WebServer.Internal;
-using CCSWE.nanoFramework.WebServer.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
