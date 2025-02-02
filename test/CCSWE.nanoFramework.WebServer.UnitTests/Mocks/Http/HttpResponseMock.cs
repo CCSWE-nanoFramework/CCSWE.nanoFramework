@@ -16,6 +16,7 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Mocks.Http
         public override string? ContentType { get; set; }
         public override bool HasStarted { get; }
         public override WebHeaderCollection Headers { get; } = new();
+        public override bool KeepAlive { get; set; }
         public override bool SendChunked { get; set; }
         public override int StatusCode { get; set; }
         public override string? StatusDescription { get; set; }
