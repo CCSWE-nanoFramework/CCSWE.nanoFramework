@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Net;
 using CCSWE.nanoFramework.WebServer.Authentication;
+using CCSWE.nanoFramework.WebServer.Cors;
 using CCSWE.nanoFramework.WebServer.Diagnostics;
 using CCSWE.nanoFramework.WebServer.Http;
 using CCSWE.nanoFramework.WebServer.Middleware;
@@ -23,25 +24,47 @@ namespace CCSWE.nanoFramework.WebServer
     {
         private readonly CreateMiddlewareDelegate[] _middleware;
 
-        public RequestPipeline(IMiddlewareFactory[] middlewareFactories)
+        public RequestPipeline(IMiddlewareFactory[] middlewareFactories, IServiceProvider serviceProvider)
         {
-            // TODO: Make this more configurable
+            /* Middleware order:
+             * 1. ExceptionHandlerMiddleware
+             * 2. RequestLoggingMiddleware (optional) [TODO]
+             * 3. StaticFilesMiddleware [TODO]
+             * 4. RoutingMiddleware
+             * 5. CorsMiddleware
+             * 6. AuthenticationMiddleware
+             * X. User defined middleware
+             * 8. EndpointMiddleware
+             */
+
             var middleware = new ArrayList
             {
-                //GetCreateMiddlewareDelegate(typeof(ExceptionHandlerMiddleware)),
+                BindMiddleware(typeof(ExceptionHandlerMiddleware)),
                 // TODO: Add optional RequestLoggingMiddleware
                 // TODO: Add StaticFiles middleware
-                GetCreateMiddlewareDelegate(typeof(RoutingMiddleware)),
-                //GetCreateMiddlewareDelegate(typeof(CorsMiddleware)),
-                GetCreateMiddlewareDelegate(typeof(AuthenticationMiddleware)),
+                BindMiddleware(typeof(RoutingMiddleware)),
             };
 
-            foreach (var middlewareFactory in middlewareFactories)
+            // If the user has registered a CorsPolicy, then add the CorsMiddleware
+            if (serviceProvider.GetService(typeof(CorsPolicy)) is CorsPolicy)
             {
-                middleware.Add(GetCreateMiddlewareDelegate(middlewareFactory));
+                middleware.Add(BindMiddleware(typeof(CorsMiddleware)));
             }
 
-            middleware.Add(GetCreateMiddlewareDelegate(typeof(EndpointMiddleware)));
+            // If the user has registered an IAuthenticationService, then add the AuthenticationMiddleware
+            if (serviceProvider.GetService(typeof(IAuthenticationService)) is IAuthenticationService)
+            {
+                middleware.Add(BindMiddleware(typeof(AuthenticationMiddleware)));
+            }
+
+            // Add the user defined middleware
+            foreach (var middlewareFactory in middlewareFactories)
+            {
+                middleware.Add(BindMiddleware(middlewareFactory));
+            }
+
+            // EndpointMiddleware is always last
+            middleware.Add(BindMiddleware(typeof(EndpointMiddleware)));
 
             _middleware = (CreateMiddlewareDelegate[])middleware.ToArray(typeof(CreateMiddlewareDelegate));
         }
@@ -86,12 +109,12 @@ namespace CCSWE.nanoFramework.WebServer
             return app;
         }
 
-        private static CreateMiddlewareDelegate GetCreateMiddlewareDelegate(IMiddlewareFactory middlewareFactory)
+        private static CreateMiddlewareDelegate BindMiddleware(IMiddlewareFactory middlewareFactory)
         {
             return middlewareFactory.CreateMiddleware;
         }
 
-        private static CreateMiddlewareDelegate GetCreateMiddlewareDelegate(Type middlewareType)
+        private static CreateMiddlewareDelegate BindMiddleware(Type middlewareType)
         {
             return new MiddlewareFactory(middlewareType).CreateMiddleware;
         }

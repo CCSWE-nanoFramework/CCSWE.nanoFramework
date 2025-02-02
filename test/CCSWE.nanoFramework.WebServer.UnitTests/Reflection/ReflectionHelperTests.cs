@@ -1,8 +1,8 @@
 ﻿using System;
 using CCSWE.nanoFramework.WebServer.Authentication;
 using CCSWE.nanoFramework.WebServer.Authorization;
+using CCSWE.nanoFramework.WebServer.Cors;
 using CCSWE.nanoFramework.WebServer.Diagnostics;
-using CCSWE.nanoFramework.WebServer.Middleware;
 using CCSWE.nanoFramework.WebServer.Reflection;
 using CCSWE.nanoFramework.WebServer.Routing;
 using CCSWE.nanoFramework.WebServer.UnitTests.Mocks.Authentication;

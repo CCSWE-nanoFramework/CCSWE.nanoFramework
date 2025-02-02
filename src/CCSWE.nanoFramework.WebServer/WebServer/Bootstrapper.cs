@@ -1,5 +1,6 @@
 ﻿using System;
 using CCSWE.nanoFramework.WebServer.Authentication;
+using CCSWE.nanoFramework.WebServer.Cors;
 using CCSWE.nanoFramework.WebServer.Diagnostics;
 using CCSWE.nanoFramework.WebServer.Middleware;
 using CCSWE.nanoFramework.WebServer.Reflection;
@@ -28,7 +29,15 @@ namespace CCSWE.nanoFramework.WebServer
                 throw new InvalidOperationException();
             }
 
+            services.AddAuthenticationCore();
             services.AddSingleton(typeof(AuthenticationHandlerDescriptor), new AuthenticationHandlerDescriptor(implementationType));
+
+            return services;
+        }
+
+        private static IServiceCollection AddAuthenticationCore(this IServiceCollection services)
+        {
+            services.TryAddSingleton(typeof(IAuthenticationService), typeof(AuthenticationService));
 
             return services;
         }
@@ -48,6 +57,19 @@ namespace CCSWE.nanoFramework.WebServer
             }
 
             services.AddSingleton(typeof(ControllerDescriptor), new ControllerDescriptor(implementationType));
+
+            return services;
+        }
+
+        /// <summary>
+        /// Registers CORS middleware.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/>.</param>
+        /// <returns>The <see cref="IServiceCollection"/> for chaining.</returns>
+        public static IServiceCollection AddCors(this IServiceCollection services)
+        {
+            var descriptor = new ServiceDescriptor(typeof(CorsPolicy), CorsPolicy.AllowAny);
+            services.TryAdd(descriptor);
 
             return services;
         }
@@ -103,7 +125,6 @@ namespace CCSWE.nanoFramework.WebServer
             configureOptions?.Invoke(options);
             services.AddSingleton(typeof(WebServerOptions), options);
 
-            services.AddSingleton(typeof(IAuthenticationService), typeof(AuthenticationService));
             services.AddSingleton(typeof(IEndpointProvider), typeof(EndpointProvider));
             services.AddScoped(typeof(IRequestPipeline), typeof(RequestPipeline));
 
