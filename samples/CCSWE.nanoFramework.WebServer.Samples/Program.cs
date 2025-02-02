@@ -39,8 +39,10 @@ namespace CCSWE.nanoFramework.WebServer.Samples
                 options.Protocol = HttpProtocol.Http;
             });
 
+            // Enable optional middleware
+            serviceCollection.AddCors();
+
             // Add AuthenticationHandler
-            // Routes require authentication by default if registered
             serviceCollection.AddAuthentication(typeof(ExampleAuthenticationHandler));
 
             // Add controllers

@@ -1,10 +1,10 @@
-﻿using CCSWE.nanoFramework.WebServer.Http.Headers;
-using CCSWE.nanoFramework.WebServer.Middleware;
+﻿using CCSWE.nanoFramework.WebServer.Cors;
+using CCSWE.nanoFramework.WebServer.Http.Headers;
 using CCSWE.nanoFramework.WebServer.UnitTests.Mocks;
 using CCSWE.nanoFramework.WebServer.UnitTests.Mocks.Http;
 using nanoFramework.TestFramework;
 
-namespace CCSWE.nanoFramework.WebServer.UnitTests.Middleware
+namespace CCSWE.nanoFramework.WebServer.UnitTests.Cors
 {
     [TestClass]
     public class CorsMiddlewareTests
@@ -14,14 +14,15 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Middleware
         {
             var context = new HttpContextMock { ResponseHasStarted = false };
             var next = new RequestDelegateMock();
+            var policy = CorsPolicy.AllowAny;
 
-            var sut = new CorsMiddleware();
+            var sut = new CorsMiddleware(policy);
 
             sut.Invoke(context, next.Invoke);
 
-            Assert.AreEqual(CorsConstants.AnyHeader, context.Response.Headers[HeaderNames.AccessControlAllowHeaders]);
-            Assert.AreEqual(CorsConstants.AnyMethod, context.Response.Headers[HeaderNames.AccessControlAllowMethods]);
-            Assert.AreEqual(CorsConstants.AnyOrigin, context.Response.Headers[HeaderNames.AccessControlAllowOrigin]);
+            Assert.AreEqual(policy.AccessControlAllowHeaders, context.Response.Headers[HeaderNames.AccessControlAllowHeaders]);
+            Assert.AreEqual(policy.AccessControlAllowMethods, context.Response.Headers[HeaderNames.AccessControlAllowMethods]);
+            Assert.AreEqual(policy.AccessControlAllowOrigin, context.Response.Headers[HeaderNames.AccessControlAllowOrigin]);
 
             Assert.IsTrue(next.Invoked);
         }
@@ -31,8 +32,9 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Middleware
         {
             var context = new HttpContextMock { ResponseHasStarted = true };
             var next = new RequestDelegateMock();
+            var policy = CorsPolicy.AllowAny;
 
-            var sut = new CorsMiddleware();
+            var sut = new CorsMiddleware(policy);
 
             sut.Invoke(context, next.Invoke);
 

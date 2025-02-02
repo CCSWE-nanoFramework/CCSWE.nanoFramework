@@ -2,7 +2,6 @@
 using System.Net;
 using System.Text;
 using CCSWE.nanoFramework.Net;
-using CCSWE.nanoFramework.WebServer.Http.Headers;
 using nanoFramework.Json;
 
 // TODO: Add unit tests
@@ -15,6 +14,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
     {
         private const int BufferSize = 1024;
 
+        /*
         /// <summary>
         /// Add CORS headers to the <see cref="HttpResponse"/>.
         /// </summary>
@@ -24,6 +24,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
             response.Headers.Add(HeaderNames.AccessControlAllowMethods, CorsConstants.AnyMethod);
             response.Headers.Add(HeaderNames.AccessControlAllowOrigin, CorsConstants.AnyOrigin);
         }
+        */
 
         /// <summary>
         /// Sets the <see cref="HttpStatusCode"/>.
@@ -51,7 +52,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
         {
             if (body is null)
             {
-                // TODO: I don't like that this hack is necessary, I'm going to look into re-writing HttpListener
+                // TODO: I don't like that this hack is necessary, I'm going to look into re-writing HttpListener as this should be handled in the Close/Dispose
                 response.ContentLength = 0;
                 response.KeepAlive = false;
                 return;

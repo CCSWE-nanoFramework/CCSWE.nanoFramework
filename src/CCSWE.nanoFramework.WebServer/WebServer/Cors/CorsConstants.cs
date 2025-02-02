@@ -1,4 +1,4 @@
-﻿namespace CCSWE.nanoFramework.WebServer.Http.Headers
+﻿namespace CCSWE.nanoFramework.WebServer.Cors
 {
     internal static class CorsConstants
     {
