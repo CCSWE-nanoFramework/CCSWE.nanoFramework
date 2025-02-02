@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
-using System.Net.Sockets;
 
 namespace CCSWE.nanoFramework.WebServer.Http.Internal
 {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.Net.Sockets;
 
 namespace CCSWE.nanoFramework.WebServer.Http.Internal
 {

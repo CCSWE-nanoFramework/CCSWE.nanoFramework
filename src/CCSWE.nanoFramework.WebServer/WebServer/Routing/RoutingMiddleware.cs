@@ -1,6 +1,4 @@
-﻿using System.Net;
-using CCSWE.nanoFramework.WebServer.Authentication;
-using CCSWE.nanoFramework.WebServer.Http;
+﻿using CCSWE.nanoFramework.WebServer.Http;
 
 namespace CCSWE.nanoFramework.WebServer.Routing
 {

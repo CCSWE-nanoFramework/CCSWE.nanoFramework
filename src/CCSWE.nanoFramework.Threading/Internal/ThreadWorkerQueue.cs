@@ -37,7 +37,7 @@ namespace CCSWE.nanoFramework.Threading.Internal
         {
             get
             {
-                ThreadWorker? item = default;
+                ThreadWorker? item = null;
 
                 if (Peek(ref item, index) && item is not null)
                 {
