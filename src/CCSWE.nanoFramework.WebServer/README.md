@@ -2,7 +2,7 @@
 
 # CCSWE.nanoFramework.WebServer
 
-A (not so) simple web server for .NET nanoFramework that tries to mimic the ASP.NET Core implementation.
+A simple asynchronous web server implementation for .NET nanoFramework that tries to mimic the ASP.NET Core implementation.
 
 ## Features
 

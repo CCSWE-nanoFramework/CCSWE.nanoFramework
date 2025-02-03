@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <readme>README.md</readme>
     <developmentDependency>false</developmentDependency>
-    <description>A simple asynchronous web server implementation for nanoFramework.</description>
+    <description>A simple asynchronous web server implementation for .NET nanoFramework that tries to mimic the ASP.NET Core implementation.</description>
     <repository type="git" url="https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework" commit="$commit$" />
     <copyright>Copyright (c) Cory Charlton</copyright>
     <tags>nanoFramework C# csharp netmf netnf ccswe web server http</tags>

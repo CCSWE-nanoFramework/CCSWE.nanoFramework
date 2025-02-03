@@ -52,4 +52,4 @@ A helper for managing ThreadPool during unit tests.
 
 ## [CCSWE.nanoFramework.WebServer](tree/master/src/CCSWE.nanoFramework.WebServer) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.WebServer.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.WebServer/) 
 
-A  web server that tries to mimic the ASP.NET Core implementation.
+A simple asynchronous web server implementation for .NET nanoFramework that tries to mimic the ASP.NET Core implementation.
