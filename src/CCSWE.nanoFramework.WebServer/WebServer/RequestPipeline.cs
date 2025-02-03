@@ -7,6 +7,7 @@ using CCSWE.nanoFramework.WebServer.Diagnostics;
 using CCSWE.nanoFramework.WebServer.Http;
 using CCSWE.nanoFramework.WebServer.Middleware;
 using CCSWE.nanoFramework.WebServer.Routing;
+using CCSWE.nanoFramework.WebServer.StaticFiles;
 
 namespace CCSWE.nanoFramework.WebServer
 {
@@ -29,8 +30,8 @@ namespace CCSWE.nanoFramework.WebServer
             /* Middleware order:
              * 1. ExceptionHandlerMiddleware
              * 2. RequestLoggingMiddleware (optional) [TODO]
-             * 3. StaticFilesMiddleware [TODO]
-             * 4. RoutingMiddleware
+             * 3. RoutingMiddleware
+             * 4. StaticFilesMiddleware [TODO]
              * 5. CorsMiddleware
              * 6. AuthenticationMiddleware
              * X. User defined middleware
@@ -41,18 +42,20 @@ namespace CCSWE.nanoFramework.WebServer
             {
                 BindMiddleware(typeof(ExceptionHandlerMiddleware)),
                 // TODO: Add optional RequestLoggingMiddleware
-                // TODO: Add StaticFiles middleware
                 BindMiddleware(typeof(RoutingMiddleware)),
             };
 
-            // If the user has registered a CorsPolicy, then add the CorsMiddleware
-            if (serviceProvider.GetService(typeof(CorsPolicy)) is CorsPolicy)
+            if (IsStaticFileMiddlewareEnabled(serviceProvider))
+            {
+                middleware.Add(BindMiddleware(typeof(StaticFileMiddleware)));
+            }
+
+            if (IsCorsMiddlewareEnabled(serviceProvider))
             {
                 middleware.Add(BindMiddleware(typeof(CorsMiddleware)));
             }
 
-            // If the user has registered an IAuthenticationService, then add the AuthenticationMiddleware
-            if (serviceProvider.GetService(typeof(IAuthenticationService)) is IAuthenticationService)
+            if (IsAuthenticationMiddlewareEnabled(serviceProvider))
             {
                 middleware.Add(BindMiddleware(typeof(AuthenticationMiddleware)));
             }
@@ -63,7 +66,7 @@ namespace CCSWE.nanoFramework.WebServer
                 middleware.Add(BindMiddleware(middlewareFactory));
             }
 
-            // EndpointMiddleware is always last
+            // EndpointMiddleware should always be last
             middleware.Add(BindMiddleware(typeof(EndpointMiddleware)));
 
             _middleware = (CreateMiddlewareDelegate[])middleware.ToArray(typeof(CreateMiddlewareDelegate));
@@ -73,7 +76,7 @@ namespace CCSWE.nanoFramework.WebServer
         {
             RequestDelegate app = context =>
             {
-                /*
+                /* TODO: Implement something like this
                 // If we reach the end of the pipeline, but we have an endpoint, then something unexpected has happened.
                 // This could happen if user code sets an endpoint, but they forgot to add the UseEndpoint middleware.
                 var endpoint = context.GetEndpoint();
@@ -128,6 +131,21 @@ namespace CCSWE.nanoFramework.WebServer
 
             requestPipeline.Build().Invoke(context);
             context.Close();
+        }
+
+        private static bool IsAuthenticationMiddlewareEnabled(IServiceProvider serviceProvider)
+        {
+            return serviceProvider.GetService(typeof(IAuthenticationService)) is IAuthenticationService;
+        }
+
+        private static bool IsCorsMiddlewareEnabled(IServiceProvider serviceProvider)
+        {
+            return serviceProvider.GetService(typeof(CorsPolicy)) is CorsPolicy;
+        }
+
+        private static bool IsStaticFileMiddlewareEnabled(IServiceProvider serviceProvider)
+        {
+            return serviceProvider.GetService(typeof(IContentTypeProvider)) is IContentTypeProvider && serviceProvider.GetService(typeof(IFileProvider)) is IFileProvider;
         }
     }
 }

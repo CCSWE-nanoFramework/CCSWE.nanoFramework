@@ -70,7 +70,7 @@ namespace CCSWE.nanoFramework.IO
         /// <returns>A string containing the data read from the stream.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the stream is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the stream does not support reading.</exception>
-        public static string ReadAsString(this Stream stream)
+        public static string ReadAllText(this Stream stream)
         {
             // TODO: Add GetString(string) overload to Encoding.UTF8 in nanoFramework
             var bytes = stream.ReadAllBytes();

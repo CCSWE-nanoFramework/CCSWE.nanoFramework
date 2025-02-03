@@ -65,6 +65,11 @@
     <Compile Include="WebServer\Routing\Endpoint.cs" />
     <Compile Include="WebServer\RequestDelegate.cs" />
     <Compile Include="WebServer\Routing\RoutingMiddleware.cs" />
+    <Compile Include="WebServer\StaticFiles\ContentTypeProvider.cs" />
+    <Compile Include="WebServer\StaticFiles\IContentTypeProvider.cs" />
+    <Compile Include="WebServer\StaticFiles\IFileInfo.cs" />
+    <Compile Include="WebServer\StaticFiles\IFileProvider.cs" />
+    <Compile Include="WebServer\StaticFiles\StaticFileMiddleware.cs" />
     <Compile Include="WebServer\WebServer.cs" />
     <Compile Include="WebServer\WebServerOptions.cs" />
     <Compile Include="WebServer\RouteAttribute.cs" />

@@ -57,7 +57,7 @@ namespace CCSWE.nanoFramework.WebServer.Samples
         [HttpPost("/example2")]
         public void HandlePost()
         {
-            var value = Request.Body.ReadAsString();
+            var value = Request.Body.ReadAllText();
 
             _logger.LogInformation("=> HandlePost");
             _logger.LogInformation($"Value: {value}");

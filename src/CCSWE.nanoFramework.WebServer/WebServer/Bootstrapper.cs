@@ -4,6 +4,7 @@ using CCSWE.nanoFramework.WebServer.Cors;
 using CCSWE.nanoFramework.WebServer.Middleware;
 using CCSWE.nanoFramework.WebServer.Reflection;
 using CCSWE.nanoFramework.WebServer.Routing;
+using CCSWE.nanoFramework.WebServer.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CCSWE.nanoFramework.WebServer
@@ -78,6 +79,7 @@ namespace CCSWE.nanoFramework.WebServer
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection"/>.</param>
         /// <param name="implementationType">The <see cref="Type"/> the implements <see cref="IMiddleware"/>.</param>
+        /// <returns>The <see cref="IServiceCollection"/> for chaining.</returns>
         public static IServiceCollection AddMiddleware(this IServiceCollection services, Type implementationType)
         {
             Ensure.IsNotNull(implementationType);
@@ -111,6 +113,22 @@ namespace CCSWE.nanoFramework.WebServer
 
             services.AddSingleton(typeof(IMiddlewareFactory), new MiddlewareFactory(implementationType));
             
+            return services;
+        }
+
+        /// <summary>
+        /// Add static files to the web server.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/>.</param>
+        /// <param name="fileProvider">The type that implements <see cref="IFileProvider"/>.</param>
+        /// <param name="contentTypeProvider">The type that implements <see cref="IContentTypeProvider"/>.</param>
+        /// <returns>The <see cref="IServiceCollection"/> for chaining.</returns>
+        // TODO: Add a default implementation for IFileProvider in another library
+        public static IServiceCollection AddStaticFiles(this IServiceCollection services, Type fileProvider, Type? contentTypeProvider = null)
+        {
+            services.TryAddSingleton(typeof(IFileProvider), fileProvider);
+            services.TryAddSingleton(typeof(IContentTypeProvider), contentTypeProvider ?? typeof(ContentTypeProvider));
+
             return services;
         }
 
