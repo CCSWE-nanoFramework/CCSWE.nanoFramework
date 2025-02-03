@@ -12,10 +12,12 @@ public interface IFileInfo
     /// </summary>
     bool Exists { get; }
 
+    /*
     /// <summary>
     /// Gets the length of the file in bytes, or -1 for a directory or nonexistent file.
     /// </summary>
     long Length { get; }
+    */
 
     /*
     /// <summary>
