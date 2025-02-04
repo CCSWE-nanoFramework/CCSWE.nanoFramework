@@ -41,6 +41,7 @@ namespace CCSWE.nanoFramework.WebServer.Samples
 
             // Enable optional middleware
             serviceCollection.AddCors();
+            serviceCollection.AddStaticFiles(typeof(ExampleFileProvider));
 
             // Add AuthenticationHandler
             serviceCollection.AddAuthentication(typeof(ExampleAuthenticationHandler));

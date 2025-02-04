@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="ExampleAuthenticationHandler.cs" />
     <Compile Include="ExampleController.cs" />
+    <Compile Include="ExampleFileProvider.cs" />
     <Compile Include="ExampleMiddleware.cs" />
     <Compile Include="Networking\NetworkInterfaceProvider.cs" />
     <Compile Include="Networking\WirelessAccessPointManager.cs" />

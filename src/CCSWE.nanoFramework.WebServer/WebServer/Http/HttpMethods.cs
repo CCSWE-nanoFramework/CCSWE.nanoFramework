@@ -177,7 +177,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
             not null when IsTrace(method) => Trace,
             not null when IsConnect(method) => Connect,
             not null => method,
-            _ => throw new ArgumentOutOfRangeException(nameof(method))
+            _ => throw new ArgumentNullException(nameof(method))
         };
 
         /// <summary>

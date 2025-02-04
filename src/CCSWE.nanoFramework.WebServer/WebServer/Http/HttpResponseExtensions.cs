@@ -105,7 +105,10 @@ namespace CCSWE.nanoFramework.WebServer.Http
             var bytesSent = 0L;
             int bytesToSend;
 
-            while ((bytesToSend = body.Read(buffer)) > 0)
+            // Even though I fixed the issue with MemoryStream.Read(SpanByte buffer) (https://github.com/nanoframework/Home/issues/1598)
+            // Not all streams implement the Read(SpanByte buffer) method, so I'm going to have to use the Read(byte[] buffer, int offset, int count) method for now
+            // while ((bytesToSend = body.Read(buffer)) > 0)
+            while ((bytesToSend = body.Read(buffer, 0, buffer.Length)) > 0)
             {
                 response.Body.Write(buffer, (int)bytesSent, bytesToSend);
                 bytesSent += bytesToSend;

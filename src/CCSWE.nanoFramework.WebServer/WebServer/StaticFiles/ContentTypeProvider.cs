@@ -13,7 +13,7 @@ namespace CCSWE.nanoFramework.WebServer.StaticFiles
         /// <remarks><c>application/octet-stream</c> will be returned if a specific MIME type cannot be determined.</remarks>
         public bool TryGetContentType(string subpath, [MaybeNullWhen(false)] out string contentType)
         {
-            contentType = MimeType.GetMimeTypeFromFileName(subpath);
+            contentType = string.IsNullOrEmpty(subpath) ? MimeType.Text.Html : MimeType.GetMimeTypeFromFileName(subpath);
 
             return true;
         }
