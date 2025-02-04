@@ -24,8 +24,8 @@
       <dependency id="CCSWE.nanoFramework.Threading" version="[1.1,)" />
       <dependency id="nanoFramework.CoreLibrary" version="1.16.11" />
       <dependency id="nanoFramework.DependencyInjection" version="1.1.25" />
-      <dependency id="nanoFramework.Json" version="2.2.168" />
-      <dependency id="nanoFramework.Logging" version="1.1.134" />
+      <dependency id="nanoFramework.Json" version="2.2.171" />
+      <dependency id="nanoFramework.Logging" version="1.1.135" />
       <dependency id="nanoFramework.Runtime.Events" version="1.11.29" />
       <dependency id="nanoFramework.System.Collections" version="1.5.59" />
       <dependency id="nanoFramework.System.IO.FileSystem" version="1.1.77" />
