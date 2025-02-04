@@ -34,11 +34,9 @@ public static class ThrowHelper
         }
     }
 
-    // TODO: Uncomment when new mscorlib is released
-    //[DoesNotReturn]
+    [DoesNotReturn]
     private static void ThrowArgumentException(string? message, string? paramName) => throw new ArgumentException(message, paramName);
 
-    // TODO: Uncomment when new mscorlib is released
-    //[DoesNotReturn]
+    [DoesNotReturn]
     private static void ThrowArgumentNullException(string? paramName) => throw new ArgumentNullException(paramName);
 }

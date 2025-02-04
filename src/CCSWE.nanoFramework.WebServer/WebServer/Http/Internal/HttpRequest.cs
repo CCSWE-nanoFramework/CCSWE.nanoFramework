@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Net;
 
 namespace CCSWE.nanoFramework.WebServer.Http.Internal
@@ -78,8 +79,7 @@ namespace CCSWE.nanoFramework.WebServer.Http.Internal
             // Nothing to do here...
         }
 
-        // TODO: Uncomment when new mscorlib is available
-        //[MemberNotNull(nameof(_path))]
+        [MemberNotNull(nameof(_path))]
         private void InitializePath()
         {
             GetPathAndQueryString(_request.RawUrl, out var path, out var queryString);
@@ -88,8 +88,7 @@ namespace CCSWE.nanoFramework.WebServer.Http.Internal
             _queryString = queryString;
         }
 
-        // TODO: Uncomment when new mscorlib is available
-        //[MemberNotNull(nameof(_pathSegments))]
+        [MemberNotNull(nameof(_pathSegments))]
         private void InitializePathSegments()
         {
             _pathSegments = GetPathSegments(Path);

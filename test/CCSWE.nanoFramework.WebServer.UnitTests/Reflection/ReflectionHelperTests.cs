@@ -5,6 +5,7 @@ using CCSWE.nanoFramework.WebServer.Cors;
 using CCSWE.nanoFramework.WebServer.Diagnostics;
 using CCSWE.nanoFramework.WebServer.Reflection;
 using CCSWE.nanoFramework.WebServer.Routing;
+using CCSWE.nanoFramework.WebServer.StaticFiles;
 using CCSWE.nanoFramework.WebServer.UnitTests.Mocks.Authentication;
 using CCSWE.nanoFramework.WebServer.UnitTests.Mocks.Controllers;
 using nanoFramework.TestFramework;
@@ -92,6 +93,7 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Reflection
             Assert.IsTrue(ReflectionHelper.IsMiddleware(typeof(CorsMiddleware)));
             Assert.IsTrue(ReflectionHelper.IsMiddleware(typeof(ExceptionHandlerMiddleware)));
             Assert.IsTrue(ReflectionHelper.IsMiddleware(typeof(RoutingMiddleware)));
+            Assert.IsTrue(ReflectionHelper.IsMiddleware(typeof(StaticFileMiddleware)));
         }
 
         [TestMethod]

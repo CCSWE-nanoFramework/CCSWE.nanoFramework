@@ -10,7 +10,6 @@ namespace CCSWE.nanoFramework.Core.UnitTests.Text
         [TestMethod]
         public void FromString_parses_string()
         {
-            // TODO: Add offset strings
             var values = new[]
             {
                 "2024-05-15T04:20:05Z",

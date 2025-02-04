@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using CCSWE.nanoFramework.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using nanoFramework.Hosting;
@@ -72,15 +73,13 @@ namespace CCSWE.nanoFramework.Hosting
             return this;
         }
 
-        // TODO: Uncomment this when new mscorlib is released
-        //[MemberNotNull(nameof(_hostBuilderContext))]
+        [MemberNotNull(nameof(_hostBuilderContext))]
         private void InitializeHostBuilderContext()
         {
             _hostBuilderContext = new HostBuilderContext(Properties);
         }
 
-        // TODO: Uncomment this when new mscorlib is released
-        //[MemberNotNull(nameof(_appServices))]
+        [MemberNotNull(nameof(_appServices))]
         private void InitializeServiceProvider()
         {
             var services = new ServiceCollection();
