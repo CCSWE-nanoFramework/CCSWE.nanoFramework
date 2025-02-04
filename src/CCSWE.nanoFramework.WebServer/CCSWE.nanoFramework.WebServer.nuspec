@@ -20,9 +20,9 @@
       <dependency id="CCSWE.nanoFramework.Core" version="[1.1,)" />
       <dependency id="CCSWE.nanoFramework.Threading" version="[1.1,)" />
       <dependency id="nanoFramework.CoreLibrary" version="1.16.11" />
-      <dependency id="nanoFramework.Json" version="2.2.168" />
+      <dependency id="nanoFramework.Json" version="2.2.171" />
       <dependency id="nanoFramework.Runtime.Events" version="1.11.29" />
-      <dependency id="nanoFramework.System.Collections" version="1.5.56" />
+      <dependency id="nanoFramework.System.Collections" version="1.5.59" />
       <dependency id="nanoFramework.System.IO.Streams" version="1.1.82" />
       <dependency id="nanoFramework.System.Net" version="1.11.25" />
       <dependency id="nanoFramework.System.Net.Http" version="1.5.172" />

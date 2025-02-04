@@ -18,7 +18,7 @@
     <tags>nanoFramework C# csharp netmf netnf ccswe dhcp server</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.16.11" />
-      <dependency id="nanoFramework.Logging" version="1.1.134" />
+      <dependency id="nanoFramework.Logging" version="1.1.135" />
       <dependency id="nanoFramework.Runtime.Events" version="1.11.29" />
       <dependency id="nanoFramework.System.Collections" version="1.5.59" />
       <dependency id="nanoFramework.System.IO.Streams" version="1.1.82" />
