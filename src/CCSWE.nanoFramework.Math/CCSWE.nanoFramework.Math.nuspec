@@ -17,8 +17,8 @@
     <copyright>Copyright (c) Cory Charlton</copyright>
     <tags>nanoFramework C# csharp netmf netnf ccswe math fast</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.16.1" />
-      <dependency id="nanoFramework.System.Math" version="1.5.86" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.16.11" />
+      <dependency id="nanoFramework.System.Math" version="1.5.90" />
     </dependencies>
   </metadata>
   <files>
