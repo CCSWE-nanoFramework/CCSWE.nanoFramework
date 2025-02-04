@@ -18,7 +18,7 @@
     <tags>nanoFramework C# csharp netmf netnf ccswe threading asynchronous</tags>
     <dependencies>
       <dependency id="CCSWE.nanoFramework.Threading" version="[1.1,)" />
-      <dependency id="nanoFramework.CoreLibrary" version="1.16.1" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.16.11" />
     </dependencies>
   </metadata>
   <files>
