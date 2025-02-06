@@ -11,15 +11,15 @@ namespace CCSWE.nanoFramework.FileStorage.UnitTests
         [Setup]
         public void Setup()
         {
-            Assert.SkipTest("These test will only run on real hardware. Comment out this line if you are testing on real hardware.");
+            //Assert.SkipTest("These test will only run on real hardware. Comment out this line if you are testing on real hardware.");
         }
 
         private const string Root = @"I:\";
-        private static readonly string Destination = $"{Root}{nameof(FileStorageTests)}-Destination.test";
-        private static readonly string Source = $"{Root}{nameof(FileStorageTests)}-Source.test";
+        private const string Destination = $"{Root}{nameof(FileStorageTests)}-Destination.test";
+        private const string Source = $"{Root}{nameof(FileStorageTests)}-Source.test";
 
         private static readonly byte[] BinaryContent = Encoding.UTF8.GetBytes(TextContent);
-        private static readonly byte[] EmptyContent = new byte[0];
+        private static readonly byte[] EmptyContent = [];
         private const string TextContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
         #region Test helpers
@@ -31,7 +31,7 @@ namespace CCSWE.nanoFramework.FileStorage.UnitTests
 
         private static void AssertContentEquals(Stream stream, byte[] expected)
         {
-            Assert.AreEqual(expected!.Length, stream.Length, "File is not the correct length.");
+            Assert.AreEqual(expected.Length, stream.Length, "File is not the correct length.");
 
             var content = new byte[stream.Length];
             stream.Read(content, 0, content.Length);
@@ -62,13 +62,14 @@ namespace CCSWE.nanoFramework.FileStorage.UnitTests
         /// </summary>
         private static void CreateFile(string path, byte[] content)
         {
-            File.Create(path);
+            using var outputStream = new FileStream(path, FileMode.Create, FileAccess.Write);
 
-            if (content!.Length > 0)
+            if (content.Length > 0)
             {
-                using var outputStream = new FileStream(path, FileMode.Open, FileAccess.Write);
                 outputStream.Write(content, 0, content.Length);
             }
+
+            outputStream.Close();
 
             AssertFileExists(path);
             AssertContentEquals(path, content);
@@ -203,10 +204,12 @@ namespace CCSWE.nanoFramework.FileStorage.UnitTests
             ExecuteTestAndTearDown(() =>
             {
                 var sut = new FileStorage();
+
                 using var stream = sut.Create(Destination);
+                stream.Close();
 
                 AssertFileExists(Destination);
-                AssertContentEquals(stream, EmptyContent);
+                AssertContentEquals(Destination, EmptyContent);
             });
 
             ExecuteTestAndTearDown(() =>
@@ -215,9 +218,10 @@ namespace CCSWE.nanoFramework.FileStorage.UnitTests
 
                 var sut = new FileStorage();
                 using var stream = sut.Create(Destination);
+                stream.Close();
 
                 AssertFileExists(Destination);
-                AssertContentEquals(stream, EmptyContent);
+                AssertContentEquals(Destination, EmptyContent);
             });
         }
 
