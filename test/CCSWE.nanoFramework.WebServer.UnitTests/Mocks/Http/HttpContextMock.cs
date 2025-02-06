@@ -6,7 +6,13 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Mocks.Http
     internal class HttpContextMock : HttpContext
     {
         private HttpResponseMock? _response;
+
         public HttpContextMock(): this(HttpMethods.Get, string.Empty)
+        {
+
+        }
+
+        public HttpContextMock(IServiceProvider services) : this(HttpMethods.Get, string.Empty, null, services)
         {
 
         }
@@ -27,7 +33,7 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Mocks.Http
         }
 
         public override HttpRequest Request { get; }
-        public override IServiceProvider RequestServices { get; }
+        public override IServiceProvider RequestServices { get;}
         public override HttpResponse Response => _response ??= new HttpResponseMock(ResponseHasStarted);
         public bool ResponseHasStarted { get; init; }
 
