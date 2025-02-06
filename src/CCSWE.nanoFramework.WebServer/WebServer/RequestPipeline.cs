@@ -8,6 +8,7 @@ using CCSWE.nanoFramework.WebServer.Http;
 using CCSWE.nanoFramework.WebServer.Middleware;
 using CCSWE.nanoFramework.WebServer.Routing;
 using CCSWE.nanoFramework.WebServer.StaticFiles;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CCSWE.nanoFramework.WebServer
 {
@@ -25,7 +26,7 @@ namespace CCSWE.nanoFramework.WebServer
     {
         private readonly CreateMiddlewareDelegate[] _middleware;
 
-        public RequestPipeline(IMiddlewareFactory[] middlewareFactories, IServiceProvider serviceProvider)
+        public RequestPipeline(IServiceProvider serviceProvider)
         {
             /* Middleware order:
              * 1. ExceptionHandlerMiddleware
@@ -61,6 +62,7 @@ namespace CCSWE.nanoFramework.WebServer
             }
 
             // Add the user defined middleware
+            var middlewareFactories = (MiddlewareFactory[]) serviceProvider.GetServices(typeof(MiddlewareFactory)).ToArray(typeof(MiddlewareFactory));
             foreach (var middlewareFactory in middlewareFactories)
             {
                 middleware.Add(BindMiddleware(middlewareFactory));
