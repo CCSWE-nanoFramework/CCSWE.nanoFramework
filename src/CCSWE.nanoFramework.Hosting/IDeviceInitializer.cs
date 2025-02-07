@@ -10,7 +10,7 @@ namespace CCSWE.nanoFramework.Hosting
         /// <summary>
         /// Executed when the <see cref="IHost"/> is starting.
         /// </summary>
-        /// <returns><c>true</c>, if initialization was successful; <c>false</c> if startup should be aborted.</returns>
+        /// <returns><see langword="true"/>, if initialization was successful; <see langword="false"/> if startup should be aborted.</returns>
         bool Initialize();
     }
 }

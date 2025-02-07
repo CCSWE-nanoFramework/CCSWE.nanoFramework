@@ -76,7 +76,7 @@ namespace CCSWE.nanoFramework
 
 
         /// <summary>
-        /// Throws an <see cref="ArgumentException"/> if the expression evaluates to <c>false</c>.
+        /// Throws an <see cref="ArgumentException"/> if the expression evaluates to <see langword="false"/>.
         /// </summary>
         /// <param name="expression">The expression that will be evaluated.</param>
         /// <param name="message">The message associated with the <see cref="Exception"/>.</param>

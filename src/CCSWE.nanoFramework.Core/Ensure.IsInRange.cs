@@ -9,12 +9,12 @@ namespace CCSWE.nanoFramework
         private const string ErrorValueMustBeBetween = "The value passed for '{0}' must be between {1} and {2} (inclusive).";
 
         /// <summary>
-        /// Throws an <see cref="ArgumentOutOfRangeException"/> if the expression evaluates to <c>false</c>.
+        /// Throws an <see cref="ArgumentOutOfRangeException"/> if the expression evaluates to <see langword="false"/>.
         /// </summary>
         /// <param name="expression">The expression that will be evaluated.</param>
         /// <param name="message">The message associated with the <see cref="ArgumentOutOfRangeException"/></param>
         /// <param name="paramName">The name of the parameter we are validating.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when the expression evaluates to <c>false</c></exception>.
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the expression evaluates to <see langword="false"/></exception>.
         public static void IsInRange(bool expression, string? message = null, [CallerArgumentExpression(nameof(expression))] string paramName = null!)
         {
             if (expression)
@@ -26,14 +26,14 @@ namespace CCSWE.nanoFramework
         }
 
         /// <summary>
-        /// Throws an <see cref="ArgumentOutOfRangeException"/> if the expression evaluates to <c>false</c>.
+        /// Throws an <see cref="ArgumentOutOfRangeException"/> if the expression evaluates to <see langword="false"/>.
         /// </summary>
         /// <param name="value">The value that will be evaluated.</param>
         /// <param name="min">The minimum value allowed.</param>
         /// <param name="max">The maximum value allowed.</param>
         /// <param name="message">The message associated with the <see cref="ArgumentOutOfRangeException"/></param>
         /// <param name="paramName">The name of the parameter we are validating.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when the expression evaluates to <c>false</c></exception>.
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the expression evaluates to <see langword="false"/></exception>.
         public static void IsInRange(double value, double min, double max, string? message = null, [CallerArgumentExpression(nameof(value))] string paramName = null!)
         {
             if (value >= min && value <= max)
