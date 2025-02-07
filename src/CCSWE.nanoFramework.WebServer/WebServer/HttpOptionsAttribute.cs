@@ -1,4 +1,5 @@
-﻿using CCSWE.nanoFramework.WebServer.Routing;
+﻿using System;
+using CCSWE.nanoFramework.WebServer.Routing;
 
 namespace CCSWE.nanoFramework.WebServer
 {
@@ -22,7 +23,7 @@ namespace CCSWE.nanoFramework.WebServer
         /// <param name="template">The route template. May not be null.</param>
         public HttpOptionsAttribute(string template) : base(SupportedMethods, template)
         {
-            Ensure.IsNotNull(template);
+            ArgumentNullException.ThrowIfNull(template);
         }
     }
 }

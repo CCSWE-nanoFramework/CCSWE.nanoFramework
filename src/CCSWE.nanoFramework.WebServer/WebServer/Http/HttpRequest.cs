@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 
 namespace CCSWE.nanoFramework.WebServer.Http
@@ -63,7 +64,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
         /// <param name="queryString">The query string portion of the request url.</param>
         protected static void GetPathAndQueryString(string url, out string path, out string? queryString)
         {
-            Ensure.IsNotNull(url);
+            ArgumentNullException.ThrowIfNull(url);
 
             var urlParts = url.Split('?');
 

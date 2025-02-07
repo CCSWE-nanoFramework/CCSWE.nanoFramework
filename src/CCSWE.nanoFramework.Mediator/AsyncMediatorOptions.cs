@@ -24,8 +24,8 @@ namespace CCSWE.nanoFramework.Mediator
         /// <param name="subscriberType">Type of the subscriber (as registered in DI). The subscriber must implement <see cref="IMediatorEventHandler"/>.</param>
         public void AddSubscriber(Type eventType, Type subscriberType)
         {
-            Ensure.IsNotNull(eventType);
-            Ensure.IsNotNull(subscriberType);
+            ArgumentNullException.ThrowIfNull(eventType);
+            ArgumentNullException.ThrowIfNull(subscriberType);
 
             MediatorTypeUtils.RequireMediatorEvent(eventType);
 

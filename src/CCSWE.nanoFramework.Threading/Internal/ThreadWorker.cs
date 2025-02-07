@@ -4,6 +4,7 @@
 using System.Diagnostics;
 #endif
 
+using System;
 using System.Threading;
 
 namespace CCSWE.nanoFramework.Threading.Internal;
@@ -80,7 +81,7 @@ internal class ThreadWorker
 
     public void Post(WaitCallback callback, object? state)
     {
-        Ensure.IsNotNull(callback);
+        ArgumentNullException.ThrowIfNull(callback);
 
         lock (_lock)
         {

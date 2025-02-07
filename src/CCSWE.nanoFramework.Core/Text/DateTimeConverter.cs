@@ -20,7 +20,7 @@ namespace CCSWE.nanoFramework.Text
         /// <remarks>The <paramref name="value"/> must be formatted following RFC 3339 guidelines.</remarks>
         public static DateTime FromString(string value)
         {
-            Ensure.IsNotNullOrEmpty(value);
+            ArgumentException.ThrowIfNullOrEmpty(value);
 
             var offset = TimeSpan.Zero;
 
@@ -65,7 +65,7 @@ namespace CCSWE.nanoFramework.Text
         /// <remarks>The returned string is formatted following RFC 3339 using the following format: yyyy-MM-dd'T'HH:mm:ss.fffZ</remarks>
         public static string ToString(DateTime value)
         {
-            Ensure.IsNotNull(value);
+            ArgumentNullException.ThrowIfNull(value);
 
             return value.ToString(Rfc3339Format);
         }

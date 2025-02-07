@@ -45,18 +45,6 @@ namespace CCSWE.nanoFramework.Core.Benchmarks
         }
 
         [Benchmark]
-        public void IsNotNull()
-        {
-            Ensure.IsNotNull(StringValue);
-        }
-
-        [Benchmark]
-        public void IsNotNullOrEmpty()
-        {
-            Ensure.IsNotNullOrEmpty(StringValue);
-        }
-
-        [Benchmark]
         public void IsValid()
         {
             const double value = 0d;

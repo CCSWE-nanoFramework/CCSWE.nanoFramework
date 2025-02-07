@@ -3,7 +3,6 @@ using System.Collections;
 using System.Reflection;
 using CCSWE.nanoFramework.WebServer.Http;
 using CCSWE.nanoFramework.WebServer.Internal;
-using CCSWE.nanoFramework.WebServer.Reflection;
 using Microsoft.Extensions.Logging;
 
 namespace CCSWE.nanoFramework.WebServer.Routing
@@ -48,11 +47,11 @@ namespace CCSWE.nanoFramework.WebServer.Routing
 
                 foreach (var attribute in attributes)
                 {
-                    if (ReflectionHelper.IsAllowAnonymousAttribute(attribute))
+                    if (WebServerTypeUtils.IsAllowAnonymousAttribute(attribute))
                     {
                         requireAuthentication = false;
                     }
-                    else if (ReflectionHelper.IsHttpMethodProvider(attribute))
+                    else if (WebServerTypeUtils.IsHttpMethodProvider(attribute))
                     {
                         httpMethodProviders.Add(attribute);
                     }
@@ -68,7 +67,7 @@ namespace CCSWE.nanoFramework.WebServer.Routing
 
                     var template = controllerRouteTemplate ?? string.Empty;
 
-                    if (ReflectionHelper.IsRouteTemplateProvider(httpMethodProvider))
+                    if (WebServerTypeUtils.IsRouteTemplateProvider(httpMethodProvider))
                     {
                         var routeTemplate = ((IRouteTemplateProvider)httpMethodProvider).Template;
 
@@ -110,7 +109,7 @@ namespace CCSWE.nanoFramework.WebServer.Routing
             
             foreach (var controller in controllers)
             {
-                if (!ReflectionHelper.IsControllerBase(controller))
+                if (!WebServerTypeUtils.IsControllerBase(controller))
                 {
                     continue;
                 }
@@ -122,11 +121,11 @@ namespace CCSWE.nanoFramework.WebServer.Routing
 
                 foreach (var attribute in attributes)
                 {
-                    if (ReflectionHelper.IsAllowAnonymousAttribute(attribute))
+                    if (WebServerTypeUtils.IsAllowAnonymousAttribute(attribute))
                     {
                         requireAuthentication = false;
                     } 
-                    else if (ReflectionHelper.IsRouteTemplateProvider(attribute))
+                    else if (WebServerTypeUtils.IsRouteTemplateProvider(attribute))
                     {
                         routeTemplate = ((IRouteTemplateProvider)attribute).Template;
                     }

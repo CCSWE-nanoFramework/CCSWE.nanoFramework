@@ -31,6 +31,7 @@
     <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="TypeExtensionsTests.cs" />
     <Compile Include="Text\DateTimeConverterTests.cs" />
     <Compile Include="EnsureTests.cs" />
     <Compile Include="IO\PathTests.cs" />

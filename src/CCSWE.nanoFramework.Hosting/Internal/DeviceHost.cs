@@ -15,8 +15,8 @@ namespace CCSWE.nanoFramework.Hosting.Internal
         /// </summary>
         public DeviceHost(IServiceProvider services, ILogger logger)
         {
-            Ensure.IsNotNull(logger);
-            Ensure.IsNotNull(services);
+            ArgumentNullException.ThrowIfNull(logger);
+            ArgumentNullException.ThrowIfNull(services);
 
             _logger = logger;
 

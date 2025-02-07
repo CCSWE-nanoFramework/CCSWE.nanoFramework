@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Reflection;
 using CCSWE.nanoFramework.WebServer.Http;
-using CCSWE.nanoFramework.WebServer.Reflection;
 
 namespace CCSWE.nanoFramework.WebServer.Routing
 {
@@ -15,9 +15,9 @@ namespace CCSWE.nanoFramework.WebServer.Routing
 
         public Endpoint(string httpMethod, MethodInfo methodInfo, string template, bool requireAuthentication)
         {
-            Ensure.IsNotNullOrEmpty(httpMethod);
-            Ensure.IsNotNull(methodInfo);
-            Ensure.IsNotNullOrEmpty(template);
+            ArgumentException.ThrowIfNullOrEmpty(httpMethod);
+            ArgumentNullException.ThrowIfNull(methodInfo);
+            ArgumentException.ThrowIfNullOrEmpty(template);
 
             HttpMethod = HttpMethods.GetCanonicalizedValue(httpMethod);
             MethodInfo = methodInfo;

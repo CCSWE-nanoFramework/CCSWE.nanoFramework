@@ -3,9 +3,10 @@ using CCSWE.nanoFramework.WebServer.Authentication;
 using CCSWE.nanoFramework.WebServer.Authorization;
 using CCSWE.nanoFramework.WebServer.Routing;
 
-namespace CCSWE.nanoFramework.WebServer.Reflection
+namespace CCSWE.nanoFramework.WebServer.Internal
 {
-    internal static class ReflectionHelper
+    // TODO: Add Require__ methods?
+    internal static class WebServerTypeUtils
     {
         internal static readonly Type AllowAnonymousAttributeType = typeof(AllowAnonymousAttribute);
         internal static readonly Type AuthenticationHandlerType = typeof(IAuthenticationHandler);

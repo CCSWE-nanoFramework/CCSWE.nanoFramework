@@ -46,7 +46,7 @@ namespace CCSWE.nanoFramework
         /// </returns>
         public static string Join(string? separator, params string[]? value)
         {
-            Ensure.IsNotNull(value);
+            ArgumentNullException.ThrowIfNull(value);
 
             switch (value.Length)
             {

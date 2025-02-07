@@ -24,7 +24,7 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Mocks.Http
 
         public HttpContextMock(HttpRequestMock request, HttpResponseMock? response = null, IServiceProvider? services = null)
         {
-            Ensure.IsNotNull(request);
+            ArgumentNullException.ThrowIfNull(request);
 
             Request = request;
             RequestServices = services ?? new ServiceProviderMock();

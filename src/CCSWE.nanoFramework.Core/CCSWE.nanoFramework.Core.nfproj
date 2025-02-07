@@ -28,6 +28,8 @@
     <Compile Include="Ensure.IsInRange.cs">
       <DependentUpon>Ensure.cs</DependentUpon>
     </Compile>
+    <Compile Include="MethodInfoExtensions.cs" />
+    <Compile Include="TypeExtensions.cs" />
     <Compile Include="Text\DateTimeConverter.cs" />
     <Compile Include="Ensure.cs" />
     <Compile Include="IO\Path.cs" />

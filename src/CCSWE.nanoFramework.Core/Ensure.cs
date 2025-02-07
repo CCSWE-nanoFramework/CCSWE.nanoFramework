@@ -44,6 +44,7 @@ namespace CCSWE.nanoFramework
         /// <param name="value">The value that will be evaluated.</param>
         /// <param name="message">The message associated with the <see cref="Exception"/></param>
         /// <exception cref="ArgumentNullException">Thrown when the value is <c>null</c></exception>.
+        [Obsolete("Use ArgumentNullException.ThrowIfNull instead")]
         public static void IsNotNull([NotNull] object? value, string? message = null, [CallerArgumentExpression(nameof(value))] string paramName = null!)
         {
             if (value is not null)
@@ -62,6 +63,7 @@ namespace CCSWE.nanoFramework
         /// <param name="value">The value that will be evaluated.</param>
         /// <param name="message">The message associated with the <see cref="Exception"/></param>
         /// <exception cref="ArgumentException">Thrown when the value is <c>null</c> or empty.</exception>
+        [Obsolete("Use ArgumentException.ThrowIfNullOrEmpty instead")]
         public static void IsNotNullOrEmpty([NotNull] string? value, string? message = null, [CallerArgumentExpression(nameof(value))] string paramName = null!)
         {
             IsNotNull(value, message, paramName);

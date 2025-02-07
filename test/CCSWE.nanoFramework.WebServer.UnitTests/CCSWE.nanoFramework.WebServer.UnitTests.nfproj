@@ -52,8 +52,7 @@
     <Compile Include="Mocks\Http\HttpResponseMock.cs" />
     <Compile Include="Mocks\LoggerMock.cs" />
     <Compile Include="Mocks\ServiceProviderMock.cs" />
-    <Compile Include="Reflection\ReflectionExtensionsTests.cs" />
-    <Compile Include="Reflection\ReflectionHelperTests.cs" />
+    <Compile Include="Internal\WebServerTypeUtilsTests.cs" />
     <Compile Include="RouteAttributeTests.cs" />
     <Compile Include="HttpPutAttributeTests.cs" />
     <Compile Include="HttpPostAttributeTests.cs" />

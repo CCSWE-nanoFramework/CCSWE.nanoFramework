@@ -178,7 +178,7 @@ namespace CCSWE.nanoFramework.Threading.Internal
         {
             ThrowIfDisposed();
 
-            Ensure.IsNotNull(callback);
+            ArgumentNullException.ThrowIfNull(callback);
 
             lock (_lock)
             {

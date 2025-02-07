@@ -59,9 +59,8 @@
     <Compile Include="WebServer\Cors\CorsMiddleware.cs" />
     <Compile Include="WebServer\Middleware\CreateMiddlewareDelegate.cs" />
     <Compile Include="WebServer\RequestPipeline.cs" />
-    <Compile Include="WebServer\Reflection\ReflectionExtensions.cs" />
     <Compile Include="WebServer\IWebServer.cs" />
-    <Compile Include="WebServer\Reflection\ReflectionHelper.cs" />
+    <Compile Include="WebServer\Internal\WebServerTypeUtils.cs" />
     <Compile Include="WebServer\Routing\Endpoint.cs" />
     <Compile Include="WebServer\RequestDelegate.cs" />
     <Compile Include="WebServer\Routing\RoutingMiddleware.cs" />

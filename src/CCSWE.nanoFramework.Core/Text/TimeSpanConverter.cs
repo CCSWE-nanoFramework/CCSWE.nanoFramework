@@ -15,7 +15,7 @@ namespace CCSWE.nanoFramework.Text
         /// <remarks>This was improved from https://github.com/nanoframework/nanoFramework.Json/blob/16a7727c389007faaddd22eb80034a7f39b4ce5f/nanoFramework.Json/Converters/TimeSpanConverter.cs#L33</remarks>
         public static TimeSpan FromString(string value)
         {
-            Ensure.IsNotNull(value);
+            ArgumentNullException.ThrowIfNull(value);
 
             var tokens = value.Split(':', '.');
             if (tokens.Length == 0)
@@ -139,7 +139,7 @@ namespace CCSWE.nanoFramework.Text
         /// <remarks>The returned string is formatted with the "c" format specifier and has the following format: [-][d.]hh:mm:ss[.fffffff]</remarks>
         public static string ToString(TimeSpan value)
         {
-            Ensure.IsNotNull(value);
+            ArgumentNullException.ThrowIfNull(value);
 
             return value.ToString();
         }

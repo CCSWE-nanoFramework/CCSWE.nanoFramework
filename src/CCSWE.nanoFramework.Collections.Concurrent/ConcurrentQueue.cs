@@ -134,7 +134,7 @@ namespace CCSWE.nanoFramework.Collections.Concurrent
         /// <exception cref="ArgumentNullException">If <paramref name="item"/> is <c>null</c>.</exception>
         public void Enqueue(object item)
         {
-            Ensure.IsNotNull(item);
+            ArgumentNullException.ThrowIfNull(item);
 
             lock (_lock)
             {

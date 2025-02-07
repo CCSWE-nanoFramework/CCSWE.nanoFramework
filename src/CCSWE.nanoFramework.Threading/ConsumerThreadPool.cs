@@ -23,7 +23,7 @@ namespace CCSWE.nanoFramework.Threading
         public ConsumerThreadPool(int consumersThreads, ConsumerCallback consumerCallback)
         {
             Ensure.IsInRange(consumersThreads > 0, $"'{nameof(consumersThreads)}' must be greater than zero.", nameof(consumersThreads));
-            Ensure.IsNotNull(consumerCallback);
+            ArgumentNullException.ThrowIfNull(consumerCallback);
 
             CancellationToken = CancellationTokenSource.Token;
 
@@ -119,7 +119,7 @@ namespace CCSWE.nanoFramework.Threading
         {
             ThrowIfDisposed();
 
-            Ensure.IsNotNull(item);
+            ArgumentNullException.ThrowIfNull(item);
 
             _items.Enqueue(item);
             _itemPending.Set();

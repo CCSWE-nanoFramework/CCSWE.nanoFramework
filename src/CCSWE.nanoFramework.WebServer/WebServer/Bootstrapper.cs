@@ -1,8 +1,8 @@
 ﻿using System;
 using CCSWE.nanoFramework.WebServer.Authentication;
 using CCSWE.nanoFramework.WebServer.Cors;
+using CCSWE.nanoFramework.WebServer.Internal;
 using CCSWE.nanoFramework.WebServer.Middleware;
-using CCSWE.nanoFramework.WebServer.Reflection;
 using CCSWE.nanoFramework.WebServer.Routing;
 using CCSWE.nanoFramework.WebServer.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,9 +22,9 @@ namespace CCSWE.nanoFramework.WebServer
         // TODO: Add support for schemes
         public static IServiceCollection AddAuthentication(this IServiceCollection services, Type implementationType)
         {
-            Ensure.IsNotNull(implementationType);
+            ArgumentNullException.ThrowIfNull(implementationType);
 
-            if (!ReflectionHelper.IsAuthenticationHandler(implementationType) || implementationType.IsAbstract)
+            if (!WebServerTypeUtils.IsAuthenticationHandler(implementationType) || implementationType.IsAbstract)
             {
                 throw new InvalidOperationException();
             }
@@ -49,9 +49,9 @@ namespace CCSWE.nanoFramework.WebServer
         /// <param name="implementationType">The <see cref="Type"/> the implements <see cref="ControllerBase"/>.</param>
         public static IServiceCollection AddController(this IServiceCollection services, Type implementationType)
         {
-            Ensure.IsNotNull(implementationType);
+            ArgumentNullException.ThrowIfNull(implementationType);
 
-            if (!ReflectionHelper.IsControllerBase(implementationType) || implementationType.IsAbstract)
+            if (!WebServerTypeUtils.IsControllerBase(implementationType) || implementationType.IsAbstract)
             {
                 throw new InvalidOperationException();
             }
@@ -82,9 +82,9 @@ namespace CCSWE.nanoFramework.WebServer
         /// <returns>The <see cref="IServiceCollection"/> for chaining.</returns>
         public static IServiceCollection AddMiddleware(this IServiceCollection services, Type implementationType)
         {
-            Ensure.IsNotNull(implementationType);
+            ArgumentNullException.ThrowIfNull(implementationType);
 
-            if (!ReflectionHelper.IsMiddleware(implementationType) || implementationType.IsAbstract)
+            if (!WebServerTypeUtils.IsMiddleware(implementationType) || implementationType.IsAbstract)
             {
                 throw new InvalidOperationException();
             }
@@ -94,7 +94,7 @@ namespace CCSWE.nanoFramework.WebServer
             {
                 var service = services[index];
 
-                if (service.ServiceType != ReflectionHelper.MiddlewareType)
+                if (service.ServiceType != WebServerTypeUtils.MiddlewareType)
                 {
                     continue;
                 }

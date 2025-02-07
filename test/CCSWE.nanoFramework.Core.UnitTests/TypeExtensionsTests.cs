@@ -1,13 +1,13 @@
-﻿using CCSWE.nanoFramework.WebServer.Reflection;
+﻿using System;
 using nanoFramework.TestFramework;
 
-namespace CCSWE.nanoFramework.WebServer.UnitTests.Reflection
+namespace CCSWE.nanoFramework.Core.UnitTests
 {
     [TestClass]
-    public class ReflectionExtensionsTests
+    public class TypeExtensionsTests
     {
         [TestMethod]
-        public void IsImplementationOf_Returns_False_If_Type_Does_Not_Implement_Interface()
+        public void IsImplementationOf_returns_false_if_type_does_not_implement_interface()
         {
             Assert.IsFalse(typeof(AbstractClassDoesNotImplementInterface).IsImplementationOf(typeof(ITestInterface)));
             Assert.IsFalse(typeof(ClassDoesNotImplementInterface).IsImplementationOf(typeof(ITestInterface)));
@@ -16,7 +16,7 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Reflection
         }
 
         [TestMethod]
-        public void IsImplementationOf_Returns_True_If_Type_Implements_Interface()
+        public void IsImplementationOf_returns_true_if_type_implements_interface()
         {
             Assert.IsTrue(typeof(AbstractClassImplementsInterface).IsImplementationOf(typeof(ITestInterface)));
             Assert.IsTrue(typeof(ClassImplementsInterface).IsImplementationOf(typeof(ITestInterface)));

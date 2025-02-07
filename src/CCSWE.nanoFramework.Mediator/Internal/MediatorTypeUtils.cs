@@ -4,18 +4,11 @@ namespace CCSWE.nanoFramework.Mediator.Internal
 {
     internal static class MediatorTypeUtils
     {
+        internal static readonly Type MediatorEventType = typeof(IMediatorEvent);
+
         public static bool IsMediatorEvent(Type type)
         {
-            var interfaces = type.GetInterfaces();
-            foreach (var current in interfaces)
-            {
-                if (current == typeof(IMediatorEvent))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return type.IsImplementationOf(MediatorEventType);
         }
 
         public static void RequireMediatorEvent(Type eventType)
