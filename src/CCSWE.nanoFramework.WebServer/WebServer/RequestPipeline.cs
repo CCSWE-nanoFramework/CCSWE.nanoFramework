@@ -46,17 +46,17 @@ namespace CCSWE.nanoFramework.WebServer
                 BindMiddleware(typeof(RoutingMiddleware)),
             };
 
-            if (IsStaticFileMiddlewareEnabled(serviceProvider))
+            if (serviceProvider.IsStaticFileMiddlewareEnabled())
             {
                 middleware.Add(BindMiddleware(typeof(StaticFileMiddleware)));
             }
 
-            if (IsCorsMiddlewareEnabled(serviceProvider))
+            if (serviceProvider.IsCorsMiddlewareEnabled())
             {
                 middleware.Add(BindMiddleware(typeof(CorsMiddleware)));
             }
 
-            if (IsAuthenticationMiddlewareEnabled(serviceProvider))
+            if (serviceProvider.IsAuthenticationMiddlewareEnabled())
             {
                 middleware.Add(BindMiddleware(typeof(AuthenticationMiddleware)));
             }
@@ -133,21 +133,6 @@ namespace CCSWE.nanoFramework.WebServer
 
             requestPipeline.Build().Invoke(context);
             context.Close();
-        }
-
-        private static bool IsAuthenticationMiddlewareEnabled(IServiceProvider serviceProvider)
-        {
-            return serviceProvider.GetService(typeof(IAuthenticationService)) is IAuthenticationService;
-        }
-
-        private static bool IsCorsMiddlewareEnabled(IServiceProvider serviceProvider)
-        {
-            return serviceProvider.GetService(typeof(CorsPolicy)) is CorsPolicy;
-        }
-
-        private static bool IsStaticFileMiddlewareEnabled(IServiceProvider serviceProvider)
-        {
-            return serviceProvider.GetService(typeof(IContentTypeProvider)) is IContentTypeProvider && serviceProvider.GetService(typeof(IFileProvider)) is IFileProvider;
         }
     }
 }

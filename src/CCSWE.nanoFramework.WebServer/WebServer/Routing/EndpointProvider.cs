@@ -3,6 +3,7 @@ using System.Collections;
 using System.Reflection;
 using CCSWE.nanoFramework.WebServer.Http;
 using CCSWE.nanoFramework.WebServer.Internal;
+using CCSWE.nanoFramework.WebServer.Middleware;
 using Microsoft.Extensions.Logging;
 
 namespace CCSWE.nanoFramework.WebServer.Routing
@@ -17,7 +18,7 @@ namespace CCSWE.nanoFramework.WebServer.Routing
         private readonly Endpoint[] _endpoints;
         private readonly ILogger _logger;
 
-        public EndpointProvider(ControllerDescriptor[] descriptors, ILogger logger)
+        public EndpointProvider(ControllerDescriptor[] descriptors, ILogger logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
 
@@ -28,7 +29,7 @@ namespace CCSWE.nanoFramework.WebServer.Routing
                 controllers.Add(descriptor.ImplementationType);
             }
 
-            _endpoints = CreateEndpoints((Type[])controllers.ToArray(typeof(Type)));
+            _endpoints = CreateEndpoints((Type[])controllers.ToArray(typeof(Type)), serviceProvider.IsAuthenticationMiddlewareEnabled());
         }
 
         /// <summary>
@@ -102,8 +103,9 @@ namespace CCSWE.nanoFramework.WebServer.Routing
         /// Get <see cref="Endpoint"/>> from <see cref="ControllerBase"/> types.
         /// </summary>
         /// <param name="controllers">An array of types that implement <see cref="ControllerBase"/>.</param>
+        /// <param name="authenticationEnabled"><see landword="true"/> if authentication is enabled.</param>
         /// <returns>An array of <see cref="Endpoint"/>.</returns>
-        private Endpoint[] CreateEndpoints(Type[] controllers)
+        private Endpoint[] CreateEndpoints(Type[] controllers, bool authenticationEnabled)
         {
             var descriptors = new ArrayList();
             
@@ -114,7 +116,7 @@ namespace CCSWE.nanoFramework.WebServer.Routing
                     continue;
                 }
 
-                var requireAuthentication = true;
+                var requireAuthentication = authenticationEnabled;
                 var routeTemplate = string.Empty;
 
                 var attributes = controller.GetCustomAttributes(true);
