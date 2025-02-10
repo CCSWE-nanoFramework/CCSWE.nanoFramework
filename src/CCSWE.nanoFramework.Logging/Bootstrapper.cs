@@ -22,8 +22,8 @@ namespace CCSWE.nanoFramework.Logging
 
             configureOptions?.Invoke(options);
 
-            services.TryAdd(new ServiceDescriptor(typeof(ILogger), typeof(ConsoleLogger), ServiceLifetime.Singleton));
-            services.TryAdd(new ServiceDescriptor(typeof(ILoggerFactory), typeof(ConsoleLoggerFactory), ServiceLifetime.Singleton));
+            services.TryAddSingleton(typeof(ILogger), typeof(ConsoleLogger));
+            services.TryAddSingleton(typeof(ILoggerFactory), typeof(ConsoleLoggerFactory));
             services.TryAdd(new ServiceDescriptor(typeof(LoggerOptions), options));
 
             LoggerFormatter.Initialize();
