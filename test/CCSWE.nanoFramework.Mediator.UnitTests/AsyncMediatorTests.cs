@@ -1,10 +1,10 @@
-﻿using nanoFramework.TestFramework;
-using System;
+﻿using System;
 using System.Collections;
 using System.Threading;
 using CCSWE.nanoFramework.Mediator.UnitTests.Mocks;
 using CCSWE.nanoFramework.Threading.TestFramework;
 using Microsoft.Extensions.DependencyInjection;
+using nanoFramework.TestFramework;
 
 // ReSharper disable AccessToDisposedClosure
 namespace CCSWE.nanoFramework.Mediator.UnitTests
@@ -12,7 +12,7 @@ namespace CCSWE.nanoFramework.Mediator.UnitTests
     [TestClass]
     public class AsyncMediatorTests
     {
-        public static TimeSpan PublishDelay = TimeSpan.FromMilliseconds(500);
+        public static int PublishDelay = 500;
 
         [TestMethod]
         public void Publish_should_throw_exception_for_null_event()
@@ -40,7 +40,7 @@ namespace CCSWE.nanoFramework.Mediator.UnitTests
                 sut.Subscribe(typeof(MediatorEventMock), typeof(IMediatorEventHandlerMock));
                 sut.Publish(mediatorEvent);
 
-                WaitForPublisherThread();
+                WaitForEvent(mediatorSubscriber);
 
                 Assert.AreEqual(1, mediatorSubscriber.EventsReceived);
                 Assert.AreEqual(mediatorEvent, mediatorSubscriber.LastEvent);
@@ -60,7 +60,7 @@ namespace CCSWE.nanoFramework.Mediator.UnitTests
                 sut.Subscribe(typeof(MediatorEventMock), mediatorSubscriber);
                 sut.Publish(mediatorEvent);
 
-                WaitForPublisherThread();
+                WaitForEvent(mediatorSubscriber);
 
                 Assert.AreEqual(1, mediatorSubscriber.EventsReceived);
                 Assert.AreEqual(mediatorEvent, mediatorSubscriber.LastEvent);
@@ -120,7 +120,7 @@ namespace CCSWE.nanoFramework.Mediator.UnitTests
                 sut.Unsubscribe(typeof(MediatorEventMock), typeof(IMediatorEventHandlerMock));
                 sut.Publish(mediatorEvent);
 
-                WaitForPublisherThread();
+                WaitForEvent(mediatorSubscriber);
 
                 Assert.AreEqual(0, mediatorSubscriber.EventsReceived);
                 Assert.IsNull(mediatorSubscriber.LastEvent);
@@ -141,7 +141,7 @@ namespace CCSWE.nanoFramework.Mediator.UnitTests
                 sut.Unsubscribe(typeof(MediatorEventMock), mediatorSubscriber);
                 sut.Publish(mediatorEvent);
 
-                WaitForPublisherThread();
+                WaitForEvent(mediatorSubscriber);
 
                 Assert.AreEqual(0, mediatorSubscriber.EventsReceived);
                 Assert.IsNull(mediatorSubscriber.LastEvent);
@@ -172,9 +172,9 @@ namespace CCSWE.nanoFramework.Mediator.UnitTests
             });
         }
 
-        private static void WaitForPublisherThread()
+        private static bool WaitForEvent(IMediatorEventHandlerMock mediatorEventHandler)
         {
-            Thread.Sleep(PublishDelay);
+            return mediatorEventHandler.EventReceived.WaitOne(PublishDelay, false);
         }
     }
 }
