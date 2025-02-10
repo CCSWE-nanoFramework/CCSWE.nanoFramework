@@ -24,8 +24,8 @@ namespace CCSWE.nanoFramework.Mediator
         /// Subscribes event handler to an event.
         /// </summary>
         /// <param name="eventType">Type of the event. The event must implement <see cref="IMediatorEvent"/>.</param>
-        /// <param name="subscriberType">Type of the eventHandler (as registered in DI). The eventHandler must implement <see cref="IMediatorEventHandler"/>.</param>
-        void Subscribe(Type eventType, Type subscriberType);
+        /// <param name="serviceType">Type of the eventHandler (as registered in DI). The eventHandler must implement <see cref="IMediatorEventHandler"/>.</param>
+        void Subscribe(Type eventType, Type serviceType);
 
         /// <summary>
         /// Unsubscribes event handler from an event.
@@ -38,7 +38,7 @@ namespace CCSWE.nanoFramework.Mediator
         /// Unsubscribes event handler from an event.
         /// </summary>
         /// <param name="eventType">Type of the event.</param>
-        /// <param name="subscriberType">Type of the eventHandler (as registered in DI).</param>
-        void Unsubscribe(Type eventType, Type subscriberType);
+        /// <param name="serviceType">Type of the eventHandler (as registered in DI).</param>
+        void Unsubscribe(Type eventType, Type serviceType);
     }
 }

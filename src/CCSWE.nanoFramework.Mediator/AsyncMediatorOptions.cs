@@ -21,15 +21,15 @@ namespace CCSWE.nanoFramework.Mediator
         /// Adds a singleton subscriber to an event.
         /// </summary>
         /// <param name="eventType">Type of the event. The event must implement <see cref="IMediatorEvent"/>.</param>
-        /// <param name="subscriberType">Type of the subscriber (as registered in DI). The subscriber must implement <see cref="IMediatorEventHandler"/>.</param>
-        public void AddSubscriber(Type eventType, Type subscriberType)
+        /// <param name="serviceType">Type of the subscriber (as registered in DI). The subscriber must implement <see cref="IMediatorEventHandler"/>.</param>
+        public void AddSubscriber(Type eventType, Type serviceType)
         {
             ArgumentNullException.ThrowIfNull(eventType);
-            ArgumentNullException.ThrowIfNull(subscriberType);
+            ArgumentNullException.ThrowIfNull(serviceType);
 
             MediatorTypeUtils.RequireMediatorEvent(eventType);
 
-            Subscribers.Add(new MediatorOptionsSubscriber(eventType, subscriberType));
+            Subscribers.Add(new MediatorEventHandlerDescriptor(eventType, serviceType));
         }
     }
 }

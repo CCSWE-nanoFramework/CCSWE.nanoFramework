@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Threading;
 using CCSWE.nanoFramework.Mediator.UnitTests.Mocks;
 using CCSWE.nanoFramework.Threading.TestFramework;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +8,7 @@ using nanoFramework.TestFramework;
 // ReSharper disable AccessToDisposedClosure
 namespace CCSWE.nanoFramework.Mediator.UnitTests
 {
+    // TODO: Add tests for exceptions
     [TestClass]
     public class AsyncMediatorTests
     {
@@ -145,6 +145,18 @@ namespace CCSWE.nanoFramework.Mediator.UnitTests
 
                 Assert.AreEqual(0, mediatorSubscriber.EventsReceived);
                 Assert.IsNull(mediatorSubscriber.LastEvent);
+            });
+        }
+
+        [TestMethod]
+        public void Unsubscribe_should_throw_exception_for_invalid_event()
+        {
+            ThreadPoolTestHelper.ExecuteAndReset(() =>
+            {
+                using var sut = new AsyncMediator(new AsyncMediatorOptions(), new LoggerMock(), new ServiceProviderMock());
+
+                Assert.ThrowsException(typeof(ArgumentException), () => sut.Unsubscribe(typeof(object), typeof(MediatorEventHandlerMock)));
+                Assert.ThrowsException(typeof(ArgumentException), () => sut.Unsubscribe(typeof(object), new MediatorEventHandlerMock()));
             });
         }
 

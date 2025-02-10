@@ -9,6 +9,7 @@ namespace CCSWE.nanoFramework.Mediator.UnitTests
     [TestClass]
     public class BootstrapperTests
     {
+        // TODO: Add tests for exceptions
         [TestMethod]
         public void AddMediator_should_configure_AsyncMediatorOptions()
         {
@@ -18,7 +19,7 @@ namespace CCSWE.nanoFramework.Mediator.UnitTests
 
                 serviceCollection.AddMediator(options =>
                 {
-                    options.AddSubscriber(typeof(MediatorEventMock), typeof(IMediatorEventHandlerMock));
+                    options.AddSubscriber(typeof(MediatorEventMock), typeof(MediatorEventHandlerMock));
                 });
 
                 var serviceProvider = serviceCollection.BuildServiceProvider();

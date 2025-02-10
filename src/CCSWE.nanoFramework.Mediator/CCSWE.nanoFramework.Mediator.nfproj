@@ -30,7 +30,7 @@
     <Compile Include="IMediator.cs" />
     <Compile Include="IMediatorEvent.cs" />
     <Compile Include="IMediatorEventHandler.cs" />
-    <Compile Include="Internal\MediatorOptionsSubscriber.cs" />
+    <Compile Include="Internal\MediatorEventHandlerDescriptor.cs" />
     <Compile Include="Internal\MediatorTypeUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
