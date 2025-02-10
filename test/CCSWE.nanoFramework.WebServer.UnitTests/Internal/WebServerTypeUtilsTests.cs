@@ -43,7 +43,6 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Internal
         [TestMethod]
         public void IsAuthenticationHandler_returns_true()
         {
-            Assert.IsTrue(WebServerTypeUtils.IsAuthenticationHandler(typeof(AuthenticationHandler)));
             Assert.IsTrue(WebServerTypeUtils.IsAuthenticationHandler(typeof(SuccessAuthenticationHandler)));
         }
 
@@ -57,7 +56,6 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Internal
         [TestMethod]
         public void IsControllerBase_returns_true()
         {
-            Assert.IsTrue(WebServerTypeUtils.IsControllerBase(typeof(ControllerBase)));
             Assert.IsTrue(WebServerTypeUtils.IsControllerBase(typeof(ControllerMock)));
         }
 
@@ -111,6 +109,50 @@ namespace CCSWE.nanoFramework.WebServer.UnitTests.Internal
         {
             Assert.IsTrue(WebServerTypeUtils.IsRouteTemplateProvider(new RouteAttribute("RouteTemplate")));
             Assert.IsTrue(WebServerTypeUtils.IsRouteTemplateProvider(typeof(RouteAttribute)));
+        }
+
+        [TestMethod]
+        public void RequireAuthenticationHandler_does_not_throw()
+        {
+            WebServerTypeUtils.RequireAuthenticationHandler(typeof(SuccessAuthenticationHandler));
+        }
+
+        [TestMethod]
+        public void RequireAuthenticationHandler_throws_argument_exception()
+        {
+            Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireAuthenticationHandler(null!));
+            Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireAuthenticationHandler(typeof(object)));
+        }
+
+        [TestMethod]
+        public void RequireControllerBase_does_not_throw()
+        {
+            WebServerTypeUtils.RequireControllerBase(typeof(ControllerMock));
+        }
+
+        [TestMethod]
+        public void RequireControllerBase_throws_argument_exception()
+        {
+            Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireControllerBase(null!));
+            Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireControllerBase(typeof(object)));
+        }
+
+        [TestMethod]
+        public void RequireMiddleware_does_not_throw()
+        {
+            // TODO: Add all middleware here
+            WebServerTypeUtils.RequireMiddleware(typeof(AuthenticationMiddleware));
+            WebServerTypeUtils.RequireMiddleware(typeof(CorsMiddleware));
+            WebServerTypeUtils.RequireMiddleware(typeof(ExceptionHandlerMiddleware));
+            WebServerTypeUtils.RequireMiddleware(typeof(RoutingMiddleware));
+            WebServerTypeUtils.RequireMiddleware(typeof(StaticFileMiddleware));
+        }
+
+        [TestMethod]
+        public void RequireMiddleware_throws_argument_exception()
+        {
+            Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireMiddleware(null!));
+            Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireMiddleware(typeof(object)));
         }
     }
 }

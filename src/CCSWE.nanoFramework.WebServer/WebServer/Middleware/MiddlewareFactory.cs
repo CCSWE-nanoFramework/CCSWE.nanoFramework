@@ -6,6 +6,8 @@ namespace CCSWE.nanoFramework.WebServer.Middleware;
 
 internal interface IMiddlewareFactory
 {
+    Type ImplementationType { get; }
+
     RequestDelegate CreateMiddleware(RequestDelegate next);
 }
 
@@ -14,22 +16,22 @@ internal interface IMiddlewareFactory
 /// </summary>
 internal class MiddlewareFactory : IMiddlewareFactory
 {
-    internal readonly Type MiddlewareType;
-
-    public MiddlewareFactory(Type middlewareType)
+    public MiddlewareFactory(Type implementationType)
     {
-        MiddlewareType = middlewareType;
+        ImplementationType = implementationType;
     }
+
+    public Type ImplementationType { get; }
 
     public RequestDelegate CreateMiddleware(RequestDelegate next)
     {
         return context =>
         {
-            var middleware = ActivatorUtilities.GetServiceOrCreateInstance(context.RequestServices, MiddlewareType) as IMiddleware;
+            var middleware = ActivatorUtilities.GetServiceOrCreateInstance(context.RequestServices, ImplementationType) as IMiddleware;
             if (middleware is null)
             {
                 // The factory returned null, it's a broken implementation
-                throw new InvalidOperationException($"Failed to create {MiddlewareType}");
+                throw new InvalidOperationException($"Failed to create {ImplementationType}");
             }
 
             middleware.Invoke(context, next);

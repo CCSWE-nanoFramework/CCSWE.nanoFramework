@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using CCSWE.nanoFramework.WebServer.Authentication;
 using CCSWE.nanoFramework.WebServer.Cors;
 using CCSWE.nanoFramework.WebServer.Internal;
@@ -23,11 +24,7 @@ namespace CCSWE.nanoFramework.WebServer
         public static IServiceCollection AddAuthentication(this IServiceCollection services, Type implementationType)
         {
             ArgumentNullException.ThrowIfNull(implementationType);
-
-            if (!WebServerTypeUtils.IsAuthenticationHandler(implementationType) || implementationType.IsAbstract)
-            {
-                throw new InvalidOperationException();
-            }
+            WebServerTypeUtils.RequireAuthenticationHandler(implementationType);
 
             services.AddAuthenticationCore();
             services.AddSingleton(typeof(AuthenticationHandlerDescriptor), new AuthenticationHandlerDescriptor(implementationType));
@@ -50,13 +47,54 @@ namespace CCSWE.nanoFramework.WebServer
         public static IServiceCollection AddController(this IServiceCollection services, Type implementationType)
         {
             ArgumentNullException.ThrowIfNull(implementationType);
+            WebServerTypeUtils.RequireControllerBase(implementationType);
 
-            if (!WebServerTypeUtils.IsControllerBase(implementationType) || implementationType.IsAbstract)
+            services.AddControllerDescriptor(implementationType);
+
+            return services;
+        }
+
+        private static IServiceCollection AddControllerDescriptor(this IServiceCollection services, Type implementationType)
+        {
+            var count = services.Count;
+            for (var index = 0; index < count; ++index)
             {
-                throw new InvalidOperationException();
+                var service = services[index];
+
+                if (service.ImplementationInstance is not ControllerDescriptor controllerDescriptor)
+                {
+                    continue;
+                }
+
+                // This controller has already been added
+                if (controllerDescriptor.ImplementationType == implementationType)
+                {
+                    return services;
+                }
             }
 
             services.AddSingleton(typeof(ControllerDescriptor), new ControllerDescriptor(implementationType));
+
+            return services;
+        }
+
+        /// <summary>
+        /// Registers all controllers from the specified assembly or the executing assembly if none is specified.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/>.</param>
+        /// <param name="assembly">The <see cref="Assembly"/> to scan for controllers. If null, the executing assembly will be used.</param>
+        /// <returns>The <see cref="IServiceCollection"/> for chaining.</returns>
+        public static IServiceCollection AddControllers(this IServiceCollection services, Assembly? assembly = null)
+        {
+            var types = (assembly ?? Assembly.GetExecutingAssembly()).GetTypes();
+
+            foreach (var type in types)
+            {
+                if (WebServerTypeUtils.IsControllerBase(type))
+                {
+                    services.AddControllerDescriptor(type);
+                }
+            }
 
             return services;
         }
@@ -83,21 +121,12 @@ namespace CCSWE.nanoFramework.WebServer
         public static IServiceCollection AddMiddleware(this IServiceCollection services, Type implementationType)
         {
             ArgumentNullException.ThrowIfNull(implementationType);
-
-            if (!WebServerTypeUtils.IsMiddleware(implementationType) || implementationType.IsAbstract)
-            {
-                throw new InvalidOperationException();
-            }
+            WebServerTypeUtils.RequireMiddleware(implementationType);
 
             var count = services.Count;
             for (var index = 0; index < count; ++index)
             {
                 var service = services[index];
-
-                if (service.ServiceType != WebServerTypeUtils.MiddlewareType)
-                {
-                    continue;
-                }
 
                 if (service.ImplementationInstance is not MiddlewareFactory middlewareFactory)
                 {
@@ -105,7 +134,7 @@ namespace CCSWE.nanoFramework.WebServer
                 }
 
                 // This middleware has already been added
-                if (middlewareFactory.MiddlewareType == implementationType)
+                if (middlewareFactory.ImplementationType == implementationType)
                 {
                     return services;
                 }
@@ -126,6 +155,8 @@ namespace CCSWE.nanoFramework.WebServer
         // TODO: Add a default implementation for IFileProvider in another library
         public static IServiceCollection AddStaticFiles(this IServiceCollection services, Type fileProvider, Type? contentTypeProvider = null)
         {
+            // TODO: Check types...
+
             services.TryAddSingleton(typeof(IFileProvider), fileProvider);
             services.TryAddSingleton(typeof(IContentTypeProvider), contentTypeProvider ?? typeof(ContentTypeProvider));
 

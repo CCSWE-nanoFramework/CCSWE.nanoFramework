@@ -33,11 +33,15 @@
     <Compile Include="Authentication\AuthenticateResultTests.cs" />
     <Compile Include="Authentication\AuthenticationMiddlewareTests.cs" />
     <Compile Include="Authentication\AuthenticationServiceTests.cs" />
+    <Compile Include="BootstrapperTests.cs" />
     <Compile Include="Diagnostics\ExceptionHandlerMiddlewareTests.cs" />
     <Compile Include="Internal\UrlHelperTests.cs" />
     <Compile Include="Cors\CorsMiddlewareTests.cs" />
     <Compile Include="Mocks\Authentication\AuthenticationServiceMock.cs" />
+    <Compile Include="Mocks\Middleware\MiddlewareMock.cs" />
     <Compile Include="Mocks\RequestDelegateMock.cs" />
+    <Compile Include="Mocks\StaticFiles\ContentTypeProviderMock.cs" />
+    <Compile Include="Mocks\StaticFiles\FileProviderMock.cs" />
     <Compile Include="RequestPipelineTests.cs" />
     <Compile Include="Routing\EndpointTests.cs" />
     <Compile Include="Routing\EndpointHandlerTests.cs" />

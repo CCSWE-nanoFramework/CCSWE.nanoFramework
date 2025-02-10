@@ -46,8 +46,11 @@ namespace CCSWE.nanoFramework.WebServer.Samples
             // Add AuthenticationHandler
             serviceCollection.AddAuthentication(typeof(ExampleAuthenticationHandler));
 
-            // Add controllers
+            // Add controllers individually
             serviceCollection.AddController(typeof(ExampleController));
+
+            // You can also use `AddControllers` to find all controllers through reflection
+            //serviceCollection.AddControllers();
 
             // Add custom middleware
             serviceCollection.AddMiddleware(typeof(ExampleMiddleware));

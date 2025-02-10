@@ -4,6 +4,7 @@ using System.Reflection;
 using CCSWE.nanoFramework.WebServer.Http;
 using CCSWE.nanoFramework.WebServer.Internal;
 using CCSWE.nanoFramework.WebServer.Middleware;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace CCSWE.nanoFramework.WebServer.Routing
@@ -18,15 +19,21 @@ namespace CCSWE.nanoFramework.WebServer.Routing
         private readonly Endpoint[] _endpoints;
         private readonly ILogger _logger;
 
-        public EndpointProvider(ControllerDescriptor[] descriptors, ILogger logger, IServiceProvider serviceProvider)
+        public EndpointProvider(ILogger logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
 
+            var descriptors = serviceProvider.GetServices(typeof(ControllerDescriptor));
             var controllers = new ArrayList();
 
             foreach (var descriptor in descriptors)
             {
-                controllers.Add(descriptor.ImplementationType);
+                if (descriptor is not ControllerDescriptor controllerDescriptor)
+                {
+                    continue;
+                }
+
+                controllers.Add(controllerDescriptor.ImplementationType);
             }
 
             _endpoints = CreateEndpoints((Type[])controllers.ToArray(typeof(Type)), serviceProvider.IsAuthenticationMiddlewareEnabled());
@@ -88,9 +95,9 @@ namespace CCSWE.nanoFramework.WebServer.Routing
                     foreach (var httpMethod in httpMethodProvider.HttpMethods)
                     {
                         var descriptor = new Endpoint(httpMethod, methodInfo, template, requireAuthentication);
-                        
+
                         descriptors.Add(descriptor);
-                        
+
                         _logger.LogTrace($"Added controller route: {descriptor}");
                     }
                 }
@@ -108,7 +115,7 @@ namespace CCSWE.nanoFramework.WebServer.Routing
         private Endpoint[] CreateEndpoints(Type[] controllers, bool authenticationEnabled)
         {
             var descriptors = new ArrayList();
-            
+
             foreach (var controller in controllers)
             {
                 if (!WebServerTypeUtils.IsControllerBase(controller))
@@ -126,7 +133,7 @@ namespace CCSWE.nanoFramework.WebServer.Routing
                     if (WebServerTypeUtils.IsAllowAnonymousAttribute(attribute))
                     {
                         requireAuthentication = false;
-                    } 
+                    }
                     else if (WebServerTypeUtils.IsRouteTemplateProvider(attribute))
                     {
                         routeTemplate = ((IRouteTemplateProvider)attribute).Template;
