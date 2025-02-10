@@ -35,6 +35,7 @@
     <Compile Include="Authentication\AuthenticationServiceTests.cs" />
     <Compile Include="BootstrapperTests.cs" />
     <Compile Include="Diagnostics\ExceptionHandlerMiddlewareTests.cs" />
+    <Compile Include="Http\HttpResponseExtensionsTests.cs" />
     <Compile Include="Internal\UrlHelperTests.cs" />
     <Compile Include="Cors\CorsMiddlewareTests.cs" />
     <Compile Include="Mocks\Authentication\AuthenticationServiceMock.cs" />

@@ -12,7 +12,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
     /// </summary>
     public static class HttpResponseExtensions
     {
-        private const int BufferSize = 1024;
+        internal const int BufferSize = 1024;
 
         /*
         /// <summary>
@@ -42,6 +42,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
             }
         }
 
+        // TODO: Unit test this...
         /// <summary>
         /// Serializes <paramref name="body"/> to JSON and writes it to the output stream.
         /// </summary>
@@ -76,8 +77,8 @@ namespace CCSWE.nanoFramework.WebServer.Http
             //response.Write(stream, contentType);
 
             response.ContentLength = body.Length;
-            response.ContentType = contentType;
-            response.SendChunked = false; //response.ContentLength > BufferSize;
+            response.ContentType = contentType ?? MimeType.Application.Octet;
+            response.SendChunked = false; //response.ContentLength > BufferSize; TODO: Come back to this...
 
             for (var bytesSent = 0L; bytesSent < body.Length;)
             {
@@ -99,10 +100,9 @@ namespace CCSWE.nanoFramework.WebServer.Http
         {
             response.ContentLength = body.Length;
             response.ContentType = contentType ?? MimeType.Application.Octet;
-            response.SendChunked = false; //response.ContentLength > BufferSize;
+            response.SendChunked = false; //response.ContentLength > BufferSize; TODO: Come back to this...
 
             var buffer = new byte[BufferSize];
-            var bytesSent = 0L;
             int bytesToSend;
 
             // Even though I fixed the issue with MemoryStream.Read(SpanByte buffer) (https://github.com/nanoframework/Home/issues/1598)
@@ -110,8 +110,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
             // while ((bytesToSend = body.Read(buffer)) > 0)
             while ((bytesToSend = body.Read(buffer, 0, buffer.Length)) > 0)
             {
-                response.Body.Write(buffer, (int)bytesSent, bytesToSend);
-                bytesSent += bytesToSend;
+                response.Body.Write(buffer, 0, bytesToSend);
             }
         }
     }
