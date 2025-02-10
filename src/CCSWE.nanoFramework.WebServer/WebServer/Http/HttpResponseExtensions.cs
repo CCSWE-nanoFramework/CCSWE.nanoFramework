@@ -77,7 +77,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
 
             response.ContentLength = body.Length;
             response.ContentType = contentType;
-            response.SendChunked = response.ContentLength > BufferSize;
+            response.SendChunked = false; //response.ContentLength > BufferSize;
 
             for (var bytesSent = 0L; bytesSent < body.Length;)
             {
@@ -99,7 +99,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
         {
             response.ContentLength = body.Length;
             response.ContentType = contentType ?? MimeType.Application.Octet;
-            response.SendChunked = response.ContentLength > BufferSize;
+            response.SendChunked = false; //response.ContentLength > BufferSize;
 
             var buffer = new byte[BufferSize];
             var bytesSent = 0L;
