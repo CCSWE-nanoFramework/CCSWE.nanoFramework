@@ -17,7 +17,7 @@
     <copyright>Copyright (c) Cory Charlton</copyright>
     <tags>nanoFramework C# csharp netmf netnf ccswe logging</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.16.11" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.17.1" />
       <dependency id="nanoFramework.DependencyInjection" version="1.1.25" />
       <dependency id="nanoFramework.Logging" version="1.1.140" />
     </dependencies>
