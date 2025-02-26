@@ -19,9 +19,9 @@
     <dependencies>
       <dependency id="CCSWE.nanoFramework.Core" version="[1.1,)" />
       <dependency id="CCSWE.nanoFramework.Logging" version="[1.1,)" />
-      <dependency id="nanoFramework.CoreLibrary" version="1.16.11" />
-      <dependency id="nanoFramework.Hosting" version="1.0.68" />
-      <dependency id="nanoFramework.Logging" version="1.1.140" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.17.1" />
+      <dependency id="nanoFramework.Hosting" version="1.0.72" />
+      <dependency id="nanoFramework.Logging" version="1.1.142" />
     </dependencies>
   </metadata>
   <files>
