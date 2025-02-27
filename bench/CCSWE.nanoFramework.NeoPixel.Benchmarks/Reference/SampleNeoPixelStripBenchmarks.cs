@@ -17,7 +17,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks.Reference
         [Benchmark]
         public override void Fill()
         {
-            _sut.Fill(TestData.Color);
+            _sut.Fill(BenchmarkData.Color);
             _sut.Update();
         }
     }

@@ -20,7 +20,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks.Reference
         [Benchmark]
         public override void Fill()
         {
-            _sut.Fill(TestData.Color);
+            _sut.Fill(BenchmarkData.Color);
             _sut.Update();
         }
 
@@ -29,7 +29,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks.Reference
         {
             for (var i = 0; i < _sut.Count; i++)
             {
-                _sut.SetLed(i, TestData.Color);
+                _sut.SetLed(i, BenchmarkData.Color);
             }
 
             _sut.Update();

@@ -1,5 +1,4 @@
-﻿using CCSWE.nanoFramework.NeoPixel.Drivers;
-using nanoFramework.Benchmark;
+﻿using nanoFramework.Benchmark;
 using nanoFramework.Benchmark.Attributes;
 
 namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
@@ -14,21 +13,20 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         [Setup]
         public override void Setup()
         {
-            // ReSharper disable once RedundantArgumentDefaultValue
-            _sut = new NeoPixelStrip(StripParameters.Pin, StripParameters.Count, new Ws2812B(StripParameters.ColorOrder));
+            _sut = new NeoPixelStrip(StripParameters.Pin, StripParameters.Count, StripParameters.Driver);
         }
 
         [Benchmark]
         public override void Fill()
         {
-            _sut.Fill(TestData.Color);
+            _sut.Fill(BenchmarkData.Color);
             _sut.Update();
         }
 
         [Benchmark]
         public void Fill_Brightness()
         {
-            _sut.Fill(TestData.Color, Brightness);
+            _sut.Fill(BenchmarkData.Color, Brightness);
             _sut.Update();
         }
 
@@ -37,7 +35,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         {
             for (var i = 0; i < _sut.Count; i++)
             {
-                _sut.SetLed(i, TestData.Color);
+                _sut.SetLed(i, BenchmarkData.Color);
             }
 
             _sut.Update();
@@ -48,7 +46,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         {
             for (var i = 0; i < _sut.Count; i++)
             {
-                _sut.SetLed(i, TestData.Color, Brightness);
+                _sut.SetLed(i, BenchmarkData.Color, Brightness);
             }
 
             _sut.Update();
@@ -57,7 +55,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         [Benchmark]
         public void SetPixel_Brightness_Scaled()
         {
-            var color = ColorConverter.ScaleBrightness(TestData.Color, Brightness);
+            var color = ColorConverter.ScaleBrightness(BenchmarkData.Color, Brightness);
 
             for (var i = 0; i < _sut.Count; i++)
             {

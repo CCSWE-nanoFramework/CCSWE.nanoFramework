@@ -4,9 +4,9 @@
     ".NETnanoFramework,Version=v1.0": {
       "nanoFramework.Benchmark": {
         "type": "Direct",
-        "requested": "[1.0.102, 1.0.102]",
-        "resolved": "1.0.102",
-        "contentHash": "J7G0Yq5Ms9Cms/ZZDcmRN/MnFiDs52vQvL7CVcJZ5BcpI9NwdNT/p2ymckkejMPu5bo7watVrcXM/ni3sblx6g=="
+        "requested": "[1.0.103, 1.0.103]",
+        "resolved": "1.0.103",
+        "contentHash": "Xx4Y9D4Z445JHaCTL1m9/eQ8rPnA95Y/gz5XuAPgn/uYOD2h9E457m4Q6YCsseUvZ20qxnEKqdIx9SPQqAQmGg=="
       },
       "nanoFramework.CoreLibrary": {
         "type": "Direct",
@@ -22,21 +22,21 @@
       },
       "nanoFramework.Hardware.Esp32.Rmt": {
         "type": "Direct",
-        "requested": "[2.0.25, 2.0.25]",
-        "resolved": "2.0.25",
-        "contentHash": "jCfiHxhHdbz53s6MbitP0Bnzen+Rm+92L1Q/oyjcO07EEBDKGC+AcxoViYAEoY9v0n0C6KbGR/aVbcRGNWITPA=="
+        "requested": "[2.0.29, 2.0.29]",
+        "resolved": "2.0.29",
+        "contentHash": "XAdOji3iSNDO0GLmZmMZEy1di4fReBS8taD9jyJd60UsPuV3z4UCixeQvhiUaZxgdJlDI0hAZBA06Uep4Vy/Eg=="
       },
       "nanoFramework.Iot.Device.Ws28xx.Esp32": {
         "type": "Direct",
-        "requested": "[1.2.822, 1.2.822]",
-        "resolved": "1.2.822",
-        "contentHash": "JS584h3UbikiRq/eOluglOR2h+zuZJ0GvL13txk539uoVXfplCh+lzCU1LBr40TLgtmQpfcvTtX16a4DY8Q1xA=="
+        "requested": "[1.2.835, 1.2.835]",
+        "resolved": "1.2.835",
+        "contentHash": "qJy65WkligsH8PT4TyH39vQsQL7TbuWVBu6ZgxqrRtUD18cJkLSjqq0DF/abbPuM+/e9KApUibYE5lpozJ0WJQ=="
       },
       "nanoFramework.Logging": {
         "type": "Direct",
-        "requested": "[1.1.142, 1.1.142]",
-        "resolved": "1.1.142",
-        "contentHash": "rHeUDLgtYN/PLsJg5kuQdCeT0gBAZRtJbopZvShlVHS88UGMYHjBmr8LvBAIJmq611wDTMqacqG3dxtfjiME3w=="
+        "requested": "[1.1.144, 1.1.144]",
+        "resolved": "1.1.144",
+        "contentHash": "MLtToSB6bm9260PaxYliwSDuuJjQdYhdMAK7JEOWWOOsQU44oWs2rDJYfqMqaFG1Zch5WNqmdD9LRwsbZTCmOg=="
       },
       "nanoFramework.Runtime.Events": {
         "type": "Direct",

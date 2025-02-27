@@ -14,7 +14,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         {
             RunIterations(Iterations, () =>
             {
-                var scaledColor = ColorConverter.ScaleBrightness(TestData.Color, Brightness);
+                var scaledColor = ColorConverter.ScaleBrightness(BenchmarkData.Color, Brightness);
             });
         }
 
@@ -23,7 +23,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         {
             RunIterations(Iterations, () =>
             {
-                var color = ColorConverter.ToColor(TestData.HsbColor);
+                var color = ColorConverter.ToColor(BenchmarkData.HsbColor);
             });
         }
 
@@ -32,7 +32,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         {
             RunIterations(Iterations, () =>
             {
-                var color = ColorConverter.ToColor(TestData.HslColor);
+                var color = ColorConverter.ToColor(BenchmarkData.HslColor);
             });
         }
 
@@ -41,7 +41,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         {
             RunIterations(Iterations, () =>
             {
-                var color = ColorConverter.ToHsbColor(TestData.Color);
+                var color = ColorConverter.ToHsbColor(BenchmarkData.Color);
             });
         }
 
@@ -50,7 +50,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         {
             RunIterations(Iterations, () =>
             {
-                var color = ColorConverter.ToHslColor(TestData.Color);
+                var color = ColorConverter.ToHslColor(BenchmarkData.Color);
             });
         }
     }

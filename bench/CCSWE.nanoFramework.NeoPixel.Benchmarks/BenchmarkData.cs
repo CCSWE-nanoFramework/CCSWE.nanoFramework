@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
 {
-    internal static class TestData
+    internal static class BenchmarkData
     {
         // ReSharper disable once InconsistentNaming
         private static readonly Random _random = new();
