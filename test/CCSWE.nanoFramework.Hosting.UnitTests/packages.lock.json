@@ -4,33 +4,33 @@
     ".NETnanoFramework,Version=v1.0": {
       "nanoFramework.CoreLibrary": {
         "type": "Direct",
-        "requested": "[1.17.1, 1.17.1]",
-        "resolved": "1.17.1",
-        "contentHash": "T/iPvP8AeZs/5UeZgVa2cZVbl79ioeRyBJLzx4qvKbE9RE+984AR5WPY4tjGIdXugs1AFUYYnydvuGCpy+P1ww=="
+        "requested": "[1.17.7, 1.17.7]",
+        "resolved": "1.17.7",
+        "contentHash": "LbP1JJXV5g9cSxb4TgWBIFHXtW6fpKHy/FcylOHAn8WAh/smkyWRrwzEj4784QvScNi/b07zn+A5/JpmDvLc1A=="
       },
       "nanoFramework.DependencyInjection": {
         "type": "Direct",
-        "requested": "[1.1.29, 1.1.29]",
-        "resolved": "1.1.29",
-        "contentHash": "cnt1SKcyLNPgGGaYHEvZPZ4z5MvSRV4KEFhjuDelVubMNw7UxSAJOlOP/XhQdEJ9ljKRAY1i8XjRID6Q6vs7Cw=="
+        "requested": "[1.1.30, 1.1.30]",
+        "resolved": "1.1.30",
+        "contentHash": "K1BSxcrFN0bfB59Cj6NV6U2BLp1L1MLhj3ON15pdG659h2F3tktxHVpaDqTbtFGh+bCPCb/OdCdC2g+Ij02PDQ=="
       },
       "nanoFramework.Hosting": {
         "type": "Direct",
-        "requested": "[1.0.72, 1.0.72]",
-        "resolved": "1.0.72",
-        "contentHash": "HWoBNPzAmY1Qm+rU+ZbMtpUj93DbhoZR7hqd5xg7qHFrzIGnHHQXBOrokxh5q482Kic9tKQ83jj25R0kev5juQ=="
+        "requested": "[1.0.74, 1.0.74]",
+        "resolved": "1.0.74",
+        "contentHash": "leXbkZdYzBRpkORTDPPjvqFb2PX7Yj0Ggo0EaPkgBjMZrnMwWNkaic4ECVuFsME4rOc3oYkTTlQsZWCKRDitog=="
       },
       "nanoFramework.Logging": {
         "type": "Direct",
-        "requested": "[1.1.147, 1.1.147]",
-        "resolved": "1.1.147",
-        "contentHash": "fFWVO1Dxvfua9gttxh9As6JE3b8vLY9xNmwIMu1ImsDnzKjlnfh+5JybHrVIqQY5+dEqnM11UroCDyYNVE7uAQ=="
+        "requested": "[1.1.151, 1.1.151]",
+        "resolved": "1.1.151",
+        "contentHash": "PusUQflvEEvHP3Q9Rp2CmmEZ8LxOyLt9Az6IwlDImYEj4f/ME4MRQDA7eA0f31QxxxmjvLXKzcXIamgKWrvuOA=="
       },
       "nanoFramework.TestFramework": {
         "type": "Direct",
-        "requested": "[3.0.68, 3.0.68]",
-        "resolved": "3.0.68",
-        "contentHash": "K+CKHTFqUW0H46CjkcLOCHcrLJDGmwErisQDXIKvUEgp0gE7rrsAat072aCcjXxojotSwa34hD/NIV4OF7vXgQ=="
+        "requested": "[3.0.69, 3.0.69]",
+        "resolved": "3.0.69",
+        "contentHash": "4wrXprAEyIC6uJLmChqr8T+QihBkkblFaPVaJgRoAaAffGnPENe30IcW1hiTGwQD6xdDl3SDSk07ShZ1+5hHyw=="
       }
     }
   }
