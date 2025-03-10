@@ -18,11 +18,11 @@
     <tags>nanoFramework C# csharp netmf netnf ccswe neopixel ws2812c</tags>
     <dependencies>
       <dependency id="CCSWE.nanoFramework.Math" version="[1.1,)" />
-      <dependency id="nanoFramework.CoreLibrary" version="1.17.1" />
-      <dependency id="nanoFramework.Graphics.Core" version="1.2.39" />
-      <dependency id="nanoFramework.Hardware.Esp32.Rmt" version="2.0.29" />
-      <dependency id="nanoFramework.Runtime.Events" version="1.11.30" />
-      <dependency id="nanoFramework.System.Math" version="1.5.102" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.17.7" />
+      <dependency id="nanoFramework.Graphics.Core" version="1.2.42" />
+      <dependency id="nanoFramework.Hardware.Esp32.Rmt" version="2.0.32" />
+      <dependency id="nanoFramework.Runtime.Events" version="1.11.31" />
+      <dependency id="nanoFramework.System.Math" version="1.5.112" />
     </dependencies>
   </metadata>
   <files>
