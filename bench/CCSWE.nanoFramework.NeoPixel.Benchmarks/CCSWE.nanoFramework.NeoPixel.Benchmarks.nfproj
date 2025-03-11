@@ -43,8 +43,8 @@
     <ProjectReference Include="..\..\src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nfproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Iot.Device.Ws28xx.Esp32">
-      <HintPath>..\..\packages\nanoFramework.Iot.Device.Ws28xx.Esp32.1.2.835\lib\Iot.Device.Ws28xx.Esp32.dll</HintPath>
+    <Reference Include="Iot.Device.Ws28xx.Esp32, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.Iot.Device.Ws28xx.Esp32.1.2.852\lib\Iot.Device.Ws28xx.Esp32.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib, Version=1.17.7.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.17.7\lib\mscorlib.dll</HintPath>
