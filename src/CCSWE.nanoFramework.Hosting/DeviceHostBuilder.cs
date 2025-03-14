@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using CCSWE.nanoFramework.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using nanoFramework.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace CCSWE.nanoFramework.Hosting
 {
@@ -41,7 +41,7 @@ namespace CCSWE.nanoFramework.Hosting
         }
 
         /// <inheritdoc />
-        public object[] Properties { get; set; } = [];
+        public Hashtable Properties { get; set; } = [];
 
         // TODO: Look at copying this to nanoFramework.Hosting for improvements
         /// <inheritdoc />

@@ -1,9 +1,11 @@
-﻿using nanoFramework.Hosting;
+﻿
+using System.Threading;
+using Microsoft.Extensions.Hosting;
 
 namespace CCSWE.nanoFramework.Hosting
 {
     /// <summary>
-    /// Defines an interface that is run before <see cref="IHostedService.Start()"/> for device initialization.
+    /// Defines an interface that is run before <see cref="IHostedService.StartAsync(CancellationToken)"/> for device initialization.
     /// </summary>
     public interface IDeviceInitializer
     {

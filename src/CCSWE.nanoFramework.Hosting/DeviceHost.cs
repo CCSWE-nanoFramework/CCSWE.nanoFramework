@@ -1,4 +1,4 @@
-﻿using nanoFramework.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 
 namespace CCSWE.nanoFramework.Hosting
 {
