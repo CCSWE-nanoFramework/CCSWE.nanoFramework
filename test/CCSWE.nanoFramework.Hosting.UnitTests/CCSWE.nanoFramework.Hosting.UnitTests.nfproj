@@ -48,17 +48,23 @@
     <Reference Include="nanoFramework.DependencyInjection, Version=1.1.30.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.DependencyInjection.1.1.30\lib\nanoFramework.DependencyInjection.dll</HintPath>
     </Reference>
-    <Reference Include="nanoFramework.Hosting, Version=1.0.74.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-      <HintPath>..\..\packages\nanoFramework.Hosting.1.0.74\lib\nanoFramework.Hosting.dll</HintPath>
+    <Reference Include="nanoFramework.Hosting, Version=2.0.1.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.Hosting.2.0.1\lib\nanoFramework.Hosting.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.Logging, Version=1.1.151.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.Logging.1.1.151\lib\nanoFramework.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.System.Collections, Version=1.5.63.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Collections.1.5.63\lib\nanoFramework.System.Collections.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.TestFramework, Version=3.0.69.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.TestFramework.3.0.69\lib\nanoFramework.TestFramework.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.UnitTestLauncher, Version=0.0.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.TestFramework.3.0.69\lib\nanoFramework.UnitTestLauncher.exe</HintPath>
+    </Reference>
+    <Reference Include="System.Threading, Version=1.1.50.48563, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Threading.1.1.50\lib\System.Threading.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
