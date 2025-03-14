@@ -2,7 +2,7 @@
 using CCSWE.nanoFramework.Hosting.UnitTests.Mocks;
 using CCSWE.nanoFramework.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using nanoFramework.Hosting;
+using Microsoft.Extensions.Hosting;
 using nanoFramework.TestFramework;
 
 // ReSharper disable ObjectCreationAsStatement
@@ -25,7 +25,7 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests.Internal
         }
 
         [TestMethod]
-        public void Start_starts_IHostedService()
+        public void StartAsync_starts_IHostedService()
         {
             var service = new MockHostedService(startThrows: false, stopThrows: false);
             var sut = new DeviceHostBuilder()
@@ -34,7 +34,7 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests.Internal
 
             var registeredService = sut.Services.GetRequiredService(typeof(IHostedService)) as MockHostedService;
 
-            sut.Start();
+            sut.StartAsync();
 
             Assert.IsNotNull(registeredService);
             Assert.IsTrue(registeredService.IsStarted);
@@ -42,26 +42,26 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests.Internal
         }
 
         [TestMethod]
-        public void Start_throws_if_IHostedService_throws()
+        public void StartAsync_throws_if_IHostedService_throws()
         {
             var service = new MockHostedService(startThrows: true, stopThrows: false);
             var sut = new DeviceHostBuilder()
                 .ConfigureServices(services => services.AddSingleton(typeof(IHostedService), service))
                 .Build();
 
-            Assert.ThrowsException(typeof(AggregateException), () => sut.Start());
+            Assert.ThrowsException(typeof(AggregateException), () => sut.StartAsync());
         }
 
         [TestMethod]
-        public void Stop_stops_IHostedService()
+        public void StopAsync_stops_IHostedService()
         {
             var service = new MockHostedService(startThrows: false, stopThrows: false);
             var sut = new DeviceHostBuilder()
                 .ConfigureServices(services => services.AddSingleton(typeof(IHostedService), service))
                 .Build();
 
-            sut.Start();
-            sut.Stop();
+            sut.StartAsync();
+            sut.StopAsync();
 
             var registeredService = sut.Services.GetRequiredService(typeof(IHostedService)) as MockHostedService;
 
@@ -71,16 +71,16 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests.Internal
         }
 
         [TestMethod]
-        public void Stop_throws_if_IHostedService_throws()
+        public void StopAsync_throws_if_IHostedService_throws()
         {
             var service = new MockHostedService(startThrows: false, stopThrows: true);
             var sut = new DeviceHostBuilder()
                 .ConfigureServices(services => services.AddSingleton(typeof(IHostedService), service))
                 .Build();
 
-            sut.Start();
+            sut.StartAsync();
 
-            Assert.ThrowsException(typeof(AggregateException), () => sut.Stop());
+            Assert.ThrowsException(typeof(AggregateException), () => sut.StopAsync());
         }
     }
 }

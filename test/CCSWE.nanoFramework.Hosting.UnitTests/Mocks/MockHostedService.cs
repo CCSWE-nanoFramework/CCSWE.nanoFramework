@@ -4,7 +4,8 @@
 //
 
 using System;
-using nanoFramework.Hosting;
+using System.Threading;
+using Microsoft.Extensions.Hosting;
 
 namespace CCSWE.nanoFramework.Hosting.UnitTests.Mocks
 {
@@ -22,7 +23,7 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests.Mocks
             _stopThrows = stopThrows;
         }
 
-        public void Start()
+        public void StartAsync(CancellationToken cancellationToken)
         {
             if (_startThrows)
             {
@@ -32,7 +33,7 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests.Mocks
             IsStarted = true;
         }
 
-        public void Stop()
+        public void StopAsync(CancellationToken cancellationToken)
         {
             if (_stopThrows)
             {

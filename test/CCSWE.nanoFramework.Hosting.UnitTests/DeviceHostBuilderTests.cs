@@ -1,7 +1,7 @@
 ﻿using System;
 using CCSWE.nanoFramework.Hosting.UnitTests.Mocks;
 using Microsoft.Extensions.DependencyInjection;
-using nanoFramework.Hosting;
+using Microsoft.Extensions.Hosting;
 using nanoFramework.TestFramework;
 
 namespace CCSWE.nanoFramework.Hosting.UnitTests
@@ -88,25 +88,23 @@ namespace CCSWE.nanoFramework.Hosting.UnitTests
         }
 
         [TestMethod]
-        public void Properties_are_available_in_HostBuilderContext()
+        public void Properties_are_available_in_builder_and_context()
         {
-            const string expected0 = "value0";
-            const string expected1 = "value1";
-
             var sut = new DeviceHostBuilder();
-            
+
             sut.ConfigureServices((context, _) =>
             {
-                Assert.AreEqual(expected0, (string)context.Properties[0]);
-                Assert.AreEqual(expected1, (string)context.Properties[1]);
+                Assert.AreEqual("value1", context.Properties["key1"]);
+                Assert.AreEqual("value2", context.Properties["key2"]);
             });
 
-            sut.Properties = [expected0, expected1];
+            sut.Properties["key1"] = "value1";
+            sut.Properties["key2"] = "value2";
 
-            Assert.AreEqual(expected0, (string)sut.Properties[0]);
-            Assert.AreEqual(expected1, (string)sut.Properties[1]);
+            using var _ = sut.Build();
 
-            using var host = sut.Build();
+            Assert.AreEqual("value1", sut.Properties["key1"]);
+            Assert.AreEqual("value2", sut.Properties["key2"]);
         }
 
         [TestMethod]

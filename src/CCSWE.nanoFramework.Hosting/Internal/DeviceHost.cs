@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Threading;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using nanoFramework.Hosting;
 
 namespace CCSWE.nanoFramework.Hosting.Internal
 {
@@ -42,7 +43,7 @@ namespace CCSWE.nanoFramework.Hosting.Internal
         }
 
         /// <inheritdoc />
-        public void Start()
+        public void StartAsync(CancellationToken cancellationToken = default)
         {
             // TODO: Throw error if already started or no-op?
 
@@ -68,13 +69,7 @@ namespace CCSWE.nanoFramework.Hosting.Internal
 
                 try
                 {
-                    hostedService.Start();
-
-                    // TODO: Remove this when BackgroundService refactor is merged
-                    if (hostedService is BackgroundService backgroundService)
-                    {
-                        backgroundService.ExecuteThread().Start();
-                    }
+                    hostedService.StartAsync(cancellationToken);
                 }
                 catch (Exception ex)
                 {
@@ -91,7 +86,7 @@ namespace CCSWE.nanoFramework.Hosting.Internal
         }
 
         /// <inheritdoc />
-        public void Stop()
+        public void StopAsync(CancellationToken cancellationToken = default)
         {
             var exceptions = new ArrayList();
 
@@ -99,7 +94,7 @@ namespace CCSWE.nanoFramework.Hosting.Internal
             {
                 try
                 {
-                    _hostedServices[index].Stop();
+                    _hostedServices[index].StopAsync(cancellationToken);
                 }
                 catch (Exception ex)
                 {
