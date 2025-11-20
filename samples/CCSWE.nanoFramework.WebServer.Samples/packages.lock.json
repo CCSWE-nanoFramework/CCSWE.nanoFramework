@@ -16,9 +16,9 @@
       },
       "nanoFramework.Logging": {
         "type": "Direct",
-        "requested": "[1.1.157, 1.1.157]",
-        "resolved": "1.1.157",
-        "contentHash": "x+NjFgtfz9vFSuhkvSftvvZ4t6h82pUKZo/yAn8M1KSFKhOzy3x12wyRGqOoIzGdY9XobpnBO2V80Rv8huoj3Q=="
+        "requested": "[1.1.161, 1.1.161]",
+        "resolved": "1.1.161",
+        "contentHash": "ASEnCqp/WL+0EPyTYAUUdBSX6g1GkqewPOrTCLq9iZicf9+DFDzd+fpzrfinWd3YqSQ+eb16QzReARm1V0EfNw=="
       },
       "nanoFramework.Runtime.Events": {
         "type": "Direct",
@@ -40,9 +40,9 @@
       },
       "nanoFramework.System.Device.Wifi": {
         "type": "Direct",
-        "requested": "[1.5.134, 1.5.134]",
-        "resolved": "1.5.134",
-        "contentHash": "X3PzWhOjt2ln3FiYuNB3uTuQbemoNBTHyBHh7ln/udZSNkJTyJYF2N3RdYKQWogBmUDcE0eK8ELHU8FkWJ6y8g=="
+        "requested": "[1.5.138, 1.5.138]",
+        "resolved": "1.5.138",
+        "contentHash": "GYVXvPRRkjT8/dFTPDbeUrzvVIEqIpaU8zZMyoN/YoE/4BfmzKVg/9CMbIvnocQCl7UJdwi3qnseqVIm71ZJlQ=="
       },
       "nanoFramework.System.IO.Streams": {
         "type": "Direct",
@@ -52,15 +52,15 @@
       },
       "nanoFramework.System.Net": {
         "type": "Direct",
-        "requested": "[1.11.43, 1.11.43]",
-        "resolved": "1.11.43",
-        "contentHash": "USwz59gxcNUzsiXfQohWSi8ANNwGDsp+qG4zBtHZU3rKMtvTsLI3rxdfMC77VehKqsCPn7aK3PU2oCRFo+1Rgg=="
+        "requested": "[1.11.47, 1.11.47]",
+        "resolved": "1.11.47",
+        "contentHash": "fPjTPfaqDiirh9AysBLlEX5/KbaOliSxyspwpBTcM5OupCNjVXz0aZ9fOWex+BMjZei6GpG74kP8Z4ml912pcw=="
       },
       "nanoFramework.System.Net.Http": {
         "type": "Direct",
-        "requested": "[1.5.196, 1.5.196]",
-        "resolved": "1.5.196",
-        "contentHash": "2qfUnvJa55Wx5C86HopeoUZVfXY+L6stufrlcKNHlalqIk4cc3Orv0Eqc0oroy3iB6aQGDw+tji7WYJS8LQNoA=="
+        "requested": "[1.5.200, 1.5.200]",
+        "resolved": "1.5.200",
+        "contentHash": "jl7d3LwQa7h9K3S6mrurtcbZ+WjoKDf8MlWmWUpk3OVVbwi97UojRav8BloTHuGPjDOc56rrOgCOEM4RJXpyUA=="
       },
       "nanoFramework.System.Text": {
         "type": "Direct",

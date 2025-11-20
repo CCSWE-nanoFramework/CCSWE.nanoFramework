@@ -16,15 +16,15 @@
       },
       "nanoFramework.Hosting": {
         "type": "Direct",
-        "requested": "[2.0.7, 2.0.7]",
-        "resolved": "2.0.7",
-        "contentHash": "kGAQHBw2H69wBk2WengOsarOHWkCcFvaxMUYYTbUqrsgI9ob8FDMhGiEL6BF36xrL1O8TBtAnASrObLCU3LfPQ=="
+        "requested": "[2.0.10, 2.0.10]",
+        "resolved": "2.0.10",
+        "contentHash": "m5dwQvvNXrMWL0nQKNBcajOkww8NKkVhwNUi8OpEDbwgBrwtzVZWMOIflycHUxMla70dwKNie6eWw1Eaum5CVQ=="
       },
       "nanoFramework.Logging": {
         "type": "Direct",
-        "requested": "[1.1.157, 1.1.157]",
-        "resolved": "1.1.157",
-        "contentHash": "x+NjFgtfz9vFSuhkvSftvvZ4t6h82pUKZo/yAn8M1KSFKhOzy3x12wyRGqOoIzGdY9XobpnBO2V80Rv8huoj3Q=="
+        "requested": "[1.1.161, 1.1.161]",
+        "resolved": "1.1.161",
+        "contentHash": "ASEnCqp/WL+0EPyTYAUUdBSX6g1GkqewPOrTCLq9iZicf9+DFDzd+fpzrfinWd3YqSQ+eb16QzReARm1V0EfNw=="
       },
       "nanoFramework.System.Collections": {
         "type": "Direct",
