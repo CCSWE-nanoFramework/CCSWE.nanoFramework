@@ -18,10 +18,10 @@
     <tags>nanoFramework C# csharp netmf netnf ccswe mediator</tags>
     <dependencies>
       <!--
-	  <dependency id="CCSWE.nanoFramework.Collections.Concurrent" version="[1.1.88,)" />
+	  <dependency id="CCSWE.nanoFramework.Collections.Concurrent" version="$version$" />
 	  -->
-      <dependency id="CCSWE.nanoFramework.Core" version="[1.1.88,)" />
-      <dependency id="CCSWE.nanoFramework.Threading" version="[1.1.88,)" />
+      <dependency id="CCSWE.nanoFramework.Core" version="$version$" />
+      <dependency id="CCSWE.nanoFramework.Threading" version="$version$" />
       <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
       <dependency id="nanoFramework.DependencyInjection" version="1.1.32" />
       <dependency id="nanoFramework.Logging" version="1.1.161" />
