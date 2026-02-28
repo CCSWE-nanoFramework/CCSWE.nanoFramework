@@ -10,7 +10,7 @@ namespace CCSWE.nanoFramework.Collections.Concurrent
     /// This is a brute force implementation using lock().
     /// Normally I would use a ReaderWriterLockSlim to optimize performance but this will work for now.
     /// </remarks>
-    [Serializable]
+    //[Serializable]
     public class ConcurrentList : ICloneable, IList
     {
         private readonly ArrayList _list;
