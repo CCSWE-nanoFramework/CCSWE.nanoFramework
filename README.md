@@ -1,6 +1,19 @@
 [![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-# Libraries included in this repository
+# CCSWE.nanoFramework
+
+A collection of libraries for [.NET nanoFramework](https://www.nanoframework.net/) targeting embedded/IoT devices such as ESP32 and STM32.
+
+## Prerequisites
+
+- [Visual Studio](https://visualstudio.microsoft.com/) with the [.NET nanoFramework extension](https://marketplace.visualstudio.com/items?itemName=nanoframework.nanoFramework-VS2022-Extension) installed
+- A supported nanoFramework device or the nanoFramework nanoCLR Win32 simulator
+
+## Samples
+
+Working examples for several libraries can be found in the [samples](samples/) directory.
+
+## Libraries included in this repository
 
 ## [CCSWE.nanoFramework.Collections.Concurrent](tree/master/src/CCSWE.nanoFramework.Collections.Concurrent) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Collections.Concurrent.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Collections.Concurrent/) 
 
