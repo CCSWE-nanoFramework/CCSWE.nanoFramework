@@ -94,3 +94,22 @@ Uses `Microsoft.Extensions.DependencyInjection`. Each library exposes bootstrapp
 ## Project File Format
 
 Projects use the nanoFramework project type GUID `{11A8DD76-328B-46DF-9F39-F559912D0360}` and `.nfproj` extension. These are MSBuild projects requiring the nanoFramework MSBuild extension. Do not convert them to SDK-style `.csproj`.
+
+## Code Style
+
+Within each C# file, order members as: fields, constructors, properties, methods — with each group alphabetized.
+
+Use `is null` / `is not null` instead of `== null` / `!= null` for null checks.
+
+Always use curly braces for control flow (`if`, `for`, `foreach`, `while`, etc.) — never omit them for single-line bodies.
+
+Use Allman brace style (opening brace on its own line) for all blocks: methods, classes, `if`/`else`, loops, `switch`, etc. Exception: single-line expression-bodied members (`=>`) are fine for trivial getters or one-liner methods.
+
+Use `switch` expressions (`x switch { ... }`) instead of `switch` statements where the intent is to return or assign a value.
+
+## Unit Tests
+
+Uses `nanoFramework.TestFramework`. Follow these conventions:
+
+- Use `Assert.AreEqual` not `Assert.Equal` (the latter is obsolete)
+- Do not add "Arrange / Act / Assert" comments in tests

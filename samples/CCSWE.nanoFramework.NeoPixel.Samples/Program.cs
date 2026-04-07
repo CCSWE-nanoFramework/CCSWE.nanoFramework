@@ -22,37 +22,55 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
             // Create the strip
             var strip = new NeoPixelStrip(pin, count, driver);
 
+            Console.WriteLine("Fill: Red");
             strip.Fill(Color.Red);
             strip.Update();
             Thread.Sleep(1000);
 
+            Console.WriteLine("Fill: Green");
             strip.Fill(Color.Green);
             strip.Update();
             Thread.Sleep(1000);
 
+            Console.WriteLine("Fill: Blue");
             strip.Fill(Color.Blue);
             strip.Update();
             Thread.Sleep(1000);
 
             while (true)
             {
+                Console.WriteLine("FadeBrightness: White");
                 FadeBrightness(strip, Color.White);
+                Console.WriteLine("FadeBrightness: Red");
                 FadeBrightness(strip, Color.Red);
+                Console.WriteLine("FadeBrightness: Green");
                 FadeBrightness(strip, Color.Green);
+                Console.WriteLine("FadeBrightness: Blue");
                 FadeBrightness(strip, Color.Blue);
 
+                Console.WriteLine("ColorWipe: White");
                 ColorWipe(strip, Color.White);
+                Console.WriteLine("ColorWipe: Red");
                 ColorWipe(strip, Color.Red);
+                Console.WriteLine("ColorWipe: Green");
                 ColorWipe(strip, Color.Green);
+                Console.WriteLine("ColorWipe: Blue");
                 ColorWipe(strip, Color.Blue);
 
+                Console.WriteLine("TheaterChase: White");
                 TheaterChase(strip, Color.White);
+                Console.WriteLine("TheaterChase: Red");
                 TheaterChase(strip, Color.Red);
+                Console.WriteLine("TheaterChase: Green");
                 TheaterChase(strip, Color.Green);
+                Console.WriteLine("TheaterChase: Blue");
                 TheaterChase(strip, Color.Blue);
 
+                Console.WriteLine("Rainbow");
                 Rainbow(strip);
+                Console.WriteLine("RainbowCycle");
                 RainbowCycle(strip);
+                Console.WriteLine("TheaterChaseRainbow");
                 TheaterChaseRainbow(strip);
             }
         }

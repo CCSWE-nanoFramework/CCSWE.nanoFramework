@@ -6,26 +6,27 @@ namespace CCSWE.nanoFramework.NeoPixel.UnitTests
     [TestClass]
     public class ColorExtensionsTests
     {
+        // Use a color with distinct R, G, B values so ordering bugs are detectable.
+        private static readonly Color TestColor = Color.FromArgb(255, 10, 20, 30);
+
         [TestMethod]
         public void ToBytes_should_handle_GRB_color_order()
         {
-            var expect = Color.White;
-            var actual = expect.ToBytes(ColorOrder.GRB);
+            var actual = TestColor.ToBytes(ColorOrder.GRB);
 
-            Assert.AreEqual(expect.G, actual[0]);
-            Assert.AreEqual(expect.R, actual[1]);
-            Assert.AreEqual(expect.B, actual[2]);
+            Assert.AreEqual(TestColor.G, actual[0]);
+            Assert.AreEqual(TestColor.R, actual[1]);
+            Assert.AreEqual(TestColor.B, actual[2]);
         }
 
         [TestMethod]
         public void ToBytes_should_handle_RGB_color_order()
         {
-            var expect = Color.White;
-            var actual = expect.ToBytes(ColorOrder.GRB);
+            var actual = TestColor.ToBytes(ColorOrder.RGB);
 
-            Assert.AreEqual(expect.R, actual[0]);
-            Assert.AreEqual(expect.G, actual[1]);
-            Assert.AreEqual(expect.B, actual[2]);
+            Assert.AreEqual(TestColor.R, actual[0]);
+            Assert.AreEqual(TestColor.G, actual[1]);
+            Assert.AreEqual(TestColor.B, actual[2]);
         }
     }
 }

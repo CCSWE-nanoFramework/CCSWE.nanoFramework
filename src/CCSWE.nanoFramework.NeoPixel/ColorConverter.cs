@@ -29,7 +29,7 @@ namespace CCSWE.nanoFramework.NeoPixel
             {
                 return v2;
             }
-            if (3.0f * vH < 2.01f)
+            if (3.0f * vH < 2.0f)
             {
                 return v1 + (v2 - v1) * (2.0f / 3.0f - vH) * 6.0f;
             }
@@ -71,10 +71,13 @@ namespace CCSWE.nanoFramework.NeoPixel
         /// <param name="brightness">The brightness value between 0.0 and 1.0.</param>
         public static Color ScaleBrightness(Color color, float brightness)
         {
-            var brightnessAdjusted = FastMath.Clamp(brightness, 0.0f, 1.0f);
-            var scaledColor = ToHsbColor(color, brightnessAdjusted);
+            var scale = FastMath.Clamp(brightness, 0.0f, 1.0f);
 
-            return scaledColor.ToColor();
+            return Color.FromArgb(
+                color.A,
+                (int)(color.R * scale + 0.5f),
+                (int)(color.G * scale + 0.5f),
+                (int)(color.B * scale + 0.5f));
         }
 
         internal static Color ToColor(HsbColor hsb)
@@ -108,6 +111,7 @@ namespace CCSWE.nanoFramework.NeoPixel
                 switch (sectorNumber)
                 {
                     case 0:
+                    case 6:
                         red = brightness;
                         green = t;
                         blue = p;
@@ -145,9 +149,9 @@ namespace CCSWE.nanoFramework.NeoPixel
                 }
             }
 
-            var nRed = (int)(red * 255);
-            var nGreen = (int)(green * 255);
-            var nBlue = (int)(blue * 255);
+            var nRed = (int)(red * 255 + 0.5f);
+            var nGreen = (int)(green * 255 + 0.5f);
+            var nBlue = (int)(blue * 255 + 0.5f);
 
             return Color.FromArgb(hsb.Alpha, nRed, nGreen, nBlue);
         }
@@ -186,9 +190,9 @@ namespace CCSWE.nanoFramework.NeoPixel
                 blue = Hue2Rgb(var1, var2, hue - 1.0f / 3.0f);
             }
 
-            var nRed = (int)(red * 255.0f);
-            var nGreen = (int)(green * 255.0f);
-            var nBlue = (int)(blue * 255.0f);
+            var nRed = (int)(red * 255.0f + 0.5f);
+            var nGreen = (int)(green * 255.0f + 0.5f);
+            var nBlue = (int)(blue * 255.0f + 0.5f);
 
             return Color.FromArgb(hsl.Alpha, nRed, nGreen, nBlue);
         }

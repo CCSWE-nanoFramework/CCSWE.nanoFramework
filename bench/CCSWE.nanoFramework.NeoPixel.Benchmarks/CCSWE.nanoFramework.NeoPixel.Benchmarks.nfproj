@@ -23,9 +23,11 @@
   <ItemGroup>
     <Compile Include="BenchmarkBase.cs" />
     <Compile Include="ColorConverterBenchmarks.cs" />
+    <Compile Include="ScaleBrightnessBenchmarks.cs" />
     <Compile Include="DevelopmentBenchmarks.cs" />
     <Compile Include="DeviceType.cs" />
     <Compile Include="Reference\SampleNeoPixelStrip.cs" />
+    <Compile Include="Reference\ScaleBrightnessReference.cs" />
     <Compile Include="BenchmarkData.cs" />
     <Compile Include="Reference\Ws28xxNeoPixelStripBenchmarks.cs" />
     <Compile Include="NeoPixelStripBenchmarkBase.cs" />
