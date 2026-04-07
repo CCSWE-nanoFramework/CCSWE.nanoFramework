@@ -6,6 +6,47 @@ namespace CCSWE.nanoFramework.NeoPixel.UnitTests
     [TestClass]
     public class ColorConverterTests
     {
+        private static readonly Color[] RoundTripColors =
+        {
+            Color.White,
+            Color.Black,
+            Color.FromHex("#26C467"),
+            Color.Red,
+            Color.Green,
+            Color.Blue,
+            Color.Yellow,
+            Color.DarkOrchid,
+            Color.Orange,
+            Color.DeepPink,
+            Color.DarkCyan,
+        };
+
+        [TestMethod]
+        public void ScaleBrightness_at_zero_should_return_black()
+        {
+            foreach (var color in RoundTripColors)
+            {
+                var actual = ColorConverter.ScaleBrightness(color, 0.0f);
+
+                Assert.AreEqual((byte)0, actual.R);
+                Assert.AreEqual((byte)0, actual.G);
+                Assert.AreEqual((byte)0, actual.B);
+            }
+        }
+
+        [TestMethod]
+        public void ScaleBrightness_at_one_should_return_original_color()
+        {
+            foreach (var color in RoundTripColors)
+            {
+                var actual = ColorConverter.ScaleBrightness(color, 1.0f);
+
+                Assert.AreEqual(color.R, actual.R);
+                Assert.AreEqual(color.G, actual.G);
+                Assert.AreEqual(color.B, actual.B);
+            }
+        }
+
         [TestMethod]
         public void ScaleBrightness_should_return_correct_color()
         {
@@ -48,6 +89,89 @@ namespace CCSWE.nanoFramework.NeoPixel.UnitTests
                 Assert.AreEqual(expected[0], actual.R);
                 Assert.AreEqual(expected[1], actual.G);
                 Assert.AreEqual(expected[2], actual.B);
+            }
+        }
+
+        [TestMethod]
+        public void ToColor_from_HsbColor_should_return_correct_color()
+        {
+            // (hue, saturation, brightness, alpha, expectedR, expectedG, expectedB)
+            var tests = new[]
+            {
+                new[] { 0,   100, 100, 255, 255,   0,   0 }, // red
+                new[] { 60,  100, 100, 255, 255, 255,   0 }, // yellow
+                new[] { 120, 100, 100, 255,   0, 255,   0 }, // green
+                new[] { 180, 100, 100, 255,   0, 255, 255 }, // cyan
+                new[] { 240, 100, 100, 255,   0,   0, 255 }, // blue
+                new[] { 300, 100, 100, 255, 255,   0, 255 }, // magenta
+                new[] { 360, 100, 100, 255, 255,   0,   0 }, // hue 360 == hue 0
+                new[] { 0,     0, 100, 255, 255, 255, 255 }, // white
+                new[] { 0,     0,   0, 255,   0,   0,   0 }, // black
+            };
+
+            foreach (var test in tests)
+            {
+                var hsb = new HsbColor(test[0], test[1], test[2], (byte)test[3]);
+                var actual = ColorConverter.ToColor(hsb);
+
+                Assert.AreEqual(test[4], actual.R);
+                Assert.AreEqual(test[5], actual.G);
+                Assert.AreEqual(test[6], actual.B);
+            }
+        }
+
+        [TestMethod]
+        public void ToColor_from_HslColor_should_return_correct_color()
+        {
+            // (hue, saturation, light, alpha, expectedR, expectedG, expectedB)
+            var tests = new[]
+            {
+                new[] { 0,   100, 50, 255, 255,   0,   0 }, // red
+                new[] { 60,  100, 50, 255, 255, 255,   0 }, // yellow
+                new[] { 120, 100, 50, 255,   0, 255,   0 }, // green
+                new[] { 180, 100, 50, 255,   0, 255, 255 }, // cyan
+                new[] { 240, 100, 50, 255,   0,   0, 255 }, // blue
+                new[] { 300, 100, 50, 255, 255,   0, 255 }, // magenta
+                new[] { 0,     0, 100, 255, 255, 255, 255 }, // white
+                new[] { 0,     0,   0, 255,   0,   0,   0 }, // black
+            };
+
+            foreach (var test in tests)
+            {
+                var hsl = new HslColor(test[0], test[1], test[2], (byte)test[3]);
+                var actual = ColorConverter.ToColor(hsl);
+
+                Assert.AreEqual(test[4], actual.R);
+                Assert.AreEqual(test[5], actual.G);
+                Assert.AreEqual(test[6], actual.B);
+            }
+        }
+
+        [TestMethod]
+        public void ToHsbColor_round_trip_should_return_original_color()
+        {
+            foreach (var color in RoundTripColors)
+            {
+                var hsb = ColorConverter.ToHsbColor(color);
+                var actual = ColorConverter.ToColor(hsb);
+
+                Assert.AreEqual(color.R, actual.R);
+                Assert.AreEqual(color.G, actual.G);
+                Assert.AreEqual(color.B, actual.B);
+            }
+        }
+
+        [TestMethod]
+        public void ToHslColor_round_trip_should_return_original_color()
+        {
+            foreach (var color in RoundTripColors)
+            {
+                var hsl = ColorConverter.ToHslColor(color);
+                var actual = ColorConverter.ToColor(hsl);
+
+                Assert.AreEqual(color.R, actual.R);
+                Assert.AreEqual(color.G, actual.G);
+                Assert.AreEqual(color.B, actual.B);
             }
         }
 

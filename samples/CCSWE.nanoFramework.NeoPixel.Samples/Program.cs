@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.Threading;
 using CCSWE.nanoFramework.NeoPixel.Drivers;
