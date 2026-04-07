@@ -12,7 +12,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Drivers
         /// The frequency of the clock used for RMT timing.
         /// </summary>
         /// <remarks>Get frequency of clock used by RMT.</remarks>
-        protected float SourceClockFrequency = RmtChannel.SourceClockFrequency; 
+        protected float SourceClockFrequency;
 
         /// <summary>
         /// Creates the driver to provide the commands required to control the NeoPixel.
@@ -25,6 +25,20 @@ namespace CCSWE.nanoFramework.NeoPixel.Drivers
         /// <param name="colorOrder">The <see cref="ColorOrder"/> of the pixels.</param>
         protected NeoPixelDriver(float zeroPulseHigh, float zeroPulseLow, float onePulseHigh, float onePulseLow, float resetDuration, ColorOrder colorOrder)
         {
+            SourceClockFrequency = RmtChannel.SourceClockFrequency;
+            ColorOrder = colorOrder;
+            OnePulse = GetDataPulse(onePulseHigh, onePulseLow);
+            ZeroPulse = GetDataPulse(zeroPulseHigh, zeroPulseLow);
+            ResetPulse = GetResetPulse(resetDuration);
+        }
+
+        /// <summary>
+        /// Creates the driver with an explicit source clock frequency. Intended for unit testing
+        /// without real hardware.
+        /// </summary>
+        internal NeoPixelDriver(float zeroPulseHigh, float zeroPulseLow, float onePulseHigh, float onePulseLow, float resetDuration, ColorOrder colorOrder, float sourceClockFrequency)
+        {
+            SourceClockFrequency = sourceClockFrequency;
             ColorOrder = colorOrder;
             OnePulse = GetDataPulse(onePulseHigh, onePulseLow);
             ZeroPulse = GetDataPulse(zeroPulseHigh, zeroPulseLow);

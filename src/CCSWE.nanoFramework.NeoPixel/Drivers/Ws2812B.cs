@@ -12,5 +12,11 @@
         public Ws2812B(ColorOrder colorOrder = ColorOrder.GRB) : base(0.4f, 0.85f, 0.8f, 0.45f, 50, colorOrder)
         {
         }
+
+        /// <inheritdoc cref="Ws2812B(ColorOrder)"/>
+        internal Ws2812B(ColorOrder colorOrder, float sourceClockFrequency)
+            : base(0.4f, 0.85f, 0.8f, 0.45f, 50, colorOrder, sourceClockFrequency)
+        {
+        }
     }
 }
