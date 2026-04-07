@@ -46,9 +46,9 @@ namespace CCSWE.nanoFramework.NeoPixel
                 return false;
             }
 
-            return FastMath.Abs(Hue - color.Hue) < float.Epsilon &&
-                   FastMath.Abs(Saturation - color.Saturation) < float.Epsilon &&
-                   FastMath.Abs(Light - color.Light) < float.Epsilon &&
+            return FastMath.Abs(Hue - color.Hue) < 0.001f &&
+                   FastMath.Abs(Saturation - color.Saturation) < 0.001f &&
+                   FastMath.Abs(Light - color.Light) < 0.001f &&
                    Alpha == color.Alpha;
         }
 
@@ -60,10 +60,17 @@ namespace CCSWE.nanoFramework.NeoPixel
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            // ReSharper disable once RedundantOverflowCheckingContext
+            // Use integer-truncated values so the hash is consistent with the 0.001f
+            // equality tolerance used in Equals for typical integer-degree hue and
+            // integer-percentage saturation/light values.
             unchecked
             {
-                return Hue.GetHashCode() ^ Saturation.GetHashCode() ^ Light.GetHashCode() ^ Alpha.GetHashCode();
+                var hash = 17;
+                hash = hash * 31 + ((int)Hue).GetHashCode();
+                hash = hash * 31 + ((int)Saturation).GetHashCode();
+                hash = hash * 31 + ((int)Light).GetHashCode();
+                hash = hash * 31 + Alpha.GetHashCode();
+                return hash;
             }
         }
 
