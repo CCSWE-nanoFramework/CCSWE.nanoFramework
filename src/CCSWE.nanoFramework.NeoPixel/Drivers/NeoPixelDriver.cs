@@ -48,7 +48,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Drivers
         /// <summary>
         /// The clock divider. (Real helpful right?)
         /// </summary>
-        public byte ClockDivider { get; set; } = 2;
+        public byte ClockDivider { get; } = 2;
 
         /// <summary>
         /// Gets the <see cref="ColorOrder"/> used by this chipset.

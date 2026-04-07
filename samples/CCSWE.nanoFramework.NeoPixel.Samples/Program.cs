@@ -73,6 +73,9 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
                 RainbowCycle(strip);
                 Console.WriteLine("TheaterChaseRainbow");
                 TheaterChaseRainbow(strip);
+
+                Console.WriteLine("SplitThirds");
+                SplitThirds(strip);
             }
         }
 
@@ -196,6 +199,25 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
                     }
                 }
             }
+        }
+
+        private static void SplitThirds(NeoPixelStrip strip, short duration = 2000)
+        {
+            var third = strip.Count / 3;
+
+            // Full brightness: one solid color per third
+            strip.SetLeds(0, third - 1, Color.Red);
+            strip.SetLeds(third, third * 2 - 1, Color.Green);
+            strip.SetLeds(third * 2, strip.Count - 1, Color.Blue);
+            strip.Update();
+            Thread.Sleep(duration);
+
+            // Half brightness using the brightness overload — same three colors, scaled once per section
+            strip.SetLeds(0, third - 1, Color.Red, 0.5f);
+            strip.SetLeds(third, third * 2 - 1, Color.Green, 0.5f);
+            strip.SetLeds(third * 2, strip.Count - 1, Color.Blue, 0.5f);
+            strip.Update();
+            Thread.Sleep(duration);
         }
 
         private static Color Wheel(int position)
