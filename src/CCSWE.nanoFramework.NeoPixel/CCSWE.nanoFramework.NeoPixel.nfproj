@@ -23,14 +23,11 @@
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="ColorConverter.cs" />
+    <Compile Include="ColorOrder.cs" />
     <Compile Include="Drivers\NeoPixelDriver.cs" />
     <Compile Include="Drivers\Ws2812C.cs" />
     <Compile Include="Drivers\Ws2812B.cs" />
-    <Compile Include="ColorOrder.cs" />
     <Compile Include="Extensions\ColorExtensions.cs" />
-    <Compile Include="HsbColor.cs" />
-    <Compile Include="HslColor.cs" />
     <Compile Include="Rmt\NeoPixelPulse.cs" />
     <Compile Include="NeoPixelStrip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -43,6 +40,7 @@
     <Content Include="packages.lock.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CCSWE.nanoFramework.Graphics\CCSWE.nanoFramework.Graphics.nfproj" />
     <ProjectReference Include="..\CCSWE.nanoFramework.Math\CCSWE.nanoFramework.Math.nfproj" />
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@
     <Content Include="packages.lock.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CCSWE.nanoFramework.Graphics\CCSWE.nanoFramework.Graphics.nfproj" />
     <ProjectReference Include="..\..\src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nfproj" />
   </ItemGroup>
   <ItemGroup>

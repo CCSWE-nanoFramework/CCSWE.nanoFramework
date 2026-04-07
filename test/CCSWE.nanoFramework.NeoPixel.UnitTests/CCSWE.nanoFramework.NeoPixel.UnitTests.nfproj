@@ -30,8 +30,7 @@
     <RunSettingsFilePath>$(MSBuildProjectDirectory)\nano.runsettings</RunSettingsFilePath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ColorConverterTests.cs" />
-    <Compile Include="ColorExtensionsTests.cs" />
+    <Compile Include="NeoPixelDriverTests.cs" />
     <Compile Include="NeoPixelPulseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

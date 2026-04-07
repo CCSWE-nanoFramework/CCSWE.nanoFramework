@@ -11,9 +11,6 @@ namespace CCSWE.nanoFramework.NeoPixel.Benchmarks
         public static readonly Color Color = GetRandomColor();
         public static readonly Color[] Colors = GetRandomColors(10);
 
-        public static readonly HsbColor HsbColor = ColorConverter.ToHsbColor(Color);
-        public static readonly HslColor HslColor = ColorConverter.ToHslColor(Color);
-
         public static Color GetRandomColor()
         {
             return Color.FromArgb(_random.Next(256), _random.Next(256), _random.Next(256));

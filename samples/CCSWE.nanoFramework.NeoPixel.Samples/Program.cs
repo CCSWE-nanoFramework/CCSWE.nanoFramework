@@ -1,5 +1,7 @@
+using System;
 using System.Drawing;
 using System.Threading;
+using CCSWE.nanoFramework.Graphics;
 using CCSWE.nanoFramework.NeoPixel.Drivers;
 // ReSharper disable FunctionNeverReturns
 // ReSharper disable RedundantArgumentDefaultValue
@@ -22,38 +24,59 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
             // Create the strip
             var strip = new NeoPixelStrip(pin, count, driver);
 
+            Console.WriteLine("Fill: Red");
             strip.Fill(Color.Red);
             strip.Update();
             Thread.Sleep(1000);
 
+            Console.WriteLine("Fill: Green");
             strip.Fill(Color.Green);
             strip.Update();
             Thread.Sleep(1000);
 
+            Console.WriteLine("Fill: Blue");
             strip.Fill(Color.Blue);
             strip.Update();
             Thread.Sleep(1000);
 
             while (true)
             {
+                Console.WriteLine("FadeBrightness: White");
                 FadeBrightness(strip, Color.White);
+                Console.WriteLine("FadeBrightness: Red");
                 FadeBrightness(strip, Color.Red);
+                Console.WriteLine("FadeBrightness: Green");
                 FadeBrightness(strip, Color.Green);
+                Console.WriteLine("FadeBrightness: Blue");
                 FadeBrightness(strip, Color.Blue);
 
+                Console.WriteLine("ColorWipe: White");
                 ColorWipe(strip, Color.White);
+                Console.WriteLine("ColorWipe: Red");
                 ColorWipe(strip, Color.Red);
+                Console.WriteLine("ColorWipe: Green");
                 ColorWipe(strip, Color.Green);
+                Console.WriteLine("ColorWipe: Blue");
                 ColorWipe(strip, Color.Blue);
 
+                Console.WriteLine("TheaterChase: White");
                 TheaterChase(strip, Color.White);
+                Console.WriteLine("TheaterChase: Red");
                 TheaterChase(strip, Color.Red);
+                Console.WriteLine("TheaterChase: Green");
                 TheaterChase(strip, Color.Green);
+                Console.WriteLine("TheaterChase: Blue");
                 TheaterChase(strip, Color.Blue);
 
+                Console.WriteLine("Rainbow");
                 Rainbow(strip);
+                Console.WriteLine("RainbowCycle");
                 RainbowCycle(strip);
+                Console.WriteLine("TheaterChaseRainbow");
                 TheaterChaseRainbow(strip);
+
+                Console.WriteLine("SplitThirds");
+                SplitThirds(strip);
             }
         }
 
@@ -103,7 +126,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
             {
                 for (var j = 0; j < strip.Count; j++)
                 {
-                    strip.SetLed(j, Wheel((i + j) & 255));
+                    strip.SetLed(j, ColorWheel.GetColor((i + j) & 255));
                 }
 
                 strip.Update();
@@ -116,7 +139,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
             {
                 for (var j = 0; j < strip.Count; j++)
                 {
-                    strip.SetLed(j, Wheel(((j * 255 / strip.Count) + i) & 255));
+                    strip.SetLed(j, ColorWheel.GetColor(((j * 255 / strip.Count) + i) & 255));
                 }
 
                 strip.Update();
@@ -161,7 +184,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
                     {
                         if (k + j < strip.Count)
                         {
-                            strip.SetLed(k + j, Wheel((k + i) % 255));
+                            strip.SetLed(k + j, ColorWheel.GetColor((k + i) % 255));
                         }
                     }
 
@@ -179,19 +202,24 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
             }
         }
 
-        private static Color Wheel(int position)
+        private static void SplitThirds(NeoPixelStrip strip, short duration = 2000)
         {
-            switch (position)
-            {
-                case < 85:
-                    return Color.FromArgb(position * 3, 255 - position * 3, 0);
-                case < 170:
-                    position -= 85;
-                    return Color.FromArgb(255 - position * 3, 0, position * 3);
-                default:
-                    position -= 170;
-                    return Color.FromArgb(0, position * 3, 255 - position * 3);
-            }
+            var third = strip.Count / 3;
+
+            // Full brightness: one solid color per third
+            strip.SetLeds(0, third - 1, Color.Red);
+            strip.SetLeds(third, third * 2 - 1, Color.Green);
+            strip.SetLeds(third * 2, strip.Count - 1, Color.Blue);
+            strip.Update();
+            Thread.Sleep(duration);
+
+            // Half brightness using the brightness overload — same three colors, scaled once per section
+            strip.SetLeds(0, third - 1, Color.Red, 0.5f);
+            strip.SetLeds(third, third * 2 - 1, Color.Green, 0.5f);
+            strip.SetLeds(third * 2, strip.Count - 1, Color.Blue, 0.5f);
+            strip.Update();
+            Thread.Sleep(duration);
         }
+
     }
 }

@@ -4,6 +4,7 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eng", "eng", "{31FB4C84-40C4-4140-8E05-424C6AD78964}"
 	ProjectSection(SolutionItems) = preProject
+		CLAUDE.md = CLAUDE.md
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 		version.json = version.json
@@ -80,6 +81,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{8FEE3952
 		src\CCSWE.nanoFramework.FileStorage\CCSWE.nanoFramework.FileStorage.nuspec = src\CCSWE.nanoFramework.FileStorage\CCSWE.nanoFramework.FileStorage.nuspec
 		src\CCSWE.nanoFramework.Hosting\CCSWE.nanoFramework.Hosting.nuspec = src\CCSWE.nanoFramework.Hosting\CCSWE.nanoFramework.Hosting.nuspec
 		src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nuspec = src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nuspec
+		src\CCSWE.nanoFramework.Graphics\CCSWE.nanoFramework.Graphics.nuspec = src\CCSWE.nanoFramework.Graphics\CCSWE.nanoFramework.Graphics.nuspec
 		src\CCSWE.nanoFramework.Math\CCSWE.nanoFramework.Math.nuspec = src\CCSWE.nanoFramework.Math\CCSWE.nanoFramework.Math.nuspec
 		src\CCSWE.nanoFramework.Mediator\CCSWE.nanoFramework.Mediator.nuspec = src\CCSWE.nanoFramework.Mediator\CCSWE.nanoFramework.Mediator.nuspec
 		src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nuspec = src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nuspec
@@ -88,11 +90,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{8FEE3952
 		src\CCSWE.nanoFramework.WebServer\CCSWE.nanoFramework.WebServer.nuspec = src\CCSWE.nanoFramework.WebServer\CCSWE.nanoFramework.WebServer.nuspec
 	EndProjectSection
 EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Graphics", "src\CCSWE.nanoFramework.Graphics\CCSWE.nanoFramework.Graphics.nfproj", "{91E7A8B3-4C5D-6E7F-8A9B-0C1D2E3F4A5B}"
+EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.NeoPixel", "src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nfproj", "{C38D145B-4310-47DE-83DD-3925BC824532}"
 EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.NeoPixel.Samples", "samples\CCSWE.nanoFramework.NeoPixel.Samples\CCSWE.nanoFramework.NeoPixel.Samples.nfproj", "{10024E76-EA0D-4D5E-8DFA-7E80FCFCDEF0}"
 EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Graphics.UnitTests", "test\CCSWE.nanoFramework.Graphics.UnitTests\CCSWE.nanoFramework.Graphics.UnitTests.nfproj", "{B2C3D4E5-F6A7-8B9C-0D1E-2F3A4B5C6D7E}"
+EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.NeoPixel.UnitTests", "test\CCSWE.nanoFramework.NeoPixel.UnitTests\CCSWE.nanoFramework.NeoPixel.UnitTests.nfproj", "{C2615A62-E5E4-42A6-943E-81172DCFF082}"
+EndProject
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.Graphics.Benchmarks", "bench\CCSWE.nanoFramework.Graphics.Benchmarks\CCSWE.nanoFramework.Graphics.Benchmarks.nfproj", "{C3D4E5F6-A7B8-9C0D-1E2F-3A4B5C6D7E8F}"
 EndProject
 Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "CCSWE.nanoFramework.NeoPixel.Benchmarks", "bench\CCSWE.nanoFramework.NeoPixel.Benchmarks\CCSWE.nanoFramework.NeoPixel.Benchmarks.nfproj", "{9AD16DA6-28D2-40B8-BD43-A83EDDF7717F}"
 EndProject
@@ -250,6 +258,12 @@ Global
 		{B593B301-43F1-4889-B693-EC029936F526}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B593B301-43F1-4889-B693-EC029936F526}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B593B301-43F1-4889-B693-EC029936F526}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{91E7A8B3-4C5D-6E7F-8A9B-0C1D2E3F4A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91E7A8B3-4C5D-6E7F-8A9B-0C1D2E3F4A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91E7A8B3-4C5D-6E7F-8A9B-0C1D2E3F4A5B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{91E7A8B3-4C5D-6E7F-8A9B-0C1D2E3F4A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91E7A8B3-4C5D-6E7F-8A9B-0C1D2E3F4A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91E7A8B3-4C5D-6E7F-8A9B-0C1D2E3F4A5B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{C38D145B-4310-47DE-83DD-3925BC824532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C38D145B-4310-47DE-83DD-3925BC824532}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C38D145B-4310-47DE-83DD-3925BC824532}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -304,6 +318,18 @@ Global
 		{CE907869-7D32-484C-B363-F29D95B76095}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE907869-7D32-484C-B363-F29D95B76095}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CE907869-7D32-484C-B363-F29D95B76095}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B2C3D4E5-F6A7-8B9C-0D1E-2F3A4B5C6D7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2C3D4E5-F6A7-8B9C-0D1E-2F3A4B5C6D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2C3D4E5-F6A7-8B9C-0D1E-2F3A4B5C6D7E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B2C3D4E5-F6A7-8B9C-0D1E-2F3A4B5C6D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2C3D4E5-F6A7-8B9C-0D1E-2F3A4B5C6D7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2C3D4E5-F6A7-8B9C-0D1E-2F3A4B5C6D7E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C3D4E5F6-A7B8-9C0D-1E2F-3A4B5C6D7E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3D4E5F6-A7B8-9C0D-1E2F-3A4B5C6D7E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3D4E5F6-A7B8-9C0D-1E2F-3A4B5C6D7E8F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C3D4E5F6-A7B8-9C0D-1E2F-3A4B5C6D7E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3D4E5F6-A7B8-9C0D-1E2F-3A4B5C6D7E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3D4E5F6-A7B8-9C0D-1E2F-3A4B5C6D7E8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -334,6 +360,9 @@ Global
 		{123FD035-D0D1-4426-9139-03DCA69ED69E} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
 		{B593B301-43F1-4889-B693-EC029936F526} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
 		{8FEE3952-3D9E-47E3-B469-394078DD029C} = {31FB4C84-40C4-4140-8E05-424C6AD78964}
+		{91E7A8B3-4C5D-6E7F-8A9B-0C1D2E3F4A5B} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
+		{B2C3D4E5-F6A7-8B9C-0D1E-2F3A4B5C6D7E} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}
+		{C3D4E5F6-A7B8-9C0D-1E2F-3A4B5C6D7E8F} = {E958B80F-112E-472F-93C7-29F00BE1A633}
 		{C38D145B-4310-47DE-83DD-3925BC824532} = {1B6C75FB-0A46-4027-9BA0-13BC61F06C78}
 		{10024E76-EA0D-4D5E-8DFA-7E80FCFCDEF0} = {D6EE9DC0-9D3A-4B35-B51C-FF8CD1DCA4D9}
 		{C2615A62-E5E4-42A6-943E-81172DCFF082} = {430AC1C7-199B-4517-A7E1-25CCEF66F84A}

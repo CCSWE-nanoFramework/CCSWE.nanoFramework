@@ -1,190 +1,223 @@
-﻿using nanoFramework.Hardware.Esp32.Rmt;
-using System;
-using System.Drawing;
+using CCSWE.nanoFramework.Graphics;
 using CCSWE.nanoFramework.NeoPixel.Drivers;
 using CCSWE.nanoFramework.NeoPixel.Rmt;
+using nanoFramework.Hardware.Esp32.Rmt;
+using System;
+using System.Drawing;
 
-namespace CCSWE.nanoFramework.NeoPixel
+namespace CCSWE.nanoFramework.NeoPixel;
+
+/// <summary>
+/// Represents a strip of NeoPixel LEDs.
+/// </summary>
+public class NeoPixelStrip : IDisposable
 {
+    private const byte BitsPerLed = 24;
+
+    private readonly ColorOrder _colorOrder;
+    private readonly byte[] _data;
+    private bool _disposed;
+    private readonly object _lock = new();
+    private readonly NeoPixelPulse _onePulse;
+    private readonly TransmitterChannel _transmitterChannel;
+    private readonly NeoPixelPulse _zeroPulse;
+
     /// <summary>
-    /// Represents a strip of LEDs.
+    /// Initializes a new instance of the <see cref="NeoPixelStrip"/> class.
     /// </summary>
-    public class NeoPixelStrip: IDisposable
+    /// <param name="pin">The GPIO pin used for communication with the LED driver.</param>
+    /// <param name="count">The number of LEDs in the strip.</param>
+    /// <param name="driver">The LED driver.</param>
+    public NeoPixelStrip(byte pin, ushort count, NeoPixelDriver driver)
     {
-        private const byte BitsPerLed = 24;
+        Count = count;
 
-        private readonly byte[] _data;
-        private bool _disposed;
-        private readonly object _lock = new();
-        private readonly TransmitterChannel _transmitterChannel;
-
-        private readonly ColorOrder _colorOrder;
-        private readonly NeoPixelPulse _onePulse;
-        private readonly NeoPixelPulse _zeroPulse;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NeoPixelStrip"/> class.
-        /// </summary>
-        /// <param name="pin">The GPIO pin used for communication with the LED driver.</param>
-        /// <param name="count">The number of LEDs in the strip.</param>
-        /// <param name="driver">The LED driver.</param>
-        public NeoPixelStrip(byte pin, ushort count, NeoPixelDriver driver)
+        var transmitterChannelSettings = new TransmitChannelSettings(pinNumber: pin)
         {
-            Count = count;
+            EnableCarrierWave = false,
+            ClockDivider = driver.ClockDivider,
+            IdleLevel = false,
+        };
+        _transmitterChannel = new TransmitterChannel(transmitterChannelSettings);
 
-            var transmitterChannelSettings = new TransmitChannelSettings(pinNumber: pin)
-            {
-                EnableCarrierWave = false,
-                ClockDivider = driver.ClockDivider,
-                IdleLevel = false,
-            };
-            _transmitterChannel = new TransmitterChannel(transmitterChannelSettings);
+        var totalBits = BitsPerLed * Count;
+        _data = new byte[(totalBits + 1) * 4];
 
-            var totalBits = 24 * Count;
+        var resetIndex = _data.Length - 4;
+        _data[resetIndex + 0] = driver.ResetPulse.Duration0;
+        _data[resetIndex + 1] = driver.ResetPulse.Level0;
+        _data[resetIndex + 2] = driver.ResetPulse.Duration1;
+        _data[resetIndex + 3] = driver.ResetPulse.Level1;
 
-            _data = new byte[(totalBits + 1) * 4];
+        _colorOrder = driver.ColorOrder;
+        _onePulse = driver.OnePulse;
+        _zeroPulse = driver.ZeroPulse;
 
-            var resetIndex = _data.Length - 4;
+        Clear();
+    }
 
-            _data[resetIndex + 0] = driver.ResetPulse.Duration0;
-            _data[resetIndex + 1] = driver.ResetPulse.Level0;
-            _data[resetIndex + 2] = driver.ResetPulse.Duration1;
-            _data[resetIndex + 3] = driver.ResetPulse.Level1;
+    /// <summary>
+    /// Gets the number of LEDs in the strip.
+    /// </summary>
+    public ushort Count { get; }
 
-            _colorOrder = driver.ColorOrder;
-            _onePulse = driver.OnePulse;
-            _zeroPulse = driver.ZeroPulse;
+    /// <summary>
+    /// Releases the RMT channel when the instance is garbage collected.
+    /// </summary>
+    ~NeoPixelStrip() => Dispose(false);
 
-            Clear();
+    /// <summary>
+    /// Resets all LEDs to <see cref="Color.Black"/>.
+    /// </summary>
+    public void Clear()
+    {
+        Fill(Color.Black);
+    }
+
+    /// <summary>
+    /// Close and release the RMT channel.
+    /// </summary>
+    public void Dispose()
+    {
+        if (_disposed)
+        {
+            return;
         }
 
-        /// <summary>
-        /// Gets the number of LEDs in the strip.
-        /// </summary>
-        public ushort Count { get; }
-
-        /// <summary>
-        /// Close and release the RMT channel.
-        /// </summary>
-        ~NeoPixelStrip() => Dispose(false);
-
-        /// <summary>
-        /// Resets all LEDs to <see cref="Color.Black"/>.
-        /// </summary>
-        public void Clear()
-        {
-            Fill(Color.Black);
-        }
-
-        /// <summary>
-        /// Close and release the RMT channel.
-        /// </summary>
-        public void Dispose()
+        lock (_lock)
         {
             if (_disposed)
             {
                 return;
             }
 
-            lock (_lock)
-            {
-                if (_disposed)
-                {
-                    return;
-                }
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+    }
 
-                Dispose(true);
-                GC.SuppressFinalize(this);
-            }
+    private void Dispose(bool disposing)
+    {
+        if (_disposed)
+        {
+            return;
         }
 
-        private void Dispose(bool disposing)
+        if (disposing)
         {
-            if (_disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                _transmitterChannel.Dispose();
-            }
-
-            _disposed = true;
+            _transmitterChannel.Dispose();
         }
 
-        /// <summary>
-        /// Fill the strip with a <see cref="Color"/>.
-        /// </summary>
-        /// <param name="color">The <see cref="Color"/>.</param>
-        public void Fill(Color color)
+        _disposed = true;
+    }
+
+    /// <summary>
+    /// Fills the entire strip with a <see cref="Color"/>.
+    /// </summary>
+    /// <param name="color">The <see cref="Color"/>.</param>
+    public void Fill(Color color)
+    {
+        WriteLeds(0, Count - 1, color.ToBytes(_colorOrder));
+    }
+
+    /// <summary>
+    /// Fills the entire strip with a brightness-scaled <see cref="Color"/>.
+    /// </summary>
+    /// <param name="color">The <see cref="Color"/>.</param>
+    /// <param name="brightness">The brightness value between 0.0 and 1.0.</param>
+    public void Fill(Color color, float brightness)
+    {
+        Fill(ColorConverter.ScaleBrightness(color, brightness));
+    }
+
+    private static int GetStartIndex(int index) => index * BitsPerLed * 4;
+
+    /// <summary>
+    /// Sets the <see cref="Color"/> for a single LED.
+    /// </summary>
+    /// <param name="index">The zero-based index of the LED.</param>
+    /// <param name="color">The <see cref="Color"/>.</param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="index"/> is outside the range [0, <see cref="Count"/>).
+    /// </exception>
+    public void SetLed(int index, Color color)
+    {
+        SetLeds(index, index, color);
+    }
+
+    /// <summary>
+    /// Sets the brightness-scaled <see cref="Color"/> for a single LED.
+    /// </summary>
+    /// <param name="index">The zero-based index of the LED.</param>
+    /// <param name="color">The <see cref="Color"/>.</param>
+    /// <param name="brightness">The brightness value between 0.0 and 1.0.</param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="index"/> is outside the range [0, <see cref="Count"/>).
+    /// </exception>
+    public void SetLed(int index, Color color, float brightness)
+    {
+        SetLeds(index, index, color, brightness);
+    }
+
+    /// <summary>
+    /// Sets the <see cref="Color"/> for a contiguous range of LEDs.
+    /// </summary>
+    /// <param name="startIndex">The zero-based index of the first LED (inclusive).</param>
+    /// <param name="endIndex">The zero-based index of the last LED (inclusive).</param>
+    /// <param name="color">The <see cref="Color"/>.</param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="startIndex"/> or <paramref name="endIndex"/> is outside
+    /// the range [0, <see cref="Count"/>), or when <paramref name="startIndex"/> is greater
+    /// than <paramref name="endIndex"/>.
+    /// </exception>
+    public void SetLeds(int startIndex, int endIndex, Color color)
+    {
+        if (startIndex < 0 || startIndex >= Count)
         {
-            var colorBytes = color.ToBytes(_colorOrder);
-            var commandIndex = 0;
-            ushort ledIndex;
-
-            for (ledIndex = 0; ledIndex < Count; ledIndex++)
-            {
-                byte colorIndex;
-
-                for (colorIndex = 0; colorIndex < 3; colorIndex++)
-                {
-                    byte bitIndex;
-                    byte colorByte = colorBytes[colorIndex];
-                    for (bitIndex = 0; bitIndex < 8; bitIndex++)
-                    {
-                        if ((colorByte & 128) != 0)
-                        {
-                            _data[0 + commandIndex] = _onePulse.Duration0;
-                            _data[1 + commandIndex] = _onePulse.Level0;
-                            _data[2 + commandIndex] = _onePulse.Duration1;
-                            _data[3 + commandIndex] = _onePulse.Level1;
-                        }
-                        else
-                        {
-                            _data[0 + commandIndex] = _zeroPulse.Duration0;
-                            _data[1 + commandIndex] = _zeroPulse.Level0;
-                            _data[2 + commandIndex] = _zeroPulse.Duration1;
-                            _data[3 + commandIndex] = _zeroPulse.Level1;
-                        }
-
-                        colorByte <<= 1;
-                        commandIndex += 4;
-                    }
-                }
-            }
+            throw new ArgumentOutOfRangeException(nameof(startIndex));
         }
 
-        /// <inheritdoc cref="Fill(System.Drawing.Color,float)"/>
-        [Obsolete("Use float instead of double")]
-        public void Fill(Color color, double brightness) => Fill(color, (float)brightness);
-
-        /// <summary>
-        /// Fill the strip with a <see cref="Color"/>.
-        /// </summary>
-        /// <param name="color">The <see cref="Color"/>.</param>
-        /// <param name="brightness">The brightness value between 0.0 and 1.0.</param>
-        public void Fill(Color color, float brightness)
+        if (endIndex < startIndex || endIndex >= Count)
         {
-            Fill(ColorConverter.ScaleBrightness(color, brightness));
+            throw new ArgumentOutOfRangeException(nameof(endIndex));
         }
 
-        private static int GetStartIndex(int index)
-        {
-            return index * BitsPerLed * 4;
-        }
+        WriteLeds(startIndex, endIndex, color.ToBytes(_colorOrder));
+    }
 
-        /// <summary>
-        /// Sets the <see cref="Color"/> for a LED. 
-        /// </summary>
-        /// <param name="index">The index of the LED.</param>
-        /// <param name="color">The <see cref="Color"/>.</param>
-        public void SetLed(int index, Color color)
+    /// <summary>
+    /// Sets the brightness-scaled <see cref="Color"/> for a contiguous range of LEDs. The
+    /// brightness is scaled once and the same scaled color is written to every LED in the range.
+    /// </summary>
+    /// <param name="startIndex">The zero-based index of the first LED (inclusive).</param>
+    /// <param name="endIndex">The zero-based index of the last LED (inclusive).</param>
+    /// <param name="color">The <see cref="Color"/>.</param>
+    /// <param name="brightness">The brightness value between 0.0 and 1.0.</param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="startIndex"/> or <paramref name="endIndex"/> is outside
+    /// the range [0, <see cref="Count"/>), or when <paramref name="startIndex"/> is greater
+    /// than <paramref name="endIndex"/>.
+    /// </exception>
+    public void SetLeds(int startIndex, int endIndex, Color color, float brightness)
+    {
+        SetLeds(startIndex, endIndex, ColorConverter.ScaleBrightness(color, brightness));
+    }
+
+    /// <summary>
+    /// Sends the buffered LED data to the strip.
+    /// </summary>
+    public void Update()
+    {
+        _transmitterChannel.SendData(_data, false);
+    }
+
+    private void WriteLeds(int startIndex, int endIndex, byte[] colorBytes)
+    {
+        var commandIndex = GetStartIndex(startIndex);
+
+        for (var ledIndex = startIndex; ledIndex <= endIndex; ledIndex++)
         {
-            var colorBytes = color.ToBytes(_colorOrder);
             byte colorIndex;
-            var commandIndex = GetStartIndex(index);
-
             for (colorIndex = 0; colorIndex < 3; colorIndex++)
             {
                 byte bitIndex;
@@ -210,32 +243,6 @@ namespace CCSWE.nanoFramework.NeoPixel
                     commandIndex += 4;
                 }
             }
-        }
-
-        /// <inheritdoc cref="SetLed(int,System.Drawing.Color,float)"/>
-        [Obsolete("Use float instead of double")]
-        public void SetLed(int index, Color color, double brightness) => SetLed(index, color, (float)brightness);
-
-        /// <summary>
-        /// Sets the <see cref="Color"/> for a LED. 
-        /// </summary>
-        /// <param name="index">The index of the LED.</param>
-        /// <param name="color">The <see cref="Color"/>.</param>
-        /// <param name="brightness">The brightness value between 0.0 and 1.0.</param>
-        /// <remarks>If you are using the same <see cref="Color"/> for multiple LEDs it
-        /// is more efficient to use <see cref="ColorConverter.ScaleBrightness(Color,float)"/> to
-        /// adjust the brightness and pass that to <see cref="SetLed(int,Color)"/></remarks>
-        public void SetLed(int index, Color color, float brightness)
-        {
-            SetLed(index, ColorConverter.ScaleBrightness(color, brightness));
-        }
-
-        /// <summary>
-        /// Send the data to the LED strip.
-        /// </summary>
-        public void Update()
-        {
-            _transmitterChannel.SendData(_data, false);
         }
     }
 }
