@@ -109,6 +109,8 @@ Use `switch` expressions (`x switch { ... }`) instead of `switch` statements whe
 
 Use file-scoped namespaces (`namespace Foo.Bar;`) rather than block-scoped namespaces (`namespace Foo.Bar { ... }`).
 
+All public API members (classes, methods, properties, fields, enums and their values) must have XML documentation comments (`<summary>`, `<param>`, `<returns>`, `<exception>` as applicable).
+
 ## Unit Tests
 
 Uses `nanoFramework.TestFramework`. Follow these conventions:

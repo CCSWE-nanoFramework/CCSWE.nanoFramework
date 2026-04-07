@@ -68,6 +68,7 @@ public static class ColorConverter
     /// </summary>
     /// <param name="color">The <see cref="Color"/> to adjust.</param>
     /// <param name="brightness">The brightness value between 0.0 and 1.0.</param>
+    /// <returns>A new <see cref="Color"/> with each channel scaled by <paramref name="brightness"/>.</returns>
     public static Color ScaleBrightness(Color color, float brightness)
     {
         var scale = FastMath.Clamp(brightness, 0.0f, 1.0f);

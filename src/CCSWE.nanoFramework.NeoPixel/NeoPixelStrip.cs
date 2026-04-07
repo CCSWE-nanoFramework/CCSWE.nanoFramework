@@ -160,8 +160,7 @@ public class NeoPixelStrip : IDisposable
     }
 
     /// <summary>
-    /// Sets the <see cref="Color"/> for a contiguous range of LEDs. The brightness is scaled
-    /// once and the same scaled color is written to every LED in the range.
+    /// Sets the <see cref="Color"/> for a contiguous range of LEDs.
     /// </summary>
     /// <param name="startIndex">The zero-based index of the first LED (inclusive).</param>
     /// <param name="endIndex">The zero-based index of the last LED (inclusive).</param>

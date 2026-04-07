@@ -11,6 +11,7 @@ public static class ColorWheel
     /// Returns a color from a 255-step wheel that cycles through red → green → blue → red.
     /// </summary>
     /// <param name="position">Position on the wheel (0–255).</param>
+    /// <returns>The <see cref="Color"/> at the given wheel position.</returns>
     public static Color GetColor(int position) =>
         position switch
         {

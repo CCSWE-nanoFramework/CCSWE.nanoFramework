@@ -48,4 +48,4 @@ strip.Update();
 
 ### Brightness scaling
 
-Both the `Fill` and `SetPixel` methods have overloads that allow you to pass a brightness scaling factor. If you will be using the same color for multiple calls then it is more efficient to call `ColorConverter.ScaleBrightness(Color, double)` directly and use the pre-scaled `Color` across multiple calls.
+Both the `Fill` and `SetLed` methods have overloads that allow you to pass a brightness scaling factor. If you will be using the same color for multiple calls then it is more efficient to call `ColorConverter.ScaleBrightness(Color, float)` directly (from the `CCSWE.nanoFramework.Graphics` package) and use the pre-scaled `Color` across multiple calls.

@@ -46,7 +46,8 @@ public abstract class NeoPixelDriver
     }
 
     /// <summary>
-    /// The clock divider. (Real helpful right?)
+    /// The RMT clock divider applied to <see cref="SourceClockFrequency"/>. Determines the
+    /// duration of each RMT tick and therefore the resolution of pulse timings.
     /// </summary>
     public byte ClockDivider { get; } = 2;
 

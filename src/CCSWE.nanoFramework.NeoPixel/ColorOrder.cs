@@ -1,7 +1,6 @@
 // ReSharper disable InconsistentNaming
 namespace CCSWE.nanoFramework.NeoPixel;
 
-// TODO: Evaluate whether we should be using the System.Drawing.ColorOrder enum instead of creating our own.
 /// <summary>
 /// Specifies the order color data should be sent.
 /// </summary>
