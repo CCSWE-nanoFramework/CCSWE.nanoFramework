@@ -90,6 +90,7 @@ Uses `Microsoft.Extensions.DependencyInjection`. Each library exposes bootstrapp
 - **Nerdbank.GitVersioning** drives version numbers from `version.json` — do not manually set version properties in `.nfproj` files
 - Each library has a corresponding `.nuspec` for NuGet packaging
 - Packages publish from `master` and `v\d+.\d+` branches per `version.json` `publicReleaseRefSpec`
+- Keep `.nuspec` dependency versions in sync with `packages.config` — whenever a package version is updated in `packages.config`, the corresponding `.nuspec` `<dependency>` must be updated to match
 
 ## Project File Format
 
