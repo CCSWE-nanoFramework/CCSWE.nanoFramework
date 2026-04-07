@@ -1,8 +1,9 @@
+using CCSWE.nanoFramework.Graphics;
+using CCSWE.nanoFramework.NeoPixel.Drivers;
+using CCSWE.nanoFramework.NeoPixel.Rmt;
 using nanoFramework.Hardware.Esp32.Rmt;
 using System;
 using System.Drawing;
-using CCSWE.nanoFramework.NeoPixel.Drivers;
-using CCSWE.nanoFramework.NeoPixel.Rmt;
 
 namespace CCSWE.nanoFramework.NeoPixel;
 

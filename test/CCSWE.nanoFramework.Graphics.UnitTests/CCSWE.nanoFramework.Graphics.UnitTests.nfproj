@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <NanoFrameworkProjectSystemPath>$(MSBuildExtensionsPath)\nanoFramework\v1.0\</NanoFrameworkProjectSystemPath>
@@ -11,11 +11,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>c2615a62-e5e4-42a6-943e-81172dcff082</ProjectGuid>
+    <ProjectGuid>b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
-    <RootNamespace>CCSWE.nanoFramework.NeoPixel.UnitTests</RootNamespace>
+    <RootNamespace>CCSWE.nanoFramework.Graphics.UnitTests</RootNamespace>
     <AssemblyName>NFUnitTest</AssemblyName>
     <IsCodedUITest>False</IsCodedUITest>
     <IsTestProject>true</IsTestProject>
@@ -30,15 +30,18 @@
     <RunSettingsFilePath>$(MSBuildProjectDirectory)\nano.runsettings</RunSettingsFilePath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="NeoPixelDriverTests.cs" />
-    <Compile Include="NeoPixelPulseTests.cs" />
+    <Compile Include="ColorConverterTests.cs" />
+    <Compile Include="ColorExtensionsTests.cs" />
+    <Compile Include="ColorWheelTests.cs" />
+    <Compile Include="HsbColorTests.cs" />
+    <Compile Include="HslColorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.lock.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CCSWE.nanoFramework.NeoPixel\CCSWE.nanoFramework.NeoPixel.nfproj" />
+    <ProjectReference Include="..\..\src\CCSWE.nanoFramework.Graphics\CCSWE.nanoFramework.Graphics.nfproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib, Version=1.17.11.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">

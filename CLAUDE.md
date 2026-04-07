@@ -107,6 +107,8 @@ Use Allman brace style (opening brace on its own line) for all blocks: methods, 
 
 Use `switch` expressions (`x switch { ... }`) instead of `switch` statements where the intent is to return or assign a value.
 
+Use file-scoped namespaces (`namespace Foo.Bar;`) rather than block-scoped namespaces (`namespace Foo.Bar { ... }`).
+
 ## Unit Tests
 
 Uses `nanoFramework.TestFramework`. Follow these conventions:

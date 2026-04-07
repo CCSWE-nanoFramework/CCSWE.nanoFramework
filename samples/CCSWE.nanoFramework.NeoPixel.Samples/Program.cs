@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Threading;
+using CCSWE.nanoFramework.Graphics;
 using CCSWE.nanoFramework.NeoPixel.Drivers;
 // ReSharper disable FunctionNeverReturns
 // ReSharper disable RedundantArgumentDefaultValue
@@ -125,7 +126,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
             {
                 for (var j = 0; j < strip.Count; j++)
                 {
-                    strip.SetLed(j, Wheel((i + j) & 255));
+                    strip.SetLed(j, ColorWheel.GetColor((i + j) & 255));
                 }
 
                 strip.Update();
@@ -138,7 +139,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
             {
                 for (var j = 0; j < strip.Count; j++)
                 {
-                    strip.SetLed(j, Wheel(((j * 255 / strip.Count) + i) & 255));
+                    strip.SetLed(j, ColorWheel.GetColor(((j * 255 / strip.Count) + i) & 255));
                 }
 
                 strip.Update();
@@ -183,7 +184,7 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
                     {
                         if (k + j < strip.Count)
                         {
-                            strip.SetLed(k + j, Wheel((k + i) % 255));
+                            strip.SetLed(k + j, ColorWheel.GetColor((k + i) % 255));
                         }
                     }
 
@@ -220,19 +221,5 @@ namespace CCSWE.nanoFramework.NeoPixel.Samples
             Thread.Sleep(duration);
         }
 
-        private static Color Wheel(int position)
-        {
-            switch (position)
-            {
-                case < 85:
-                    return Color.FromArgb(position * 3, 255 - position * 3, 0);
-                case < 170:
-                    position -= 85;
-                    return Color.FromArgb(255 - position * 3, 0, position * 3);
-                default:
-                    position -= 170;
-                    return Color.FromArgb(0, position * 3, 255 - position * 3);
-            }
-        }
     }
 }
