@@ -302,7 +302,7 @@ namespace CCSWE.nanoFramework.Configuration
         /// </summary>
         public string Section { get; }
 
-        internal ConfigurationChangedEventArgs(string section, object configuration)
+        public ConfigurationChangedEventArgs(string section, object configuration)
         {
             Configuration = configuration;
             Section = section;
