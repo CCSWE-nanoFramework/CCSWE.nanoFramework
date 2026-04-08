@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CCSWE.nanoFramework.MdnsServer</id>
+    <title>CCSWE.nanoFramework.MdnsServer</title>
+    <version>1.0</version>
+    <authors>Cory Charlton</authors>
+    <owners>Cory Charlton,CCSWE</owners>
+    <license type="file">LICENSE.md</license>
+    <projectUrl>https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework</projectUrl>
+    <icon>images\ccswe-logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>README.md</readme>
+    <developmentDependency>false</developmentDependency>
+    <description>A reusable mDNS responder server for nanoFramework with dependency injection support. Automatically handles A, PTR, SRV, and TXT queries based on registered hostname, IP address, and service instances.</description>
+    <repository type="git" url="https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework" commit="$commit$" />
+    <copyright>Copyright (c) Cory Charlton</copyright>
+    <tags>nanoFramework C# csharp netmf netnf ccswe mdns multicast dns server</tags>
+    <dependencies>
+      <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
+      <dependency id="nanoFramework.DependencyInjection" version="1.1.32" />
+      <dependency id="nanoFramework.Iot.Device.MulticastDns" version="1.0.230" />
+      <dependency id="nanoFramework.Logging" version="1.1.161" />
+      <dependency id="nanoFramework.System.Collections" version="1.5.67" />
+      <dependency id="nanoFramework.System.Net" version="1.11.50" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\CCSWE.nanoFramework.MdnsServer.*" target="lib\netnano1.0" />
+    <file src="..\..\ccswe-logo.png" target="images" />
+    <file src="..\..\LICENSE.md" target="" />
+    <file src="README.md" target="" />
+  </files>
+</package>
