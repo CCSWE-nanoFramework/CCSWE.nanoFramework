@@ -71,13 +71,21 @@ public static class ColorConverter
     /// <returns>A new <see cref="Color"/> with each channel scaled by <paramref name="brightness"/>.</returns>
     public static Color ScaleBrightness(Color color, float brightness)
     {
-        var scale = FastMath.Clamp(brightness, 0.0f, 1.0f);
+        if (brightness <= 0.0f)
+        {
+            return Color.FromArgb(color.A, 0, 0, 0);
+        }
+
+        if (brightness >= 1.0f)
+        {
+            return color;
+        }
 
         return Color.FromArgb(
             color.A,
-            (int)(color.R * scale + 0.5f),
-            (int)(color.G * scale + 0.5f),
-            (int)(color.B * scale + 0.5f));
+            (int)(color.R * brightness + 0.5f),
+            (int)(color.G * brightness + 0.5f),
+            (int)(color.B * brightness + 0.5f));
     }
 
     internal static Color ToColor(HsbColor hsb)
