@@ -302,6 +302,15 @@ namespace CCSWE.nanoFramework.Configuration
         /// </summary>
         public string Section { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigurationChangedEventArgs"/> class.
+        /// </summary>
+        /// <param name="section">
+        /// The section of the configuration that has changed.
+        /// </param>
+        /// <param name="configuration">
+        /// The new configuration object associated with the specified section.
+        /// </param>
         public ConfigurationChangedEventArgs(string section, object configuration)
         {
             Configuration = configuration;

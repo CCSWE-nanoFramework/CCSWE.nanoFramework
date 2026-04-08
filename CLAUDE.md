@@ -60,6 +60,7 @@ samples/- Sample applications showing real device usage
 - **Lock-based synchronization** instead of `ReaderWriterLockSlim` (not available in nanoFramework)
 - **Limited reflection** — avoid patterns that depend on runtime type discovery
 - **Memory-first design** — prefer stack allocation, avoid unnecessary allocations
+- **No generics** — `Nullable<T>` (i.e., `int?`, `bool?`, etc.) is not available; use sentinel values (e.g., `0` or `-1`) or a separate boolean flag instead
 
 ### Hosting Model
 `DeviceHost`/`DeviceHostBuilder` (in `CCSWE.nanoFramework.Hosting`) mirrors ASP.NET Core's `IHost`/`IHostBuilder`. Services are registered via extension methods and resolved through `IServiceProvider`. This is the entry point pattern for applications consuming these libraries.
