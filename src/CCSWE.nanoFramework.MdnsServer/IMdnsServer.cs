@@ -30,12 +30,12 @@ public interface IMdnsServer
     void AddService(MdnsServiceRegistration registration);
 
     /// <summary>
-    /// Removes a previously registered service instance.
+    /// Sends a gratuitous mDNS announcement with all registered services.
+    /// All records (PTR, SRV, TXT, A) are placed in the answers section so that
+    /// mDNS proxy/repeater devices on the network cache and forward the complete
+    /// service information across subnet boundaries.
     /// </summary>
-    /// <param name="registration">The service registration to remove.</param>
-    /// <returns><see langword="true"/> if the service was found and removed; otherwise, <see langword="false"/>.</returns>
-    /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="registration"/> is <see langword="null"/>.</exception>
-    bool RemoveService(MdnsServiceRegistration registration);
+    void Announce();
 
     /// <summary>
     /// Starts the mDNS server.
