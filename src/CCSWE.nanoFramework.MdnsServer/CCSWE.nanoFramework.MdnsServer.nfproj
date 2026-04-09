@@ -29,6 +29,7 @@
     <Compile Include="MdnsServer.cs" />
     <Compile Include="MdnsServerOptions.cs" />
     <Compile Include="MdnsServiceRegistration.cs" />
+    <Compile Include="MdnsServiceType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -36,11 +37,8 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.lock.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Iot.Device.MulticastDns">
-      <HintPath>..\..\..\..\Emily.Clock\device\packages\nanoFramework.Iot.Device.MulticastDns.1.0.230\lib\Iot.Device.MulticastDns.dll</HintPath>
+    <Reference Include="Iot.Device.MulticastDns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.Iot.Device.MulticastDns.1.0.260\lib\Iot.Device.MulticastDns.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib, Version=1.17.11.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.17.11\lib\mscorlib.dll</HintPath>
@@ -54,9 +52,21 @@
     <Reference Include="nanoFramework.System.Collections, Version=1.5.67.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.System.Collections.1.5.67\lib\nanoFramework.System.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="System.Buffers.Binary.BinaryPrimitives, Version=1.2.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Buffers.Binary.BinaryPrimitives.1.2.862\lib\System.Buffers.Binary.BinaryPrimitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Buffers.Helpers.1.0.201\lib\System.Buffers.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net, Version=1.11.50.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.System.Net.1.11.50\lib\System.Net.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Sockets.UdpClient, Version=1.1.101.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Net.Sockets.UdpClient.1.1.101\lib\System.Net.Sockets.UdpClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.lock.json" />
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
   <ProjectExtensions>

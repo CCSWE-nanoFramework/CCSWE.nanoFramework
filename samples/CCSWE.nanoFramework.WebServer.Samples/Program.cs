@@ -2,7 +2,6 @@ using System;
 using CCSWE.nanoFramework.Hosting;
 using CCSWE.nanoFramework.Logging;
 using CCSWE.nanoFramework.Samples.Networking;
-using CCSWE.nanoFramework.WebServer;
 using CCSWE.nanoFramework.WebServer.Samples.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
