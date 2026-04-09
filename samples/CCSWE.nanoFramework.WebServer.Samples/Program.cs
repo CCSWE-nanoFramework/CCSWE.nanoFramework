@@ -7,67 +7,70 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CCSWE.nanoFramework.WebServer.Samples
+namespace CCSWE.nanoFramework.WebServer.Samples;
+
+public class Program
 {
-    public class Program
+    public static void Main()
     {
-        public static void Main()
-        {
-            Console.WriteLine("Starting CCSWE.nanoFramework.WebServer.Samples");
+        Console.WriteLine("Starting CCSWE.nanoFramework.WebServer.Samples");
 
-            // TODO: Replace with your WiFi network credentials before deploying to a device.
-            var networkConfig = new NetworkConfiguration("YOUR-SSID", "your_password");
+        // TODO: Replace with your WiFi network credentials before deploying to a device.
+        var networkConfig = new NetworkConfiguration("YOUR-SSID", "your_password");
 
-            // DeviceHost.CreateDefaultBuilder() creates an IHostBuilder pre-configured with
-            // logging and DI. ConfigureServices() registers application services; the builder
-            // pattern lets you chain multiple registration calls.
-            var host = DeviceHost.CreateDefaultBuilder()
-                .ConfigureServices(services =>
+        var host = DeviceHost.CreateDefaultBuilder()
+            .ConfigureServices(services =>
+            {
+                services.ConfigureServices(networkConfig);
+
+                services.AddWebServer(options =>
                 {
-                    // NetworkInitializer runs before any IHostedService. It connects to WiFi
-                    // and returns false on failure, which causes the host to abort startup.
-                    services.AddSingleton(typeof(NetworkConfiguration), networkConfig);
-                    services.AddSingleton(typeof(IDeviceInitializer), typeof(NetworkInitializer));
+                    options.Port = 80;
+                    options.Protocol = HttpProtocol.Http;
+                });
 
-                    services.AddLogging(options =>
-                    {
-                        options.MinLogLevel = LogLevel.Trace;
-                    });
+                // Enable optional middleware
+                services.AddCors();
+                services.AddStaticFiles(typeof(ExampleFileProvider));
 
-                    services.AddWebServer(options =>
-                    {
-                        options.Port = 80;
-                        options.Protocol = HttpProtocol.Http;
-                    });
+                services.AddAuthentication(typeof(ExampleAuthenticationHandler));
 
-                    // Enable optional middleware
-                    services.AddCors();
-                    services.AddStaticFiles(typeof(ExampleFileProvider));
+                // Add controllers individually
+                services.AddController(typeof(ExampleController));
 
-                    // Add AuthenticationHandler
-                    services.AddAuthentication(typeof(ExampleAuthenticationHandler));
+                // You can also use `AddControllers` to find all controllers through reflection
+                //services.AddControllers();
 
-                    // Add controllers individually
-                    services.AddController(typeof(ExampleController));
+                services.AddMiddleware(typeof(ExampleMiddleware));
 
-                    // You can also use `AddControllers` to find all controllers through reflection
-                    //services.AddControllers();
+                // Add your other dependencies
+                services.AddSingleton(typeof(IDataService), typeof(DataService));
 
-                    // Add custom middleware
-                    services.AddMiddleware(typeof(ExampleMiddleware));
+                services.AddHostedService(typeof(WebServerHostedService));
+            })
+            .Build();
 
-                    // Add your other dependencies
-                    services.AddSingleton(typeof(IDataService), typeof(DataService));
+        host.Run();
+    }
+}
 
-                    // WebServerHostedService wraps IWebServer.Start()/Stop() so the host
-                    // manages the web server lifetime alongside other hosted services.
-                    services.AddHostedService(typeof(WebServerHostedService));
-                })
-                .Build();
+public static class Boilerplate
+{
+    /// <summary>
+    /// Registers services required by the sample that are not specific to the WebServer demonstration.
+    /// </summary>
+    public static IServiceCollection ConfigureServices(this IServiceCollection services, NetworkConfiguration networkConfig)
+    {
+        // Connects to WiFi before any IHostedService starts; aborts startup on failure.
+        services.AddSingleton(typeof(NetworkConfiguration), networkConfig);
+        services.AddSingleton(typeof(IDeviceInitializer), typeof(NetworkInitializer));
 
-            // Run() starts all IDeviceInitializer and IHostedService instances in order,
-            // then blocks the calling thread until the host is stopped.
-            host.Run();
-        }
+        // Trace shows all output — raise MinLogLevel in production.
+        services.AddLogging(options =>
+        {
+            options.MinLogLevel = LogLevel.Trace;
+        });
+
+        return services;
     }
 }

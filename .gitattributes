@@ -1,0 +1,15 @@
+# Normalize line endings to CRLF on checkout (Windows development)
+* text=auto eol=crlf
+
+# Scripts must use LF
+*.sh text eol=lf
+
+# Binary files — no line-ending normalization
+*.dll binary
+*.exe binary
+*.nupkg binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.zip binary
