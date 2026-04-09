@@ -1,117 +1,74 @@
 using System;
-using System.Diagnostics;
-using System.Threading;
+using CCSWE.nanoFramework.Hosting;
 using CCSWE.nanoFramework.Logging;
-using CCSWE.nanoFramework.WebServer.Samples.Networking;
+using CCSWE.nanoFramework.Samples.Networking;
+using CCSWE.nanoFramework.WebServer;
 using CCSWE.nanoFramework.WebServer.Samples.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using nanoFramework.Runtime.Native;
 
 namespace CCSWE.nanoFramework.WebServer.Samples
 {
     public class Program
     {
-        // TODO: Set your SSID and password here
-        private const string Ssid = "YOUR-SSID";
-        private const string Password = "your_password";
-
         public static void Main()
         {
             Console.WriteLine("Starting CCSWE.nanoFramework.WebServer.Samples");
 
-            if (!InitializeNetwork())
-            {
-                Console.WriteLine("Failed to initialize network. Halting.");
-                Thread.Sleep(Timeout.Infinite);
-            }
+            // TODO: Replace with your WiFi network credentials before deploying to a device.
+            var networkConfig = new NetworkConfiguration("YOUR-SSID", "your_password");
 
-            var serviceCollection = new ServiceCollection();
+            // DeviceHost.CreateDefaultBuilder() creates an IHostBuilder pre-configured with
+            // logging and DI. ConfigureServices() registers application services; the builder
+            // pattern lets you chain multiple registration calls.
+            var host = DeviceHost.CreateDefaultBuilder()
+                .ConfigureServices(services =>
+                {
+                    // NetworkInitializer runs before any IHostedService. It connects to WiFi
+                    // and returns false on failure, which causes the host to abort startup.
+                    services.AddSingleton(typeof(NetworkConfiguration), networkConfig);
+                    services.AddSingleton(typeof(IDeviceInitializer), typeof(NetworkInitializer));
 
-            serviceCollection.AddLogging(options =>
-            {
-                options.MinLogLevel = LogLevel.Trace;
-            });
+                    services.AddLogging(options =>
+                    {
+                        options.MinLogLevel = LogLevel.Trace;
+                    });
 
-            serviceCollection.AddWebServer(options =>
-            {
-                options.Port = 80;
-                options.Protocol = HttpProtocol.Http;
-            });
+                    services.AddWebServer(options =>
+                    {
+                        options.Port = 80;
+                        options.Protocol = HttpProtocol.Http;
+                    });
 
-            // Enable optional middleware
-            serviceCollection.AddCors();
-            serviceCollection.AddStaticFiles(typeof(ExampleFileProvider));
+                    // Enable optional middleware
+                    services.AddCors();
+                    services.AddStaticFiles(typeof(ExampleFileProvider));
 
-            // Add AuthenticationHandler
-            serviceCollection.AddAuthentication(typeof(ExampleAuthenticationHandler));
+                    // Add AuthenticationHandler
+                    services.AddAuthentication(typeof(ExampleAuthenticationHandler));
 
-            // Add controllers individually
-            serviceCollection.AddController(typeof(ExampleController));
+                    // Add controllers individually
+                    services.AddController(typeof(ExampleController));
 
-            // You can also use `AddControllers` to find all controllers through reflection
-            //serviceCollection.AddControllers();
+                    // You can also use `AddControllers` to find all controllers through reflection
+                    //services.AddControllers();
 
-            // Add custom middleware
-            serviceCollection.AddMiddleware(typeof(ExampleMiddleware));
+                    // Add custom middleware
+                    services.AddMiddleware(typeof(ExampleMiddleware));
 
-            // Add your other dependencies
-            serviceCollection.AddSingleton(typeof(IDataService), typeof(DataService));
+                    // Add your other dependencies
+                    services.AddSingleton(typeof(IDataService), typeof(DataService));
 
-            var serviceProvider = serviceCollection.BuildServiceProvider();
+                    // WebServerHostedService wraps IWebServer.Start()/Stop() so the host
+                    // manages the web server lifetime alongside other hosted services.
+                    services.AddHostedService(typeof(WebServerHostedService));
+                })
+                .Build();
 
-            var webServer = (IWebServer) serviceProvider.GetService(typeof(IWebServer));
-
-            // Start the web server
-            webServer.Start();
-
-            Thread.Sleep(Timeout.Infinite);
-        }
-
-        private static bool InitializeNetwork()
-        {
-            var needReboot = false;
-
-            WirelessAccessPointManager.Disable();
-
-            if (WirelessAccessPointManager.IsEnabled())
-            {
-                Console.WriteLine("Wireless access point is enabled. Disabling.");
-                WirelessAccessPointManager.Disable();
-
-                needReboot = true;
-            }
-
-            if (!WirelessClientManager.IsEnabled())
-            {
-                Console.WriteLine("Wireless client is disabled. Enabling.");
-                WirelessClientManager.Enable();
-
-                needReboot = true;
-            }
-
-            if (needReboot)
-            {
-                Reboot();
-            }
-
-            Console.WriteLine($"Connecting to {Ssid}...");
-
-            return WirelessClientManager.Connect(Ssid, Password);
-        }
-
-        public static void Reboot()
-        {
-            Console.WriteLine("Rebooting...");
-
-            if (Debugger.IsAttached)
-            {
-                Console.WriteLine("Device will not reboot while debugger attached.");
-                Console.WriteLine("Please power cycle device.");
-            }
-
-            Power.RebootDevice();
-            Thread.Sleep(Timeout.Infinite);
+            // Run() starts all IDeviceInitializer and IHostedService instances in order,
+            // then blocks the calling thread until the host is stopped.
+            host.Run();
         }
     }
 }
