@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Net.NetworkInformation;
 
-namespace CCSWE.nanoFramework.WebServer.Samples.Networking
+namespace CCSWE.nanoFramework.Samples.Networking
 {
-    internal static class NetworkInterfaceProvider
+    public static class NetworkInterfaceProvider
     {
         public static NetworkInterface? GetInterface(NetworkInterfaceType interfaceType)
         {

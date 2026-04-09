@@ -1,8 +1,8 @@
-﻿using System.Net.NetworkInformation;
+using System.Net.NetworkInformation;
 
-namespace CCSWE.nanoFramework.WebServer.Samples.Networking
+namespace CCSWE.nanoFramework.Samples.Networking
 {
-    internal static class WirelessAccessPointManager
+    public static class WirelessAccessPointManager
     {
         public static void Disable()
         {

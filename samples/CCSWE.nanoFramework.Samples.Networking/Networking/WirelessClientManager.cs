@@ -1,10 +1,10 @@
-﻿using nanoFramework.Networking;
+using nanoFramework.Networking;
 using System.Net.NetworkInformation;
 using System.Threading;
 
-namespace CCSWE.nanoFramework.WebServer.Samples.Networking
+namespace CCSWE.nanoFramework.Samples.Networking
 {
-    internal static class WirelessClientManager
+    public static class WirelessClientManager
     {
         public static bool Connect(string ssid, string password)
         {
