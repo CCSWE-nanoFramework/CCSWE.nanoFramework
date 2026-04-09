@@ -8,101 +8,88 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CCSWE.nanoFramework.MdnsServer.Samples
+namespace CCSWE.nanoFramework.MdnsServer.Samples;
+
+public class Program
 {
-    public class Program
+    public static void Main()
     {
-        public static void Main()
-        {
-            Console.WriteLine("Starting CCSWE.nanoFramework.MdnsServer.Samples");
+        Console.WriteLine("Starting CCSWE.nanoFramework.MdnsServer.Samples");
 
-            // TODO: Replace with your WiFi network credentials before deploying to a device.
-            var networkConfig = new NetworkConfiguration("YOUR-SSID", "your_password");
+        // TODO: Replace with your WiFi network credentials before deploying to a device.
+        var networkConfig = new NetworkConfiguration("YOUR-SSID", "your_password");
 
-            // DeviceHost.CreateDefaultBuilder() creates an IHostBuilder pre-configured with
-            // logging and DI. ConfigureServices() registers application services; the builder
-            // pattern lets you chain multiple registration calls.
-            var host = DeviceHost.CreateDefaultBuilder()
-                .ConfigureServices(services =>
+        var host = DeviceHost.CreateDefaultBuilder()
+            .ConfigureServices(services =>
+            {
+                // Registers WiFi, logging, and the web server (boilerplate for this sample).
+                services.ConfigureServices(networkConfig);
+
+                // AddMdnsServer registers the mDNS responder (224.0.0.251:5353).
+                // It responds to A, PTR, SRV, and TXT queries for the configured hostname
+                // and services per RFC 6762/6763.
+                services.AddMdnsServer(options =>
                 {
-                    // NetworkInitializer runs before any IHostedService. It connects to WiFi
-                    // and returns false on failure, which causes the host to abort startup.
-                    services.AddSingleton(typeof(NetworkConfiguration), networkConfig);
-                    services.AddSingleton(typeof(IDeviceInitializer), typeof(NetworkInitializer));
+                    // Used for A record responses — clients resolve the device IP by name.
+                    options.Hostname = "mdns-sample.local";
 
-                    // AddLogging registers the logging infrastructure. Trace level shows all log
-                    // output, which is helpful while exploring the sample. Raise this in production.
-                    services.AddLogging(options =>
-                    {
-                        options.MinLogLevel = LogLevel.Trace;
-                    });
+                    // Publishes PTR/SRV/TXT records so mDNS browsers (Bonjour, avahi-browse,
+                    // dns-sd) can discover the HTTP service without knowing the device IP:
+                    //
+                    //   Instance name : "mdns-sample"       (human-readable label)
+                    //   Service type  : "_http._tcp.local"  (standard DNS-SD type)
+                    //   Port          : 80
+                    //   TXT record    : "path=/"            (optional metadata)
+                    options.AddService(new MdnsServiceRegistration(
+                        instanceName: "mdns-sample",
+                        serviceType: MdnsServiceType.Http,
+                        port: 80,
+                        txt: "path=/"));
 
-                    // AddWebServer registers the HTTP server. Port 80 is the default HTTP port.
-                    // The server runs on a dedicated background thread — it does not block the host.
-                    services.AddWebServer(options =>
-                    {
-                        options.Port = 80;
-                        options.Protocol = HttpProtocol.Http;
-                    });
+                    // Custom service type — shows the API works for any protocol, not just HTTP.
+                    // Standard browsers won't enumerate this type, but protocol-specific clients can.
+                    options.AddService(new MdnsServiceRegistration(
+                        instanceName: "mdns-sample",
+                        serviceType: "_custom-service._tcp.local",
+                        port: 80,
+                        txt: "path=/"));
+                });
 
-                    // AddController registers a single controller class. The web server discovers
-                    // routes by inspecting the [Route] and [HttpGet]/[HttpPost]/etc. attributes.
-                    // IndexController handles GET / and returns "Hello World".
-                    services.AddController(typeof(IndexController));
+                // Resolves the device IP after WiFi connects, then starts the mDNS responder.
+                services.AddHostedService(typeof(MdnsServerHostedService));
+            })
+            .Build();
 
-                    // AddMdnsServer registers the mDNS responder. It listens on the multicast
-                    // address 224.0.0.251:5353 and responds to queries for registered service
-                    // types and hostnames. Services registered here are applied automatically
-                    // when the MdnsServer is constructed.
-                    services.AddMdnsServer(options =>
-                    {
-                        // Hostname is used for A record responses. Clients on the LAN can resolve
-                        // the device's IP address by name (e.g., ping mdns-sample.local).
-                        options.Hostname = "mdns-sample.local";
+        host.Run();
+    }
+}
 
-                        // Register the HTTP service. This publishes a PTR, SRV, and TXT record
-                        // so that mDNS browsers (like Bonjour, avahi-browse, or dns-sd) can
-                        // find the service:
-                        //
-                        //   Instance name : "mdns-sample"        (human-readable service name)
-                        //   Service type  : "_http._tcp.local"   (standard mDNS type for HTTP)
-                        //   Port          : 80                   (where the web server listens)
-                        //   TXT record    : "path=/"             (optional metadata)
-                        //
-                        // After registration, other devices on the LAN can browse for
-                        // "_http._tcp.local" and find "mdns-sample" without knowing the IP.
-                        options.AddService(new MdnsServiceRegistration(
-                            instanceName: "mdns-sample",
-                            serviceType: MdnsServiceType.Http,
-                            port: 80,
-                            txt: "path=/"));
+public static class Boilerplate
+{
+    /// <summary>
+    /// Registers services required by the sample that are not specific to the mDNS demonstration.
+    /// </summary>
+    public static IServiceCollection ConfigureServices(this IServiceCollection services, NetworkConfiguration networkConfig)
+    {
+        // Connects to WiFi before any IHostedService starts; aborts startup on failure.
+        services.AddSingleton(typeof(NetworkConfiguration), networkConfig);
+        services.AddSingleton(typeof(IDeviceInitializer), typeof(NetworkInitializer));
 
-                        // We'll also register a custom service type to show that mDNS works for
-                        // any service, not just HTTP. This won't be discoverable by standard mDNS
-                        // browsers since they look for specific types (like _http._tcp.local),
-                        // but it demonstrates how to use the API for other protocols.
-                        options.AddService(new MdnsServiceRegistration(
-                            instanceName: "mdns-sample",
-                            serviceType: "_custom-service._tcp.local",
-                            port: 80,
-                            txt: "path=/"));
+        // Trace shows all output — raise MinLogLevel in production.
+        services.AddLogging(options =>
+        {
+            options.MinLogLevel = LogLevel.Trace;
+        });
 
-                    });
+        services.AddWebServer(options =>
+        {
+            options.Port = 80;
+            options.Protocol = HttpProtocol.Http;
+        });
 
-                    // WebServerHostedService wraps IWebServer.Start()/Stop() so the host
-                    // manages the web server lifetime alongside other hosted services.
-                    services.AddHostedService(typeof(WebServerHostedService));
+        services.AddController(typeof(IndexController));
+        services.AddHostedService(typeof(WebServerHostedService));
 
-                    // MdnsServerHostedService resolves the device IP (after WiFi is up),
-                    // sets the hostname and IP address, then starts the mDNS responder.
-                    // Services were already registered via AddMdnsServer options above.
-                    services.AddHostedService(typeof(MdnsServerHostedService));
-                })
-                .Build();
-
-            // Run() starts all IDeviceInitializer and IHostedService instances in order,
-            // then blocks the calling thread until the host is stopped.
-            host.Run();
-        }
+        return services;
     }
 }
