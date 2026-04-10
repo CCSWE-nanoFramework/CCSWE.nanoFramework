@@ -31,7 +31,7 @@ public class Program
                 services.AddMdnsServer(options =>
                 {
                     // Used for A record responses — clients resolve the device IP by name.
-                    options.Hostname = "mdns-sample.local";
+                    options.Hostname = "mdns-sample";
 
                     // Publishes PTR/SRV/TXT records so mDNS browsers (Bonjour, avahi-browse,
                     // dns-sd) can discover the HTTP service without knowing the device IP:
@@ -41,7 +41,6 @@ public class Program
                     //   Port          : 80
                     //   TXT record    : "path=/"            (optional metadata)
                     options.AddService(new MdnsServiceRegistration(
-                        instanceName: "mdns-sample",
                         serviceType: MdnsServiceType.Http,
                         port: 80,
                         txt: "path=/"));
@@ -49,7 +48,6 @@ public class Program
                     // Custom service type — shows the API works for any protocol, not just HTTP.
                     // Standard browsers won't enumerate this type, but protocol-specific clients can.
                     options.AddService(new MdnsServiceRegistration(
-                        instanceName: "mdns-sample",
                         serviceType: "_custom-service._tcp.local",
                         port: 80,
                         txt: "path=/"));

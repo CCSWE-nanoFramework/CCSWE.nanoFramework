@@ -16,8 +16,8 @@ public class MdnsServerOptions
     public int DefaultTtl { get; set; } = 4500;
 
     /// <summary>
-    /// The hostname to advertise in A record responses (e.g. <c>"mydevice.local"</c>).
-    /// When set, the <see cref="MdnsServer"/> will answer A queries for this name.
+    /// The simple hostname of the device (e.g., <c>"mydevice"</c>). Required for the server to function.
+    /// The fully qualified domain name used in DNS records is derived as <c>{Hostname}.local</c>.
     /// </summary>
     public string? Hostname { get; set; }
 

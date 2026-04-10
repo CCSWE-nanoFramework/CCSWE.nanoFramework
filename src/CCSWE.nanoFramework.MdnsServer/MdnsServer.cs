@@ -57,24 +57,22 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
     }
 
     /// <inheritdoc />
-    public string? Hostname
+    public string Hostname
     {
-        get => _hostname;
+        get => _hostname ?? throw new InvalidOperationException("Hostname has not been set");
         set
         {
             lock (_lock)
             {
-                ArgumentException.ThrowIfNullOrEmpty(value);
-                
                 _hostname = value;
             }
         }
     }
 
     /// <inheritdoc />
-    public IPAddress? IPAddress
+    public IPAddress IPAddress
     {
-        get => _ipAddress;
+        get => _ipAddress ?? throw new InvalidOperationException("IPAddress has not been set");
         set
         {
             lock (_lock)
@@ -152,7 +150,8 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
             try
             {
                 ArgumentException.ThrowIfNullOrEmpty(_hostname);
-                
+                ArgumentNullException.ThrowIfNull(_ipAddress);
+
                 _multicastDnsService = new MulticastDnsService();
                 _multicastDnsService.MessageReceived += HandleMessageReceived;
                 _multicastDnsService.Start();
@@ -226,17 +225,20 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
             return;
         }
 
-        string? hostname;
-        IPAddress? ipAddress;
+        string hostname;
+        IPAddress ipAddress;
         MdnsServiceRegistration[] services;
 
         lock (_lock)
         {
-            hostname = _hostname;
-            ipAddress = _ipAddress;
+            hostname = Hostname;
+            ipAddress = IPAddress;
             services = (MdnsServiceRegistration[])_services.ToArray(typeof(MdnsServiceRegistration));
         }
 
+        var hostDomain = $"{hostname}.local";
+        var hostDomainLower = hostDomain.ToLower();
+        
         var response = new MdnsResponse();
         var shouldRespond = false;
 
@@ -245,29 +247,32 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
             var answered = false;
             
             var queryType = question.QueryType;
-            var domain = question.Domain;
-            var domainLower = domain?.ToLower();
+            var questionDomain = question.Domain;
+            var questionDomainLower = questionDomain?.ToLower();
 
             if (queryType is DnsResourceType.A or DnsResourceType.ANY)
             {
-                if (hostname is not null && ipAddress is not null && domainLower == hostname.ToLower())
+                if (hostDomainLower.Equals(questionDomainLower))
                 {
                     answered = true;
                     shouldRespond = true;
                     
-                    response.AddAnswer(new ARecord(domain, ipAddress, _defaultTtl));
+                    response.AddAnswer(new ARecord(questionDomain, ipAddress, _defaultTtl));
                 }
             }
 
             if (queryType is DnsResourceType.PTR or DnsResourceType.ANY)
             {
-                if (domainLower == ServiceEnumerationDomain)
+                if (ServiceEnumerationDomain.Equals(questionDomainLower))
                 {
                     var addedTypes = new ArrayList();
-
+                    
                     foreach (var registration in services)
                     {
-                        if (addedTypes.Contains(registration.ServiceType))
+                        var serviceType = registration.ServiceType;
+                        var serviceTypeLower = serviceType.ToLower();
+                        
+                        if (addedTypes.Contains(serviceTypeLower))
                         {
                             continue;
                         }
@@ -275,15 +280,18 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
                         answered = true;
                         shouldRespond = true;
                         
-                        addedTypes.Add(registration.ServiceType);
-                        response.AddAnswer(new PtrRecord(domain, registration.ServiceType, GetTtl(registration)));
+                        addedTypes.Add(serviceTypeLower);
+                        response.AddAnswer(new PtrRecord(questionDomain, serviceType, GetTtl(registration)));
                     }
                 }
                 else
                 {
                     foreach (var registration in services)
                     {
-                        if (domainLower != registration.ServiceType.ToLower())
+                        var serviceType = registration.ServiceType;
+                        var serviceTypeLower = serviceType.ToLower();
+                        
+                        if (!serviceTypeLower.Equals(questionDomainLower))
                         {
                             continue;
                         }
@@ -291,20 +299,17 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
                         answered = true;
                         shouldRespond = true;
                         
-                        var fullyQualifiedName = registration.GetFullyQualifiedName(hostname ?? string.Empty);
+                        var fullyQualifiedInstance = registration.GetFullyQualifiedInstance(hostname);
 
-                        response.AddAnswer(new PtrRecord(domain, fullyQualifiedName, GetTtl(registration)));
-                        response.AddAdditional(new SrvRecord(fullyQualifiedName, registration.Priority, registration.Weight, registration.Port, hostname ?? string.Empty, GetTtl(registration)));
+                        response.AddAnswer(new PtrRecord(questionDomain, fullyQualifiedInstance, GetTtl(registration)));
+                        response.AddAdditional(new SrvRecord(fullyQualifiedInstance, registration.Priority, registration.Weight, registration.Port, hostDomain, GetTtl(registration)));
 
                         if (!string.IsNullOrEmpty(registration.Txt))
                         {
-                            response.AddAdditional(new TxtRecord(fullyQualifiedName, registration.Txt, GetTtl(registration)));
+                            response.AddAdditional(new TxtRecord(fullyQualifiedInstance, registration.Txt, GetTtl(registration)));
                         }
 
-                        if (hostname is not null && ipAddress is not null)
-                        {
-                            response.AddAdditional(new ARecord(hostname, ipAddress, GetTtl(registration)));
-                        }
+                        response.AddAdditional(new ARecord(hostDomain, ipAddress, GetTtl(registration)));
                     }
                 }
             }
@@ -313,7 +318,8 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
             {
                 foreach (var registration in services)
                 {
-                    if (domainLower != registration.GetFullyQualifiedName(hostname ?? string.Empty).ToLower())
+                    var fullyQualifiedInstanceLower = registration.GetFullyQualifiedInstance(hostname).ToLower();
+                    if (!fullyQualifiedInstanceLower.Equals(questionDomainLower))
                     {
                         continue;
                     }
@@ -321,12 +327,8 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
                     answered = true;
                     shouldRespond = true;
 
-                    response.AddAnswer(new SrvRecord(domain, registration.Priority, registration.Weight, registration.Port, hostname ?? string.Empty, GetTtl(registration)));
-
-                    if (hostname is not null && ipAddress is not null)
-                    {
-                        response.AddAdditional(new ARecord(hostname, ipAddress, GetTtl(registration)));
-                    }
+                    response.AddAnswer(new SrvRecord(questionDomain, registration.Priority, registration.Weight, registration.Port, hostDomain, GetTtl(registration)));
+                    response.AddAdditional(new ARecord(hostDomain, ipAddress, GetTtl(registration)));
                 }
             }
 
@@ -339,21 +341,21 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
                         continue;
                     }
 
-                    if (domainLower != registration.GetFullyQualifiedName(hostname ?? string.Empty).ToLower())
+                    var fullyQualifiedInstanceLower = registration.GetFullyQualifiedInstance(hostname).ToLower();
+                    if (!fullyQualifiedInstanceLower.Equals(questionDomainLower))
                     {
                         continue;
                     }
-                    
+
                     answered = true;
                     shouldRespond = true;
                     
-                    response.AddAnswer(new TxtRecord(domain, registration.Txt, GetTtl(registration)));
+                    response.AddAnswer(new TxtRecord(questionDomain, registration.Txt, GetTtl(registration)));
                 }
             }
 
-            Log(LogLevel.Trace, $"Question: [{QueryTypeToString(queryType)}] {domain}{(answered ? " - ANSWERED" : "")}");
+            Log(LogLevel.Trace, $"Question: [{QueryTypeToString(queryType)}] {questionDomain}{(answered ? " - ANSWERED" : "")}");
         }
-
 
         e.Response = shouldRespond ? response : null;
     }
@@ -398,8 +400,6 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
 
     private void SendAnnouncement()
     {
-        var hostname = _hostname;
-        var ipAddress = _ipAddress;
         var services = (MdnsServiceRegistration[])_services.ToArray(typeof(MdnsServiceRegistration));
 
         if (services.Length == 0)
@@ -407,24 +407,29 @@ public sealed class MdnsServer : IMdnsServer, IDisposable
             return;
         }
 
+        var hostname = Hostname;
+        var ipAddress = IPAddress;
+
+        var hostDomain = $"{hostname}.local";
+
         var announcement = new MdnsResponse();
         var hostAnnounced = false;
 
         foreach (var registration in services)
         {
-            var fullyQualifiedName = registration.GetFullyQualifiedName(hostname ?? string.Empty);
+            var fullyQualifiedInstance = registration.GetFullyQualifiedInstance(hostname);
 
-            announcement.AddAnswer(new PtrRecord(registration.ServiceType, fullyQualifiedName, GetTtl(registration)));
-            announcement.AddAnswer(new SrvRecord(fullyQualifiedName, registration.Priority, registration.Weight, registration.Port, hostname ?? string.Empty, GetTtl(registration)));
+            announcement.AddAnswer(new PtrRecord(registration.ServiceType, fullyQualifiedInstance, GetTtl(registration)));
+            announcement.AddAnswer(new SrvRecord(fullyQualifiedInstance, registration.Priority, registration.Weight, registration.Port, hostDomain, GetTtl(registration)));
 
             if (!string.IsNullOrEmpty(registration.Txt))
             {
-                announcement.AddAnswer(new TxtRecord(fullyQualifiedName, registration.Txt, GetTtl(registration)));
+                announcement.AddAnswer(new TxtRecord(fullyQualifiedInstance, registration.Txt, GetTtl(registration)));
             }
 
-            if (hostname is not null && ipAddress is not null && !hostAnnounced)
+            if (!hostAnnounced)
             {
-                announcement.AddAnswer(new ARecord(hostname, ipAddress, _defaultTtl));
+                announcement.AddAnswer(new ARecord(hostDomain, ipAddress, _defaultTtl));
                 hostAnnounced = true;
             }
         }

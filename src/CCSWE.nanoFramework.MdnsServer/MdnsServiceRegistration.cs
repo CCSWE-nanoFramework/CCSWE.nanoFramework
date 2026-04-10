@@ -81,5 +81,5 @@ public class MdnsServiceRegistration
     /// </summary>
     /// <param name="hostname">The hostname to use as the instance name when <see cref="InstanceName"/> is <see langword="null"/>.</param>
     /// <returns>The fully qualified service instance name.</returns>
-    public string GetFullyQualifiedName(string hostname) => $"{InstanceName ?? hostname}.{ServiceType}";
+    public string GetFullyQualifiedInstance(string hostname) => $"{InstanceName ?? hostname}.{ServiceType}";
 }

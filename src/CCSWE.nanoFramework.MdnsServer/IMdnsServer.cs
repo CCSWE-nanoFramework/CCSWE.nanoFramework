@@ -8,14 +8,16 @@ namespace CCSWE.nanoFramework.MdnsServer;
 public interface IMdnsServer
 {
     /// <summary>
-    /// Gets or sets the hostname for A record responses (e.g., "my-device.local").
+    /// Gets or sets the simple hostname of the device (e.g., <c>"my-device"</c>). Required for the server to function.
+    /// The fully qualified domain name used in DNS records is derived as <c>{Hostname}.local</c>.
     /// </summary>
-    string? Hostname { get; set; }
+    string Hostname { get; set; }
 
     /// <summary>
-    /// Gets or sets the IP address for A record responses.
+    /// Gets or sets the IP address of the device. Required for the server to function.
+    /// Used in A record responses for <c>{Hostname}.local</c>.
     /// </summary>
-    IPAddress? IPAddress { get; set; }
+    IPAddress IPAddress { get; set; }
 
     /// <summary>
     /// Gets a value indicating whether the server is running.
