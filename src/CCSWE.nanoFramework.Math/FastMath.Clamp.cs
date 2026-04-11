@@ -58,7 +58,8 @@ namespace CCSWE.nanoFramework
             {
                 return min;
             }
-            else if (value > max)
+            
+            if (value > max)
             {
                 return max;
             }
@@ -68,10 +69,46 @@ namespace CCSWE.nanoFramework
 
         /// <inheritdoc cref="Math.Clamp(long,long,long)"/>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal static long Clamp(long value, long min, long max) => System.Math.Clamp(value, min, max);
+        internal static long Clamp(long value, long min, long max)
+        {
+            if (min > max)
+            {
+                throw new ArgumentException();
+            }
+
+            if (value < min)
+            {
+                return min;
+            }
+
+            if (value > max)
+            {
+                return max;
+            }
+
+            return value;
+        }
 
         /// <inheritdoc cref="Math.Clamp(ulong,ulong,ulong)"/>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal static ulong Clamp(ulong value, ulong min, ulong max) => System.Math.Clamp(value, min, max);
+        internal static ulong Clamp(ulong value, ulong min, ulong max)
+        {
+            if (min > max)
+            {
+                throw new ArgumentException();
+            }
+
+            if (value < min)
+            {
+                return min;
+            }
+
+            if (value > max)
+            {
+                return max;
+            }
+
+            return value;
+        }
     }
 }

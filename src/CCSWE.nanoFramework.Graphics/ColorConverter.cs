@@ -58,11 +58,6 @@ public static class ColorConverter
         }
     }
 
-    /// <inheritdoc cref="ScaleBrightness(System.Drawing.Color,float)"/>
-    [Obsolete("Use float instead of double")]
-    public static Color ScaleBrightness(Color color, double brightness) =>
-        ScaleBrightness(color, (float)brightness);
-
     /// <summary>
     /// Adjust the brightness of a <see cref="Color"/>.
     /// </summary>

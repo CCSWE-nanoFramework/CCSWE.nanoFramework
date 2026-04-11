@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <NanoFrameworkProjectSystemPath>$(MSBuildExtensionsPath)\nanoFramework\v1.0\</NanoFrameworkProjectSystemPath>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props')" />
+  <ItemGroup>
+    <ProjectCapability Include="TestContainer" />
+  </ItemGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>ce907869-7d32-484c-b363-f29d95b76095</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>UnitTests.CCSWE.nanoFramework.WebServer</RootNamespace>
+    <AssemblyName>NFUnitTest</AssemblyName>
+    <IsCodedUITest>False</IsCodedUITest>
+    <IsTestProject>true</IsTestProject>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <LangVersion>default</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
+  <PropertyGroup>
+    <RunSettingsFilePath>$(MSBuildProjectDirectory)\nano.runsettings</RunSettingsFilePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\AuthenticateResultTests.cs" />
+    <Compile Include="Authentication\AuthenticationMiddlewareTests.cs" />
+    <Compile Include="Authentication\AuthenticationServiceTests.cs" />
+    <Compile Include="BootstrapperTests.cs" />
+    <Compile Include="Diagnostics\ExceptionHandlerMiddlewareTests.cs" />
+    <Compile Include="Http\HttpResponseExtensionsTests.cs" />
+    <Compile Include="Internal\UrlHelperTests.cs" />
+    <Compile Include="Cors\CorsMiddlewareTests.cs" />
+    <Compile Include="Mocks\Authentication\AuthenticationServiceMock.cs" />
+    <Compile Include="Mocks\Middleware\MiddlewareMock.cs" />
+    <Compile Include="Mocks\RequestDelegateMock.cs" />
+    <Compile Include="Mocks\StaticFiles\ContentTypeProviderMock.cs" />
+    <Compile Include="Mocks\StaticFiles\FileProviderMock.cs" />
+    <Compile Include="RequestPipelineTests.cs" />
+    <Compile Include="Routing\EndpointTests.cs" />
+    <Compile Include="Routing\EndpointHandlerTests.cs" />
+    <Compile Include="Mocks\Authentication\AuthenticationHandlerMocks.cs" />
+    <Compile Include="Mocks\Authentication\ExceptionAuthenticationHandler.cs" />
+    <Compile Include="Mocks\Authentication\SuccessAuthenticationHandler.cs" />
+    <Compile Include="Mocks\Authentication\FailAuthenticationHandler.cs" />
+    <Compile Include="Mocks\Authentication\NoResultAuthenticationHandler.cs" />
+    <Compile Include="Mocks\Controllers\ControllerMock.cs" />
+    <Compile Include="Mocks\Http\HttpContextMock.cs" />
+    <Compile Include="Mocks\Http\HttpRequestMock.cs" />
+    <Compile Include="Mocks\Http\HttpResponseMock.cs" />
+    <Compile Include="Mocks\LoggerMock.cs" />
+    <Compile Include="Mocks\ServiceProviderMock.cs" />
+    <Compile Include="Internal\WebServerTypeUtilsTests.cs" />
+    <Compile Include="RouteAttributeTests.cs" />
+    <Compile Include="HttpPutAttributeTests.cs" />
+    <Compile Include="HttpPostAttributeTests.cs" />
+    <Compile Include="HttpPatchAttributeTests.cs" />
+    <Compile Include="HttpOptionsAttributeTests.cs" />
+    <Compile Include="HttpHeadAttributeTests.cs" />
+    <Compile Include="HttpGetAttributeTests.cs" />
+    <Compile Include="HttpDeleteAttributeTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CCSWE.nanoFramework.Core\CCSWE.nanoFramework.Core.nfproj" />
+    <ProjectReference Include="..\..\src\CCSWE.nanoFramework.Logging\CCSWE.nanoFramework.Logging.nfproj" />
+    <ProjectReference Include="..\..\src\CCSWE.nanoFramework.WebServer\CCSWE.nanoFramework.WebServer.nfproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib, Version=1.17.11.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.17.11\lib\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.DependencyInjection, Version=1.1.32.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.DependencyInjection.1.1.32\lib\nanoFramework.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Logging, Version=1.1.161.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.Logging.1.1.161\lib\nanoFramework.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Runtime.Events, Version=1.11.32.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.Runtime.Events.1.11.32\lib\nanoFramework.Runtime.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.System.Collections, Version=1.5.67.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Collections.1.5.67\lib\nanoFramework.System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.System.Text, Version=1.3.42.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Text.1.3.42\lib\nanoFramework.System.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.TestFramework, Version=3.0.77.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.TestFramework.3.0.77\lib\nanoFramework.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.UnitTestLauncher, Version=0.0.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.TestFramework.3.0.77\lib\nanoFramework.UnitTestLauncher.exe</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Streams, Version=1.1.96.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.IO.Streams.1.1.96\lib\System.IO.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net, Version=1.11.50.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Net.1.11.50\lib\System.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=1.5.203.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Net.Http.1.5.203\lib\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading, Version=1.1.52.34401, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Threading.1.1.52\lib\System.Threading.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nano.runsettings" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.lock.json" />
+  </ItemGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
+</Project>

@@ -116,10 +116,7 @@ namespace CCSWE.nanoFramework.Hosting
         /// <inheritdoc />
         public IHostBuilder UseDefaultServiceProvider(ProviderContextDelegate configureDelegate)
         {
-            if (configureDelegate == null)
-            {
-                throw new ArgumentNullException();
-            }
+            ArgumentNullException.ThrowIfNull(configureDelegate);
 
             configureDelegate(_hostBuilderContext, _serviceProviderOptions);
 

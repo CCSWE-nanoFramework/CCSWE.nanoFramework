@@ -24,5 +24,5 @@ using System.Runtime.InteropServices;
 // update this whenever the native assembly signature changes  //
 [assembly: AssemblyNativeVersion("1.0.0.0")]
 /////////////////////////////////////////////////////////////////
-[assembly: InternalsVisibleTo("CCSWE.nanoFramework.Graphics.Benchmarks")]
+[assembly: InternalsVisibleTo("Benchmarks.CCSWE.nanoFramework.Graphics")]
 [assembly: InternalsVisibleTo("NFUnitTest")]

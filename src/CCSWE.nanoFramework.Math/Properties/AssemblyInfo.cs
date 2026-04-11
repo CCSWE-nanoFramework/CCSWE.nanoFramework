@@ -19,5 +19,5 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
-[assembly: InternalsVisibleTo("CCSWE.nanoFramework.Math.Benchmarks")]
+[assembly: InternalsVisibleTo("Benchmarks.CCSWE.nanoFramework.Math")]
 [assembly: InternalsVisibleTo("NFUnitTest")]

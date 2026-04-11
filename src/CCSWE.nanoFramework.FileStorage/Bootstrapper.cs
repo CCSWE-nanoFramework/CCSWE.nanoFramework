@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CCSWE.nanoFramework.FileStorage.Internal;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CCSWE.nanoFramework.FileStorage
 {
@@ -12,7 +13,7 @@ namespace CCSWE.nanoFramework.FileStorage
         /// </summary>
         public static IServiceCollection AddFileStorage(this IServiceCollection services)
         {
-            return services.AddSingleton(typeof(IFileStorage), typeof(FileStorage));
+            return services.AddSingleton(typeof(IFileStorage), typeof(DefaultFileStorage));
         }
     }
 }

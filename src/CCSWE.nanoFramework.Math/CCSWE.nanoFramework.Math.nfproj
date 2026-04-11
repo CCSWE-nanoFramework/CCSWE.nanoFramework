@@ -24,18 +24,12 @@
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="BitConverter.cs" />
     <Compile Include="FastMath.Abs.cs" />
     <Compile Include="FastMath.Clamp.cs" />
     <Compile Include="FastMath.cs" />
     <Compile Include="FastMath.Max.cs" />
     <Compile Include="FastMath.Min.cs" />
-    <Compile Include="Math.Abs.cs" />
-    <Compile Include="Math.Clamp.cs" />
-    <Compile Include="Math.cs" />
     <Compile Include="FloatingPoint.cs" />
-    <Compile Include="Math.Max.cs" />
-    <Compile Include="Math.Min.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
