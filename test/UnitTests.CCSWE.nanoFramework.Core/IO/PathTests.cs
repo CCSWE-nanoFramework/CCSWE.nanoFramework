@@ -2,6 +2,7 @@
 using nanoFramework.TestFramework;
 
 namespace UnitTests.CCSWE.nanoFramework.Core.IO;
+
 [TestClass]
 public class PathTests
 {

@@ -37,7 +37,7 @@
     <Compile Include="IO\PathTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Text\StringFormatterTests.cs" />
-    <Compile Include="StringsTest.cs" />
+    <Compile Include="StringsTests.cs" />
     <Compile Include="Text\TimeSpanConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
