@@ -7,4 +7,8 @@ namespace CCSWE.nanoFramework.MdnsServer.Internal;
 /// </summary>
 internal sealed class MdnsResponse : Response
 {
+    public bool IsEmpty()
+    {
+        return _answers.Count == 0 && _additionals.Count == 0 && _servers.Count == 0;
+    }
 }
