@@ -2,16 +2,49 @@
 
 # CCSWE.nanoFramework.Threading
 
-A collection of utilities to simplify thread usage.
+Utilities to simplify thread management on nanoFramework devices.
 
-### `ThreadPool``
+## `ThreadPool`
 
-A general purpose thread pool that helps to eliminate the cost of spinning up new threads.
+A general-purpose managed worker pool that eliminates the cost of spinning up new threads for each work item:
 
-### ConsumerThreadPool
+```csharp
+ThreadPool.QueueUserWorkItem(state =>
+{
+    // work item runs on a pooled thread
+}, null);
+```
 
-Provides a specialized thread pool to process items from a queue asynchronously.
+| Member | Description |
+|---|---|
+| `Workers` | Maximum number of worker threads (default: 64) |
+| `WorkItems` | Maximum pending work item queue depth (default: 64) |
+| `ThreadCount` | Current number of active threads |
+| `PendingWorkItemCount` | Number of queued work items waiting to run |
+| `QueueUserWorkItem(WaitCallback, object)` | Enqueue a work item |
+| `SetMinThreads(int)` | Pre-warm a minimum number of threads |
 
-### WaitHandles
+## `ConsumerThreadPool`
 
-"Extension" methods that simplify waiting on multiple `WaitHandle`
+A specialized pool that processes items from a queue using a fixed number of consumer threads:
+
+```csharp
+var pool = new ConsumerThreadPool(consumerCount: 2, (item) =>
+{
+    // process each item on a consumer thread
+});
+
+pool.Enqueue(myItem);
+
+// dispose to stop consumer threads
+pool.Dispose();
+```
+
+## `WaitHandles`
+
+Helper methods for waiting on multiple `WaitHandle` instances:
+
+```csharp
+WaitHandles.WaitAll(new WaitHandle[] { handle1, handle2 });
+WaitHandles.WaitAny(new WaitHandle[] { handle1, handle2 });
+```

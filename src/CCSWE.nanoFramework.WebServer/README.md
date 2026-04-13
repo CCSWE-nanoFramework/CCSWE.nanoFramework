@@ -2,16 +2,68 @@
 
 # CCSWE.nanoFramework.WebServer
 
-A simple asynchronous web server implementation for .NET nanoFramework that tries to mimic the ASP.NET Core implementation.
+A simple asynchronous web server for nanoFramework modelled after ASP.NET Core. See the [WebServer sample](tree/master/samples/Samples.CCSWE.nanoFramework.WebServer) for a complete example.
 
 ## Features
 
-- Controllers with support for routing and parameter binding
-- Custom middleware support through `IMiddleware`
-- Request thread pool for processing requests
-- Flexible authentication through `IAuthenticationProvider`
+- Attribute-based controllers with routing and parameter binding
+- Custom middleware via `IMiddleware`
+- Request thread pool for concurrent request processing
+- Pluggable authentication via `IAuthenticationProvider`
 - HTTPS support
 
-## Usage
+## Quick Start
 
-I'll add more documentation later, but for now you can check out the [sample project](tree/master/samples/CCSWE.nanoFramework.WebServer.Samples) for an example of how to use the web server.
+### Controller
+
+```csharp
+[Route("api/status")]
+public class StatusController : ControllerBase
+{
+    [HttpGet]
+    public void Get()
+    {
+        Ok("running");
+    }
+}
+```
+
+### Middleware
+
+```csharp
+public class LoggingMiddleware : IMiddleware
+{
+    public void Invoke(HttpListenerContext context, MiddlewareDelegate next)
+    {
+        // pre-processing
+        next(context);
+        // post-processing
+    }
+}
+```
+
+### DI Registration
+
+Register controllers individually or let reflection discover all controllers in an assembly:
+
+```csharp
+services.AddWebServer(options =>
+{
+    options.Port = 80;
+})
+.AddMiddleware(typeof(LoggingMiddleware))
+.AddController(typeof(StatusController));  // register one controller explicitly
+```
+
+`AddControllers` uses reflection to scan an assembly and automatically register every class that derives from `ControllerBase`, eliminating the need to list them individually:
+
+```csharp
+services.AddWebServer(options =>
+{
+    options.Port = 80;
+})
+.AddMiddleware(typeof(LoggingMiddleware))
+.AddControllers();                         // scans the executing assembly
+// or target a specific assembly:
+.AddControllers(Assembly.GetExecutingAssembly());
+```

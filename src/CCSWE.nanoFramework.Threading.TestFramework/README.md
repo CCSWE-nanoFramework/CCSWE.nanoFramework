@@ -2,6 +2,26 @@
 
 # CCSWE.nanoFramework.Threading.TestFramework
 
-A helper for managing ThreadPool during unit tests.
+Helpers for managing `ThreadPool` state in nanoFramework unit tests. Because `ThreadPool` is a static singleton, tests that interact with it can leave state that affects subsequent tests. These utilities ensure the pool is reset to a known state before and after each test.
 
-Add example...
+## API
+
+### `ThreadPoolTestHelper`
+
+```csharp
+// Wrap a test body so the ThreadPool is reset after it runs (even on failure)
+ThreadPoolTestHelper.ExecuteAndReset(() =>
+{
+    ThreadPool.QueueUserWorkItem(_ => { /* ... */ }, null);
+    // assertions...
+});
+```
+
+### `ThreadPoolManager`
+
+```csharp
+// Manually reset the ThreadPool between tests
+ThreadPoolManager.Reset();
+```
+
+Use `ExecuteAndReset` when a single test needs cleanup. Use `ThreadPoolManager.Reset()` in a test setup/teardown method when multiple tests in a class share the pool.
