@@ -17,13 +17,15 @@
     <copyright>Copyright (c) Cory Charlton</copyright>
     <tags>nanoFramework C# csharp netmf netnf ccswe neopixel ws2812c</tags>
     <dependencies>
-      <dependency id="CCSWE.nanoFramework.Graphics" version="$version$" />
-      <dependency id="CCSWE.nanoFramework.Math" version="$version$" />
-      <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
-      <dependency id="nanoFramework.Graphics.Core" version="1.2.45" />
-      <dependency id="nanoFramework.Hardware.Esp32.Rmt" version="2.0.35" />
-      <dependency id="nanoFramework.Runtime.Events" version="1.11.32" />
-      <dependency id="nanoFramework.System.Math" version="1.5.116" />
+      <group targetFramework=".NETnanoFramework1.0">
+        <dependency id="CCSWE.nanoFramework.Graphics" version="$version$" />
+        <dependency id="CCSWE.nanoFramework.Math" version="$version$" />
+        <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
+        <dependency id="nanoFramework.Graphics.Core" version="1.2.45" />
+        <dependency id="nanoFramework.Hardware.Esp32.Rmt" version="2.0.35" />
+        <dependency id="nanoFramework.Runtime.Events" version="1.11.32" />
+        <dependency id="nanoFramework.System.Math" version="1.5.116" />
+      </group>
     </dependencies>
   </metadata>
   <files>
