@@ -36,6 +36,7 @@ public class MdnsServiceRegistration
 
         InstanceName = instanceName;
         ServiceType = serviceType;
+        ServiceTypeLower = serviceType.ToLower();
         Port = port;
         Txt = txt;
     }
@@ -61,6 +62,11 @@ public class MdnsServiceRegistration
     public string ServiceType { get; }
 
     /// <summary>
+    /// Gets the service type in lowercase (e.g., "_http._tcp.local").
+    /// </summary>
+    internal string ServiceTypeLower { get; }
+
+    /// <summary>
     /// Gets or sets the TTL override in seconds. If <c>0</c>, uses <see cref="MdnsServerOptions.DefaultTtl"/>.
     /// </summary>
     public int Ttl { get; set; }
@@ -81,5 +87,5 @@ public class MdnsServiceRegistration
     /// </summary>
     /// <param name="hostname">The hostname to use as the instance name when <see cref="InstanceName"/> is <see langword="null"/>.</param>
     /// <returns>The fully qualified service instance name.</returns>
-    public string GetFullyQualifiedInstance(string hostname) => $"{InstanceName ?? hostname}.{ServiceType}";
+    internal string GetFullyQualifiedInstanceName(string hostname) => $"{InstanceName ?? hostname}.{ServiceType}";
 }

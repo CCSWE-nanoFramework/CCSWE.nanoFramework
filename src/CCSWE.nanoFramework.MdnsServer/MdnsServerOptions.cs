@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Net;
 
 namespace CCSWE.nanoFramework.MdnsServer;
 
@@ -21,6 +22,14 @@ public class MdnsServerOptions
     /// </summary>
     public string? Hostname { get; set; }
 
+    /// <summary>
+    /// Gets or sets the IP address to be used by the <see cref="MdnsServer"/>.
+    /// </summary>
+    /// <value>
+    /// The IP address to bind the <see cref="MdnsServer"/> to, or <see langword="null"/> if not specified.
+    /// </value>
+    public IPAddress? IPAddress { get; set; }
+    
     /// <summary>Gets the service registrations to apply when <see cref="MdnsServer"/> is constructed.</summary>
     internal ArrayList Services => _services;
 
