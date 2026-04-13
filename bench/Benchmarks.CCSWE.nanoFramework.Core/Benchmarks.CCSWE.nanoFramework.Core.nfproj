@@ -24,6 +24,7 @@
     <Compile Include="EnsureBenchmarks.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringEqualsBenchmarks.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.lock.json" />
