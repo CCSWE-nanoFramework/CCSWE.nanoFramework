@@ -18,7 +18,6 @@
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
     <Nullable>Enable</Nullable>
     <DocumentationFile>bin\$(Configuration)\CCSWE.nanoFramework.Threading.TestFramework.xml</DocumentationFile>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
