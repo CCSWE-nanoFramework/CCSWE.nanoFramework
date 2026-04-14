@@ -64,6 +64,11 @@ namespace CCSWE.nanoFramework.Net
         public static class Text
         {
             /// <summary>
+            /// text/css
+            /// </summary>
+            public const string Css = "text/css";
+
+            /// <summary>
             /// text/html
             /// </summary>
             public const string Html = "text/html";
