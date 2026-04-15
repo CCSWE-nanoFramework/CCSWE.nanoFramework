@@ -59,6 +59,7 @@ namespace CCSWE.nanoFramework.WebServer.Http
                 return;
             }
 
+            // TODO: We should only serialize to JSON if the content type is "application/json"
             var bytes = Encoding.UTF8.GetBytes(body as string ?? JsonConvert.SerializeObject(body));
 
             response.Write(bytes, contentType ?? MimeType.Application.Json);
@@ -72,10 +73,6 @@ namespace CCSWE.nanoFramework.WebServer.Http
         /// <param name="contentType">The content type. Defaults to <see cref="MimeType.Application.Json"/>.</param>
         public static void Write(this HttpResponse response, byte[] body, string? contentType = null)
         {
-            //TODO: I could reuse the stream method here, but I need to test which path is optimal
-            //using var stream = new MemoryStream(body, false);
-            //response.Write(stream, contentType);
-
             response.ContentLength = body.Length;
             response.ContentType = contentType ?? MimeType.Application.Octet;
             response.SendChunked = false; //response.ContentLength > BufferSize; TODO: Come back to this...

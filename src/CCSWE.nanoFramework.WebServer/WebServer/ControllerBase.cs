@@ -37,17 +37,7 @@ namespace CCSWE.nanoFramework.WebServer
         /// </remarks>
         protected void StatusCode(HttpStatusCode statusCode, object? body = null, string? contentType = null)
         {
-/*            if (body is null)
-            {
-                Response.ContentLength = 0;
-                Response.StatusCode(statusCode);
-                Response.Body.Write([],0,0);
-                Response.KeepAlive = false;
-
-                return;
-            }
-
-*/            Response.StatusCode(statusCode);
+            Response.StatusCode(statusCode);
 
             switch (body)
             {
