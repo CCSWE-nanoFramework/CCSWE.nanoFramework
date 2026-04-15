@@ -12,7 +12,8 @@ namespace CCSWE.nanoFramework.Configuration.Internal
             }
 
             Defaults = defaults;
-            Section = NormalizeSection(section);
+            Key = GetKey(section);
+            Section = section;
             Type = type;
             Validator = validator;
         }
@@ -20,6 +21,8 @@ namespace CCSWE.nanoFramework.Configuration.Internal
         public object? Current { get; set; }
 
         public object Defaults { get; }
+
+        public string Key { get; }
 
         public string Section { get; }
 
@@ -35,6 +38,6 @@ namespace CCSWE.nanoFramework.Configuration.Internal
 
         public IValidateConfiguration? Validator { get; }
 
-        internal static string NormalizeSection(string name) => name.ToLower();
+        internal static string GetKey(string section) => section.ToLower();
     }
 }

@@ -15,7 +15,7 @@ namespace CCSWE.nanoFramework.Configuration
         /// <param name="section">The configuration section.</param>
         /// <returns>An absolute path to the configuration section.</returns>
         /// <remarks>This is only visible for testing.</remarks>
-        internal static string GetPath(string section) => Path.Combine(Root, $"ccswe-{ConfigurationDescriptor.NormalizeSection(section)}.config");
+        internal static string GetPath(string section) => Path.Combine(Root, $"ccswe-{ConfigurationDescriptor.GetKey(section)}.config");
 
         /// <inheritdoc />
         public void DeleteConfiguration(string section)

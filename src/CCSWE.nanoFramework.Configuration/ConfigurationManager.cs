@@ -47,12 +47,12 @@ namespace CCSWE.nanoFramework.Configuration
 
         private void AddDescriptor(ConfigurationDescriptor descriptor)
         {
-            if (_configurationDescriptors.Contains(descriptor.Section))
+            if (_configurationDescriptors.Contains(descriptor.Key))
             {
                 throw new ArgumentException($"Configuration '{descriptor.Section}' has already been registered", nameof(descriptor));
             }
 
-            _configurationDescriptors.Add(descriptor.Section, descriptor);
+            _configurationDescriptors.Add(descriptor.Key, descriptor);
         }
 
         private void CheckDisposed()
@@ -101,7 +101,7 @@ namespace CCSWE.nanoFramework.Configuration
 
         public bool Contains(string section)
         {
-            return _configurationDescriptors[ConfigurationDescriptor.NormalizeSection(section)] is ConfigurationDescriptor;
+            return _configurationDescriptors[ConfigurationDescriptor.GetKey(section)] is ConfigurationDescriptor;
         }
 
         private void Log(LogLevel logLevel, string message)
@@ -155,7 +155,7 @@ namespace CCSWE.nanoFramework.Configuration
 
         private ConfigurationDescriptor GetDescriptor(string section)
         {
-            return _configurationDescriptors[ConfigurationDescriptor.NormalizeSection(section)] as ConfigurationDescriptor ?? throw new ArgumentException($"Configuration '{section}' is not registered", nameof(section));
+            return _configurationDescriptors[ConfigurationDescriptor.GetKey(section)] as ConfigurationDescriptor ?? throw new ArgumentException($"Configuration '{section}' is not registered", nameof(section));
         }
 
         public object Get(string section)
