@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Sockets;
 using CCSWE.nanoFramework.WebServer.Http;
 using Microsoft.Extensions.Logging;
 
@@ -30,7 +31,7 @@ namespace CCSWE.nanoFramework.WebServer.Diagnostics
             // TODO: Make this flexible by allowing consumer to implement non-default handling?
             if (exception is not null)
             {
-                if (!context.Response.HasStarted)
+                if (exception is not SocketException && !context.Response.HasStarted)
                 {
                     context.Response.StatusCode(HttpStatusCode.InternalServerError, exception.Message);
                 }
