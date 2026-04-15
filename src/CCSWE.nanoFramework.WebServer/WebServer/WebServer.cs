@@ -36,8 +36,8 @@ namespace CCSWE.nanoFramework.WebServer
             _logger = new WebServerLogger(logger);
             _options = options;
             _serviceProvider = serviceProvider;
-            _threadPool = new ThreadPoolInternal(32, 32);
-            _threadPool.SetMinThreads(4);
+            _threadPool = new ThreadPoolInternal(options.MaxThreads, options.MaxThreads * 2);
+            _threadPool.SetMinThreads(options.MinThreads);
         }
 
         /// <summary>

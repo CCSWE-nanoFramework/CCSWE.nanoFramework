@@ -14,6 +14,22 @@ public class WebServerOptions
     public X509Certificate? Certificate { get; set; }
 
     /// <summary>
+    /// Gets or sets the maximum number of threads that the <see cref="WebServer"/> can use for handling requests.
+    /// </summary>
+    /// <value>
+    /// The maximum number of threads. The default value is 16.
+    /// </value>
+    public int MaxThreads { get; set; } = 16;
+
+    /// <summary>
+    /// Gets or sets the minimum number of threads that the <see cref="WebServer"/> can use for handling requests.
+    /// </summary>
+    /// <value>
+    /// The minimum number of threads. The default value is 4.
+    /// </value>
+    public int MinThreads { get; set; } = 4;
+
+    /// <summary>
     /// The port the <see cref="WebServer"/> listens on.
     /// </summary>
     public ushort Port { get; set; } = 80;
