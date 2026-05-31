@@ -44,6 +44,28 @@ Test assemblies are compiled to `NFUnitTest.dll`. Each test project includes a `
 
 CI/CD uses shared workflows from `CCSWE-nanoframework/actions-nanoframework` via GitHub Actions (see `.github/workflows/`).
 
+### Building on Linux/Mono (local only)
+
+nanoFramework officially builds on Windows/VS; CI uses Windows runners. A local Linux build works via a hybrid toolchain — Mono `msbuild` (its .NET Framework nano tasks, incl. the MetadataProcessor, load fine) driven with the .NET SDK's modern Roslyn (Mono's bundled Roslyn 3.9 only reaches C# 9; the source uses C# 10 file-scoped namespaces and C# 12 collection expressions). Three pieces are load-bearing:
+
+1. **Targets path** — `.nfproj` imports `$(MSBuildExtensionsPath)\nanoFramework\v1.0\NFProjectSystem.*`. Under Mono, `MSBuildExtensionsPath` is the built-in default `/usr/lib/mono/xbuild` (not an env var). The nano targets ship inside the VS Code extension, so symlink them in (imports are `Exists`-guarded — without this they silently skip and the build is broken/empty rather than failing loudly):
+   ```bash
+   sudo ln -s ~/.vscode-server/extensions/nanoframework.vscode-nanoframework-<ver>/dist/utils/nanoFramework \
+     /usr/lib/mono/xbuild/nanoFramework
+   ```
+2. **Modern compiler** — a wrapper at `~/.local/share/nf-build/csc` that execs the highest installed SDK's `Roslyn/bincore/csc.dll` via `dotnet`.
+3. **`UseSharedCompilation=false`** — otherwise the Roslyn 3.9 VBCSCompiler server handles the compile and ignores the tool override.
+
+Build command:
+```bash
+msbuild /p:Configuration=Release \
+  /p:UseSharedCompilation=false \
+  /p:CscToolPath=$HOME/.local/share/nf-build /p:CscToolExe=csc \
+  src/<Project>/<Project>.nfproj
+```
+
+Re-point the symlink when the extension updates (path is version-pinned). This setup is local-only; it touches no project files and has no effect on Windows or CI builds.
+
 ## Repository Layout
 
 ```
