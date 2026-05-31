@@ -58,11 +58,11 @@
     <Reference Include="System.Buffers.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.System.Buffers.Helpers.1.0.201\lib\System.Buffers.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net, Version=1.11.50.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-      <HintPath>..\..\packages\nanoFramework.System.Net.1.11.50\lib\System.Net.dll</HintPath>
+    <Reference Include="System.Net, Version=1.11.52.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Net.1.11.52\lib\System.Net.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Sockets.UdpClient, Version=1.1.101.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-      <HintPath>..\..\packages\nanoFramework.System.Net.Sockets.UdpClient.1.1.101\lib\System.Net.Sockets.UdpClient.dll</HintPath>
+    <Reference Include="System.Net.Sockets.UdpClient, Version=1.1.102.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
+      <HintPath>..\..\packages\nanoFramework.System.Net.Sockets.UdpClient.1.1.102\lib\System.Net.Sockets.UdpClient.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
