@@ -120,7 +120,7 @@ public class WebServerTypeUtilsTests
     [TestMethod]
     public void RequireAuthenticationHandler_throws_argument_exception()
     {
-        Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireAuthenticationHandler(null!));
+        Assert.ThrowsException(typeof(ArgumentNullException), () => WebServerTypeUtils.RequireAuthenticationHandler(null!));
         Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireAuthenticationHandler(typeof(object)));
     }
 
@@ -133,7 +133,7 @@ public class WebServerTypeUtilsTests
     [TestMethod]
     public void RequireControllerBase_throws_argument_exception()
     {
-        Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireControllerBase(null!));
+        Assert.ThrowsException(typeof(ArgumentNullException), () => WebServerTypeUtils.RequireControllerBase(null!));
         Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireControllerBase(typeof(object)));
     }
 
@@ -151,7 +151,7 @@ public class WebServerTypeUtilsTests
     [TestMethod]
     public void RequireMiddleware_throws_argument_exception()
     {
-        Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireMiddleware(null!));
+        Assert.ThrowsException(typeof(ArgumentNullException), () => WebServerTypeUtils.RequireMiddleware(null!));
         Assert.ThrowsException(typeof(ArgumentException), () => WebServerTypeUtils.RequireMiddleware(typeof(object)));
     }
 }
