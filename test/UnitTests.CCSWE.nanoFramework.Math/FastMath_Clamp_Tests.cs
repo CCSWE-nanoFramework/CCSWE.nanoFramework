@@ -41,7 +41,7 @@ public class FastMath_Clamp_Tests
     [TestMethod]
     public void Clamp_Double_throws_when_min_is_NaN()
     {
-        Assert.ThrowsException(typeof(ArgumentException), () => { FastMath.Clamp(double.NaN, double.NaN, double.NaN); });
+        Assert.ThrowsException(typeof(ArgumentException), () => { FastMath.Clamp(10d, double.NaN, 1d); });
     }
     #endregion
 
@@ -79,7 +79,7 @@ public class FastMath_Clamp_Tests
     [TestMethod]
     public void Clamp_Float_throws_when_min_is_NaN()
     {
-        Assert.ThrowsException(typeof(ArgumentException), () => { FastMath.Clamp(float.NaN, float.NaN, float.NaN); });
+        Assert.ThrowsException(typeof(ArgumentException), () => { FastMath.Clamp(10f, float.NaN, 1f); });
     }
     #endregion
 

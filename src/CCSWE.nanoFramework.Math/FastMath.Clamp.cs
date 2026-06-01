@@ -8,6 +8,11 @@ namespace CCSWE.nanoFramework
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Clamp(double value, double min, double max)
         {
+            if (double.IsNaN(max) || double.IsNaN(min))
+            {
+                throw new ArgumentException();
+            }
+            
             if (max < min)
             {
                 throw new ArgumentException();
@@ -17,7 +22,8 @@ namespace CCSWE.nanoFramework
             {
                 return min;
             }
-            else if (value > max)
+            
+            if (value > max)
             {
                 return max;
             }
@@ -29,6 +35,11 @@ namespace CCSWE.nanoFramework
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Clamp(float value, float min, float max)
         {
+            if (float.IsNaN(max) || float.IsNaN(min))
+            {
+                throw new ArgumentException();
+            }
+            
             if (max < min)
             {
                 throw new ArgumentException();
@@ -38,7 +49,8 @@ namespace CCSWE.nanoFramework
             {
                 return min;
             }
-            else if (value > max)
+            
+            if (value > max)
             {
                 return max;
             }
