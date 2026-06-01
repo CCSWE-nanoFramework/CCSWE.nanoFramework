@@ -72,6 +72,8 @@ namespace CCSWE.nanoFramework.WebServer.Internal
 
         public static void RequireAuthenticationHandler(Type eventType)
         {
+            ArgumentNullException.ThrowIfNull(eventType);
+
             if (!IsAuthenticationHandler(eventType))
             {
                 throw new ArgumentException($"{eventType.Name} does not implement {nameof(IAuthenticationHandler)}");
@@ -80,6 +82,8 @@ namespace CCSWE.nanoFramework.WebServer.Internal
 
         public static void RequireControllerBase(Type eventType)
         {
+            ArgumentNullException.ThrowIfNull(eventType);
+
             if (!IsControllerBase(eventType))
             {
                 throw new ArgumentException($"{eventType.Name} does not extend {nameof(ControllerBase)}");
@@ -88,6 +92,8 @@ namespace CCSWE.nanoFramework.WebServer.Internal
 
         public static void RequireMiddleware(Type eventType)
         {
+            ArgumentNullException.ThrowIfNull(eventType);
+
             if (!IsMiddleware(eventType))
             {
                 throw new ArgumentException($"{eventType.Name} does not implement {nameof(IMiddleware)}");
