@@ -20,11 +20,11 @@
       <group targetFramework=".NETnanoFramework1.0">
         <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
         <dependency id="nanoFramework.DependencyInjection" version="1.1.32" />
-        <dependency id="nanoFramework.Iot.Device.MulticastDns" version="1.0.272" />
+        <dependency id="nanoFramework.Iot.Device.MulticastDns" version="1.0.283" />
         <dependency id="nanoFramework.Logging" version="1.1.161" />
         <dependency id="nanoFramework.Runtime.Events" version="1.11.32" />
         <dependency id="nanoFramework.System.Buffers.Binary.BinaryPrimitives" version="1.2.862" />
-        <dependency id="nanoFramework.System.Buffers.Helpers" version="1.0.201" />
+        <dependency id="nanoFramework.System.Buffers.Helpers" version="1.0.285" />
         <dependency id="nanoFramework.System.Collections" version="1.5.67" />
         <dependency id="nanoFramework.System.IO.Streams" version="1.1.96" />
         <dependency id="nanoFramework.System.Net" version="1.11.52" />
