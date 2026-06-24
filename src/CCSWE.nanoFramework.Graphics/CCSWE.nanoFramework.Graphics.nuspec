@@ -20,7 +20,7 @@
       <group targetFramework=".NETnanoFramework1.0">
         <dependency id="CCSWE.nanoFramework.Math" version="$version$" />
         <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
-        <dependency id="nanoFramework.Graphics.Core" version="1.2.45" />
+        <dependency id="nanoFramework.Graphics.Core" version="1.2.52" />
         <dependency id="nanoFramework.System.Math" version="1.5.116" />
       </group>
     </dependencies>
