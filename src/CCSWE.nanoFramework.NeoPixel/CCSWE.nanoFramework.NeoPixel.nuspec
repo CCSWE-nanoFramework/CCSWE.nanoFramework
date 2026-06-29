@@ -21,9 +21,9 @@
         <dependency id="CCSWE.nanoFramework.Graphics" version="$version$" />
         <dependency id="CCSWE.nanoFramework.Math" version="$version$" />
         <dependency id="nanoFramework.CoreLibrary" version="1.17.11" />
-        <dependency id="nanoFramework.Graphics.Core" version="1.2.52" />
-        <dependency id="nanoFramework.Hardware.Esp32.Rmt" version="2.0.35" />
-        <dependency id="nanoFramework.Runtime.Events" version="1.11.32" />
+        <dependency id="nanoFramework.Graphics.Core" version="1.2.53" />
+        <dependency id="nanoFramework.Hardware.Esp32.Rmt" version="2.0.51" />
+        <dependency id="nanoFramework.Runtime.Events" version="1.11.37" />
         <dependency id="nanoFramework.System.Math" version="1.5.116" />
       </group>
     </dependencies>
