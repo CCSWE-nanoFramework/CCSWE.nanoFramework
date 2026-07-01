@@ -16,9 +16,9 @@
       },
       "nanoFramework.Iot.Device.MulticastDns": {
         "type": "Direct",
-        "requested": "[1.0.286, 1.0.286]",
-        "resolved": "1.0.286",
-        "contentHash": "a7R+YamhwdiezlGCxILKwJCusBmLNfB3yrbzq2SEUzxdpIHUai59H7pG1n8FkRKwd98gAx097qZN6pMx1C+dCA=="
+        "requested": "[1.0.294, 1.0.294]",
+        "resolved": "1.0.294",
+        "contentHash": "sRyEsrvIucX0qizkpj9gC1MpzICOwaPi0uiUe59sJFUkElhMzCEz9xpCEC5UessBtQ13jluc2mUg5uUQJgcaog=="
       },
       "nanoFramework.Logging": {
         "type": "Direct",
