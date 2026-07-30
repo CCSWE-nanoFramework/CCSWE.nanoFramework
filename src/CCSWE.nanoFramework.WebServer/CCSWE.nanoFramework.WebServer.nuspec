@@ -24,7 +24,7 @@
         <dependency id="nanoFramework.DependencyInjection" version="1.1.32" />
         <dependency id="nanoFramework.Json" version="2.2.213" />
         <dependency id="nanoFramework.Logging" version="1.1.161" />
-        <dependency id="nanoFramework.Runtime.Events" version="1.11.37" />
+        <dependency id="nanoFramework.Runtime.Events" version="1.11.39" />
         <dependency id="nanoFramework.System.Collections" version="1.5.75" />
         <dependency id="nanoFramework.System.IO.Streams" version="1.1.96" />
         <dependency id="nanoFramework.System.Net" version="1.11.60" />
