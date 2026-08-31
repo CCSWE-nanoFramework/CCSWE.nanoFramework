@@ -22,15 +22,15 @@
       },
       "nanoFramework.Hardware.Esp32.Rmt": {
         "type": "Direct",
-        "requested": "[2.0.53, 2.0.53]",
-        "resolved": "2.0.53",
-        "contentHash": "1DUvacCXMBH8oAe28hNzY1ig97RxzTqfm2ycViBKwoF3CB8B4QOl3dbg9fwVrGpork/Ba5V0fsiMtPQhstDrow=="
+        "requested": "[3.0.1, 3.0.1]",
+        "resolved": "3.0.1",
+        "contentHash": "PpaWE8TgG58ttZkGNAJVTg4C4RPxMR2jOQt+K60DA8RrVXfJKkCy/ouwHh+Jv87piG+Rxkmxpl0g0ykkQMChrA=="
       },
       "nanoFramework.Iot.Device.Ws28xx.Esp32": {
         "type": "Direct",
-        "requested": "[1.2.1027, 1.2.1027]",
-        "resolved": "1.2.1027",
-        "contentHash": "rZj2ppwSRjR6MvIAhuZMuZbvTkZogUeUjavJTwkdyg+LdvyBq/Mc8hW11ScA75434TC+9HEUbEH54hUBRkLJdA=="
+        "requested": "[1.2.1040, 1.2.1040]",
+        "resolved": "1.2.1040",
+        "contentHash": "AoWZC/f21oLT5GrlvRz5Yvl6RouRU+waPqkzLuq6HDbKe7zFdVzIyAdVrUggfHMUu1TODAeYLbRqLWfipXJ10w=="
       },
       "nanoFramework.Logging": {
         "type": "Direct",
