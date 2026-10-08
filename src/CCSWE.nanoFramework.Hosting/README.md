@@ -1,8 +1,8 @@
-[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Hosting.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Hosting/) 
+[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/blob/master/LICENSE.md) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Hosting.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Hosting/) 
 
 # CCSWE.nanoFramework.Hosting
 
-Hosting and startup infrastructure for nanoFramework applications, modelled after the .NET Generic Host. Provides a structured way to wire up dependency injection, run initialization logic, and start long-running background services.
+Hosting and startup infrastructure for nanoFramework applications, modeled after the .NET Generic Host. Provides a structured way to wire up dependency injection, run initialization logic, and start long-running background services.
 
 ## Startup sequence
 

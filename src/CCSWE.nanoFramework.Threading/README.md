@@ -1,4 +1,4 @@
-[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Threading.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Threading/) 
+[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/blob/master/LICENSE.md) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Threading.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Threading/) 
 
 # CCSWE.nanoFramework.Threading
 
@@ -17,8 +17,8 @@ ThreadPool.QueueUserWorkItem(state =>
 
 | Member | Description |
 |---|---|
-| `Workers` | Maximum number of worker threads (default: 64) |
-| `WorkItems` | Maximum pending work item queue depth (default: 64) |
+| `Workers` | Maximum number of worker threads |
+| `WorkItems` | Maximum pending work item queue depth |
 | `ThreadCount` | Current number of active threads |
 | `PendingWorkItemCount` | Number of queued work items waiting to run |
 | `QueueUserWorkItem(WaitCallback, object)` | Enqueue a work item |
@@ -29,7 +29,7 @@ ThreadPool.QueueUserWorkItem(state =>
 A specialized pool that processes items from a queue using a fixed number of consumer threads:
 
 ```csharp
-var pool = new ConsumerThreadPool(consumerCount: 2, (item) =>
+var pool = new ConsumerThreadPool(consumersThreads: 2, (item) =>
 {
     // process each item on a consumer thread
 });

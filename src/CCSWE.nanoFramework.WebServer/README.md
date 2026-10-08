@@ -1,15 +1,15 @@
-[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.WebServer.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.WebServer/) 
+[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/blob/master/LICENSE.md) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.WebServer.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.WebServer/) 
 
 # CCSWE.nanoFramework.WebServer
 
-A simple asynchronous web server for nanoFramework modelled after ASP.NET Core. See the [WebServer sample](tree/master/samples/Samples.CCSWE.nanoFramework.WebServer) for a complete example.
+A simple asynchronous web server for nanoFramework modeled after ASP.NET Core. See the [WebServer sample](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/tree/master/samples/Samples.CCSWE.nanoFramework.WebServer) for a complete example.
 
 ## Features
 
 - Attribute-based controllers with routing and parameter binding
 - Custom middleware via `IMiddleware`
 - Request thread pool for concurrent request processing
-- Pluggable authentication via `IAuthenticationProvider`
+- Pluggable authentication via `IAuthenticationHandler`
 - HTTPS support
 
 ## Quick Start
@@ -33,7 +33,7 @@ public class StatusController : ControllerBase
 ```csharp
 public class LoggingMiddleware : IMiddleware
 {
-    public void Invoke(HttpListenerContext context, MiddlewareDelegate next)
+    public void Invoke(HttpContext context, RequestDelegate next)
     {
         // pre-processing
         next(context);
@@ -63,7 +63,5 @@ services.AddWebServer(options =>
     options.Port = 80;
 })
 .AddMiddleware(typeof(LoggingMiddleware))
-.AddControllers();                         // scans the executing assembly
-// or target a specific assembly:
 .AddControllers(Assembly.GetExecutingAssembly());
 ```

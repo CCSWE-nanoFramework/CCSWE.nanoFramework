@@ -1,4 +1,4 @@
-[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Configuration.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Configuration/) 
+[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/blob/master/LICENSE.md) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Configuration.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Configuration/) 
 
 # CCSWE.nanoFramework.Configuration
 
@@ -12,26 +12,26 @@ The primary interface for reading and writing configuration:
 
 - `Get(string section)` — retrieve a configuration object by section name (cast to the expected type)
 - `Save(string section, object configuration)` / `SaveAsync(...)` — persist a configuration object
-- `Clear(string section)` — remove a section from storage
-- `Contains(string section)` — check whether a section exists
-- `GetSections()` — list all stored section names
+- `Clear()` / `Clear(string section)` — reset sections to their defaults and delete them from storage
+- `Contains(string section)` — check whether a section is registered
+- `GetSections()` — list all registered section names
 - `ConfigurationChanged` — event raised after a section is saved or cleared
 
 ### `IConfigurationStorage`
 
 Pluggable backend that the `ConfigurationManager` delegates persistence to:
 
-- `ReadConfiguration(string section)` — read raw configuration data
-- `WriteConfiguration(string section, object configuration)` — write raw configuration data
+- `ReadConfiguration(string section, Type type)` — read configuration data
+- `WriteConfiguration(string section, object configuration)` — write configuration data
 - `DeleteConfiguration(string section)` — remove a section
 
-The default backend stores configuration in the device's internal file system (`I:\`). File-system backed storage is available via `CCSWE.nanoFramework.FileStorage`.
+The default backend stores configuration in the device's internal file system (`I:\`).
 
 ### `IValidateConfiguration`
 
-Implement on a configuration class to enable validation before it is saved:
+Implement and pass to `BindConfiguration` to validate a configuration before it is saved:
 
-- `Validate()` — returns `ValidateConfigurationResult`; throw or return failure to abort the save
+- `Validate(object? configuration)` — returns `ValidateConfigurationResult`; a failed result aborts the save with `ValidateConfigurationException`
 
 ### `ConfigurationManagerOptions`
 
@@ -66,7 +66,7 @@ config.Password = "secret";
 configurationManager.Save("wifi", config);
 ```
 
-To use external file-system storage instead of the internal `I:\` drive:
+To use a custom storage backend instead of the internal `I:\` drive:
 
 ```csharp
 services.AddConfigurationManager(options => options.UseInternalStorage = false);

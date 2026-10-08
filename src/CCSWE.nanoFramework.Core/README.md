@@ -1,4 +1,4 @@
-[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Core.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Core/) 
+[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/blob/master/LICENSE.md) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Core.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Core/) 
 
 # CCSWE.nanoFramework.Core
 
@@ -10,16 +10,17 @@ Shared utility classes used across the CCSWE.nanoFramework libraries.
 
 Argument validation helpers for use at public API boundaries:
 
-- `Ensure.IsNotNull(paramName, value)` — throws `ArgumentNullException` if `value` is null
-- `Ensure.IsNotNullOrEmpty(paramName, value)` — throws if the string is null or empty
-- `ThrowHelper` — centralized exception throwing to keep call sites small
+- `Ensure.IsValid(expression)` — throws `ArgumentException` if `expression` is `false`
+- `Ensure.IsInRange(value, min, max)` — throws `ArgumentOutOfRangeException` if `value` is outside `min`..`max`
+- `Ensure.IsNotNull(value)` / `Ensure.IsNotNullOrEmpty(value)` — obsolete; use `ArgumentNullException.ThrowIfNull` / `ArgumentException.ThrowIfNullOrEmpty`
+- `ThrowHelper` — obsolete; use `ArgumentNullException.ThrowIfNull` / `ArgumentException.ThrowIfNullOrEmpty`
 
 ### `StringExtensions`
 
 Extension methods on `string`:
 
-- `Equals(string value, bool ignoreCase)` — case-insensitive equality comparison
-- `Truncate(int maxLength)` — truncates to `maxLength` characters, appending `…` if truncated
+- `Equals(string? other, bool ignoreCase)` — equality comparison, optionally case-insensitive
+- `Truncate(int maxLength)` — truncates to `maxLength` characters, ending in `...` if truncated
 
 ### `Strings`
 

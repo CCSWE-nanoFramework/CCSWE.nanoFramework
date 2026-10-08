@@ -19,8 +19,8 @@ builder.ConfigureServices((context, services) =>
 Then configure and start the server after obtaining an IP address:
 
 ```csharp
-var mdns = host.Services.GetRequiredService<IMdnsServer>();
-mdns.Hostname = "my-device.local";
+var mdns = (IMdnsServer)host.Services.GetRequiredService(typeof(IMdnsServer));
+mdns.Hostname = "my-device";
 mdns.IPAddress = IPAddress.Parse("192.168.1.100");
 mdns.AddService(new MdnsServiceRegistration("my-device", "_http._tcp.local", 80, "path=/"));
 mdns.Start();

@@ -1,4 +1,4 @@
-[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Mediator.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Mediator/) 
+[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/blob/master/LICENSE.md) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Mediator.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Mediator/) 
 
 # CCSWE.nanoFramework.Mediator
 
@@ -40,7 +40,7 @@ public class EventHandlerService : IMediatorEventHandler
 ```
 Use `IMediator` to publish events
 ```c#
-public class EventPublisherService : IEventPublisherService
+public class EventPublisherService
 {
     private readonly IMediator _mediator;
 
@@ -55,28 +55,20 @@ public class EventPublisherService : IEventPublisherService
     }
 }
 ```
-Register `AsyncMediator` and singleton subscribers to an `IHostBuilder` ...
-```c#
-    var hostBuilder = new HostBuilder();
-    hostBuilder.UseMediator(options =>
-    {
-        options.AddSubscriber(typeof(Event1), typeof(Service2));
-        options.AddSubscriber(typeof(Event2), typeof(Service2));
-    });
-```
-... or directly to an `IServiceCollection`
+Register `AsyncMediator` and singleton subscribers to an `IServiceCollection`
 ```c#
     var serviceCollection = new ServiceCollection();
+    serviceCollection.AddSingleton(typeof(EventHandlerService));
     serviceCollection.AddMediator(options =>
     {
-        options.AddSubscriber(typeof(Event1), typeof(Service2));
-        options.AddSubscriber(typeof(Event2), typeof(Service2));
+        options.AddSubscriber(typeof(Event1), typeof(EventHandlerService));
+        options.AddSubscriber(typeof(Event2), typeof(EventHandlerService));
     });
 ```
 
 For transient and scoped services you can use the `Subscribe` and `Unsubscribe` overloads that take a specific instance.
 ```c#
-public class TransientService : IDisposable
+public class TransientService : IMediatorEventHandler, IDisposable
 {
     private readonly IMediator _mediator;
 
@@ -91,6 +83,11 @@ public class TransientService : IDisposable
     {
         _mediator.Unsubscribe(typeof(Event1), this);
         _mediator.Unsubscribe(typeof(Event2), this);
+    }
+
+    public void HandleEvent(IMediatorEvent mediatorEvent)
+    {
+        // ...
     }
 }
 ```

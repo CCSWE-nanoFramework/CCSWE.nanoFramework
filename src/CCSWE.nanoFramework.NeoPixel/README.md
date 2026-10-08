@@ -1,4 +1,4 @@
-[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.NeoPixel.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.NeoPixel/) 
+[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/blob/master/LICENSE.md) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.NeoPixel.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.NeoPixel/) 
 
 # CCSWE.nanoFramework.NeoPixel
 
@@ -11,7 +11,7 @@ The [NeoPixelStripLowMemory](https://github.com/nanoframework/Samples/tree/main/
 I've never spent time learning how these LEDs actually work so I'm learning as I go along and would love feedback or contributions from others with more experience in this area.
 
 ## Usage
-See [samples](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework.NeoPixel/tree/master/CCSWE.nanoFramework.NeoPixel.Samples) for more details.
+See [samples](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/tree/master/samples/Samples.CCSWE.nanoFramework.NeoPixel) for more details.
 
 Initialize the strip
 ```c#

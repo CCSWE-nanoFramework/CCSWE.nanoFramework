@@ -1,4 +1,4 @@
-[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Logging.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Logging/) 
+[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/blob/master/LICENSE.md) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.Logging.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.Logging/) 
 
 # CCSWE.nanoFramework.Logging
 
@@ -11,7 +11,7 @@ Logging infrastructure for nanoFramework backed by `Microsoft.Extensions.Logging
 `ILogger` implementation that writes formatted log entries to the console. Create directly or via `ConsoleLoggerFactory`:
 
 ```csharp
-var logger = ConsoleLogger.Create(new LoggerOptions { MinLogLevel = LogLevel.Information });
+var logger = ConsoleLogger.Create("MyCategory", new LoggerOptions { MinLogLevel = LogLevel.Information });
 ```
 
 ### `ConsoleLoggerFactory`

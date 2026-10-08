@@ -1,4 +1,4 @@
-[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.DhcpServer.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.DhcpServer/) 
+[![Build](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml/badge.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/actions/workflows/build-solution.yml) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/CCSWE-nanoFramework/CCSWE.nanoFramework/blob/master/LICENSE.md) [![NuGet](https://img.shields.io/nuget/dt/CCSWE.nanoFramework.DhcpServer.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/CCSWE.nanoFramework.DhcpServer/) 
 
 # CCSWE.nanoFramework.DhcpServer
 
@@ -6,7 +6,7 @@ A simple DHCP server for nanoFramework.
 
 ## Overview
 
-This started as an effort to resolve some of the issues I was having with [Iot.Device.DhcpServer](https://github.com/nanoframework/nanoFramework.IoT.Device/tree/develop/devices/DhcpServer) and ending up turning into a complete re-write. I'll take to the team about backporting some of the fixes or using this code directly.
+This started as an effort to resolve some of the issues I was having with [Iot.Device.DhcpServer](https://github.com/nanoframework/nanoFramework.IoT.Device/tree/develop/devices/DhcpServer) and ended up turning into a complete re-write. I'll talk to the team about backporting some of the fixes or using this code directly.
 
 ## Features
 
@@ -59,8 +59,8 @@ Options are defined using the `IOption` interface. Several strongly typed option
 
 If none of these types meet your needs you can implement the `IOption` interface or use the base `Option` class which handles common logic for you.
 
-## Fixes (notes for myself for back porting)
+## Fixes (notes for myself for backporting)
 
-- Proper handling of unicast and broadcast requests and repsonses
+- Proper handling of unicast and broadcast requests and responses
 - Address pool expiration no longer crashes
 - Captive portal uses the correct option code
