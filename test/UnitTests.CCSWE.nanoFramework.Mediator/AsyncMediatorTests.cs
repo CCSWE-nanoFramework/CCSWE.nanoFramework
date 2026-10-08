@@ -15,6 +15,48 @@ public class AsyncMediatorTests
     public static int PublishDelay = 500;
 
     [TestMethod]
+    public void GetEventHandler_should_return_registered_subscriber()
+    {
+        ThreadPoolTestHelper.ExecuteAndReset(() =>
+        {
+            var mediatorSubscriber = new MediatorEventHandlerMock();
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.AddSingleton(typeof(IMediatorEventHandlerMock), mediatorSubscriber);
+
+            using var sut = new AsyncMediator(new AsyncMediatorOptions(), new LoggerMock(), serviceCollection.BuildServiceProvider());
+
+            var actual = sut.GetEventHandler(typeof(IMediatorEventHandlerMock));
+
+            Assert.AreEqual(mediatorSubscriber, actual);
+        });
+    }
+
+    [TestMethod]
+    public void GetEventHandler_should_throw_exception_for_invalid_subscriber()
+    {
+        ThreadPoolTestHelper.ExecuteAndReset(() =>
+        {
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.AddSingleton(typeof(MediatorEventMock), new MediatorEventMock());
+
+            using var sut = new AsyncMediator(new AsyncMediatorOptions(), new LoggerMock(), serviceCollection.BuildServiceProvider());
+
+            Assert.ThrowsException(typeof(InvalidOperationException), () => sut.GetEventHandler(typeof(MediatorEventMock)));
+        });
+    }
+
+    [TestMethod]
+    public void GetEventHandler_should_throw_exception_for_unregistered_subscriber()
+    {
+        ThreadPoolTestHelper.ExecuteAndReset(() =>
+        {
+            using var sut = new AsyncMediator(new AsyncMediatorOptions(), new LoggerMock(), new ServiceCollection().BuildServiceProvider());
+
+            Assert.ThrowsException(typeof(InvalidOperationException), () => sut.GetEventHandler(typeof(IMediatorEventHandlerMock)));
+        });
+    }
+
+    [TestMethod]
     public void Publish_should_throw_exception_for_null_event()
     {
         ThreadPoolTestHelper.ExecuteAndReset(() =>

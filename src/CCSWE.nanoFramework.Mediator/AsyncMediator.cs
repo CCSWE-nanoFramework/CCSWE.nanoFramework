@@ -104,6 +104,22 @@ namespace CCSWE.nanoFramework.Mediator
             _disposed = true;
         }
 
+        internal IMediatorEventHandler GetEventHandler(Type serviceType)
+        {
+            var service = _serviceProvider.GetService(serviceType);
+            if (service is null)
+            {
+                throw new InvalidOperationException($"No service registered for {serviceType.FullName}");
+            }
+
+            if (service is not IMediatorEventHandler eventHandler)
+            {
+                throw new InvalidOperationException($"{service.GetType().FullName} registered as {serviceType.FullName} does not implement {nameof(IMediatorEventHandler)}");
+            }
+
+            return eventHandler;
+        }
+
         /// <inheritdoc />
         public void Publish(IMediatorEvent mediatorEvent)
         {
@@ -139,13 +155,7 @@ namespace CCSWE.nanoFramework.Mediator
                     continue;
                 }
 
-                var mediatorEventHandlerService = _serviceProvider.GetService(descriptor.ServiceType);
-                if (mediatorEventHandlerService is not IMediatorEventHandler mediatorEventHandler)
-                {
-                    throw new InvalidOperationException($"{mediatorEventHandlerService.GetType().FullName} registered as {descriptor.ServiceType.FullName} does not implement {nameof(IMediatorEventHandler)}");
-                }
-
-                mediatorEventHandler.HandleEvent(mediatorEvent);
+                GetEventHandler(descriptor.ServiceType).HandleEvent(mediatorEvent);
             }
         }
 
