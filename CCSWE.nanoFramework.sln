@@ -5,6 +5,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eng", "eng", "{31FB4C84-40C4-4140-8E05-424C6AD78964}"
 	ProjectSection(SolutionItems) = preProject
 		CLAUDE.md = CLAUDE.md
+		docs\tasks\verify-addcontrollers-default-assembly.md = docs\tasks\verify-addcontrollers-default-assembly.md
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 		version.json = version.json
