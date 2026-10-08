@@ -26,21 +26,21 @@ msbuild CCSWE.nanoFramework.sln /p:Configuration=Release
 # Run all unit tests (after build)
 vstest.console.exe "test\*\bin\Release\NFUnitTest.dll" `
   /TestAdapterPath:"packages\nanoFramework.TestFramework.<version>\lib\net48\nanoFramework.TestAdapter.dll" `
-  /Settings:"test\<ProjectName>.UnitTests\nano.runsettings"
+  /Settings:"test\UnitTests.<ProjectName>\nano.runsettings"
 
 # Run a single test project
-vstest.console.exe "test\CCSWE.nanoFramework.Core.UnitTests\bin\Release\NFUnitTest.dll" `
+vstest.console.exe "test\UnitTests.CCSWE.nanoFramework.Core\bin\Release\NFUnitTest.dll" `
   /TestAdapterPath:"packages\nanoFramework.TestFramework.<version>\lib\net48\nanoFramework.TestAdapter.dll" `
-  /Settings:"test\CCSWE.nanoFramework.Core.UnitTests\nano.runsettings"
+  /Settings:"test\UnitTests.CCSWE.nanoFramework.Core\nano.runsettings"
 
 # Run a specific test class or method
-vstest.console.exe "test\CCSWE.nanoFramework.Core.UnitTests\bin\Release\NFUnitTest.dll" `
+vstest.console.exe "test\UnitTests.CCSWE.nanoFramework.Core\bin\Release\NFUnitTest.dll" `
   /TestAdapterPath:"packages\nanoFramework.TestFramework.<version>\lib\net48\nanoFramework.TestAdapter.dll" `
-  /Settings:"test\CCSWE.nanoFramework.Core.UnitTests\nano.runsettings" `
+  /Settings:"test\UnitTests.CCSWE.nanoFramework.Core\nano.runsettings" `
   /Tests:"Namespace.ClassName.MethodName"
 ```
 
-Test assemblies are compiled to `NFUnitTest.dll`. Each test project includes a `nano.runsettings` file with `IsRealHardware=false` (simulated device), 2-minute session timeout, and `net48` target framework.
+Test assemblies are compiled to `NFUnitTest.dll`. Each test project includes a `nano.runsettings` file (simulated device by default).
 
 CI/CD uses shared workflows from `CCSWE-nanoframework/actions-nanoframework` via GitHub Actions (see `.github/workflows/`).
 
@@ -70,7 +70,7 @@ Re-point the symlink when the extension updates (path is version-pinned). This s
 
 ```
 src/    - Library source code (one folder per NuGet package)
-test/   - Unit tests (mirrors src/ structure, .UnitTests suffix)
+test/   - Unit tests (mirrors src/ structure, UnitTests. prefix)
 bench/  - Benchmark projects (nanoFramework.Benchmark)
 samples/- Sample applications showing real device usage
 ```
@@ -94,10 +94,10 @@ Uses `Microsoft.Extensions.DependencyInjection`. Each library exposes bootstrapp
 `Microsoft.Extensions.Logging` interfaces (`ILogger`, `ILoggerFactory`) with a `ConsoleLogger` implementation in `CCSWE.nanoFramework.Logging`. Always inject `ILogger` rather than using static/global loggers.
 
 ### Web Server
-`CCSWE.nanoFramework.WebServer` mimics ASP.NET Core: attribute routing (`[Route]`, `[HttpGet]`), `ControllerBase` inheritance, middleware pipeline (`IMiddleware`), built-in CORS and authentication. Request handling runs on a dedicated thread.
+`CCSWE.nanoFramework.WebServer` mimics ASP.NET Core: attribute routing (`[Route]`, `[HttpGet]`), `ControllerBase` inheritance, middleware pipeline (`IMiddleware`), built-in CORS and authentication. A dedicated listener thread accepts requests; handling runs on an internal thread pool.
 
 ### Mediator / Events
-`CCSWE.nanoFramework.Mediator` implements async pub/sub. Events implement `IMediatorEvent`; handlers implement `IMediatorEventHandler<T>`. The `AsyncMediator` uses a `ConsumerThreadPool` internally.
+`CCSWE.nanoFramework.Mediator` implements async pub/sub. Events implement `IMediatorEvent`; handlers implement `IMediatorEventHandler`. The `AsyncMediator` uses a `ConsumerThreadPool` internally.
 
 ### Validation
 `Ensure` class in `CCSWE.nanoFramework.Core` is the standard guard/precondition pattern used throughout. Use it for parameter validation at public API boundaries.
@@ -106,13 +106,13 @@ Uses `Microsoft.Extensions.DependencyInjection`. Each library exposes bootstrapp
 `CCSWE.nanoFramework.Threading.TestFramework` provides `ThreadPool` management utilities specifically for unit tests. Use it in test projects when the code under test interacts with `ThreadPool` (e.g., `ConsumerThreadPool`, `AsyncMediator`).
 
 ### Configuration
-`IConfigurationManager` with pluggable `IConfigurationStorage` backends. Implementations validate via `IValidateConfiguration`. Storage can be in-memory (`InternalConfigurationStorage`) or backed by the file system via `CCSWE.nanoFramework.FileStorage`.
+`IConfigurationManager` with pluggable `IConfigurationStorage` backends. Implementations validate via `IValidateConfiguration`. The default `InternalConfigurationStorage` persists JSON files to internal flash (`I:\`); disable via `ConfigurationManagerOptions.UseInternalStorage`.
 
 ## Versioning & Packaging
 
 - **Nerdbank.GitVersioning** drives version numbers from `version.json` — do not manually set version properties in `.nfproj` files
 - Each library has a corresponding `.nuspec` for NuGet packaging
-- Packages publish from `master` and `v\d+.\d+` branches per `version.json` `publicReleaseRefSpec`
+- Public release branches are defined by `version.json` `publicReleaseRefSpec`
 - Keep `.nuspec` dependency versions in sync with `packages.config` — whenever a package version is updated in `packages.config`, the corresponding `.nuspec` `<dependency>` must be updated to match
 
 ## Project File Format
