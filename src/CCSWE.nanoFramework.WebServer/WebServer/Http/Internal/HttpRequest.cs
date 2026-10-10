@@ -7,6 +7,8 @@ namespace CCSWE.nanoFramework.WebServer.Http.Internal
     // TODO: Add unit tests
     internal class HttpRequest : Http.HttpRequest
     {
+        private const string TransferEncoding = "Transfer-Encoding";
+
         private Stream? _body;
         private string? _method;
         private string? _path;
@@ -19,7 +21,7 @@ namespace CCSWE.nanoFramework.WebServer.Http.Internal
             _request = request;
         }
 
-        public override Stream Body => _body ??= _request.InputStream ?? new MemoryStream();
+        public override Stream Body => _body ??= CreateBody();
 
         public override long ContentLength => _request.ContentLength64;
 
@@ -77,6 +79,27 @@ namespace CCSWE.nanoFramework.WebServer.Http.Internal
         public override void Close()
         {
             // Nothing to do here...
+        }
+
+        private Stream CreateBody()
+        {
+            var inputStream = _request.InputStream;
+
+            if (inputStream is null)
+            {
+                return new MemoryStream();
+            }
+
+            // HttpListener decodes chunked bodies and ends the stream after the last chunk.
+            var transferEncoding = _request.Headers[TransferEncoding];
+
+            if (transferEncoding is not null && transferEncoding.ToLower() == "chunked")
+            {
+                return inputStream;
+            }
+
+            // The raw input stream doesn't end at Content-Length; reading past it blocks until the socket times out.
+            return new ContentLengthStream(inputStream, ContentLength > 0 ? ContentLength : 0);
         }
 
         [MemberNotNull(nameof(_path))]

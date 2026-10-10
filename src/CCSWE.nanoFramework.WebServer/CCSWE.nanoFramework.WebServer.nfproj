@@ -34,6 +34,7 @@
     <Compile Include="WebServer\Http\HttpResponseExtensions.cs" />
     <Compile Include="WebServer\Http\HttpRequest.cs" />
     <Compile Include="WebServer\Http\HttpResponse.cs" />
+    <Compile Include="WebServer\Http\Internal\ContentLengthStream.cs" />
     <Compile Include="WebServer\Http\Internal\HttpContext.cs" />
     <Compile Include="WebServer\Http\Internal\HttpRequest.cs" />
     <Compile Include="WebServer\Http\Internal\HttpResponse.cs" />
