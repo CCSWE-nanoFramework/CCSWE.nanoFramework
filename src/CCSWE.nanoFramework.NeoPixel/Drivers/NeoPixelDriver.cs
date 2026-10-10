@@ -1,5 +1,4 @@
 using CCSWE.nanoFramework.NeoPixel.Rmt;
-using nanoFramework.Hardware.Esp32.Rmt;
 
 namespace CCSWE.nanoFramework.NeoPixel.Drivers;
 
@@ -8,12 +7,6 @@ namespace CCSWE.nanoFramework.NeoPixel.Drivers;
 /// </summary>
 public abstract class NeoPixelDriver
 {
-    /// <summary>
-    /// The frequency of the clock used for RMT timing.
-    /// </summary>
-    /// <remarks>Get frequency of clock used by RMT.</remarks>
-    protected float SourceClockFrequency;
-
     /// <summary>
     /// Creates the driver to provide the commands required to control the NeoPixel.
     /// </summary>
@@ -25,31 +18,11 @@ public abstract class NeoPixelDriver
     /// <param name="colorOrder">The <see cref="ColorOrder"/> of the pixels.</param>
     protected NeoPixelDriver(float zeroPulseHigh, float zeroPulseLow, float onePulseHigh, float onePulseLow, float resetDuration, ColorOrder colorOrder)
     {
-        SourceClockFrequency = RmtChannel.SourceClockFrequency;
         ColorOrder = colorOrder;
         OnePulse = GetDataPulse(onePulseHigh, onePulseLow);
         ZeroPulse = GetDataPulse(zeroPulseHigh, zeroPulseLow);
         ResetPulse = GetResetPulse(resetDuration);
     }
-
-    /// <summary>
-    /// Creates the driver with an explicit source clock frequency. Intended for unit testing
-    /// without real hardware.
-    /// </summary>
-    internal NeoPixelDriver(float zeroPulseHigh, float zeroPulseLow, float onePulseHigh, float onePulseLow, float resetDuration, ColorOrder colorOrder, float sourceClockFrequency)
-    {
-        SourceClockFrequency = sourceClockFrequency;
-        ColorOrder = colorOrder;
-        OnePulse = GetDataPulse(onePulseHigh, onePulseLow);
-        ZeroPulse = GetDataPulse(zeroPulseHigh, zeroPulseLow);
-        ResetPulse = GetResetPulse(resetDuration);
-    }
-
-    /// <summary>
-    /// The RMT clock divider applied to <see cref="SourceClockFrequency"/>. Determines the
-    /// duration of each RMT tick and therefore the resolution of pulse timings.
-    /// </summary>
-    public byte ClockDivider { get; } = 2;
 
     /// <summary>
     /// Gets the <see cref="ColorOrder"/> used by this chipset.
@@ -59,7 +32,7 @@ public abstract class NeoPixelDriver
     /// <summary>
     /// The number of microseconds per RMT cycle. This is effectively the smallest pulse duration that can be sent.
     /// </summary>
-    protected float MicrosecondsPerRmtCycle => 1_000_000.0f / RmtCyclesPerSecond;
+    protected float MicrosecondsPerRmtCycle => 1_000_000.0f / ResolutionHz;
 
     /// <summary>
     /// The pulse data for a one pulse (T1).
@@ -72,9 +45,10 @@ public abstract class NeoPixelDriver
     public NeoPixelPulse ResetPulse { get; }
 
     /// <summary>
-    /// The number of RMT cycles that occur in one second.
+    /// The RMT tick frequency in Hz. Determines the duration of each RMT tick and therefore the
+    /// resolution of pulse timings.
     /// </summary>
-    private float RmtCyclesPerSecond => SourceClockFrequency / ClockDivider;
+    public int ResolutionHz { get; } = 40_000_000;
 
     /// <summary>
     /// The pulse data for a zero pulse (T0).

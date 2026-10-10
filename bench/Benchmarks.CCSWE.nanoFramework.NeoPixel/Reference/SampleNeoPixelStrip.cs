@@ -13,9 +13,9 @@ namespace Benchmarks.CCSWE.nanoFramework.NeoPixel.Reference;
 /// </summary>
 internal class SampleNeoPixelStrip
 {
-    // 80MHz / 4 => min pulse 0.00us
-    protected const byte ClockDivider = 2;
-    protected const float MinPulse = 1000000.0f / (80000000.0f / ClockDivider);
+    // 40MHz => min pulse 0.025us
+    protected const int ResolutionHz = 40_000_000;
+    protected const float MinPulse = 1000000.0f / ResolutionHz;
 
     private readonly ushort _count;
     private readonly byte[] _data;
@@ -33,7 +33,7 @@ internal class SampleNeoPixelStrip
         var transmitterChannelSettings = new TransmitChannelSettings(pinNumber: pin)
         {
             EnableCarrierWave = false,
-            ClockDivider = ClockDivider,
+            ResolutionHz = ResolutionHz,
             IdleLevel = false,
         };
         _transmitterChannel = new TransmitterChannel(transmitterChannelSettings);

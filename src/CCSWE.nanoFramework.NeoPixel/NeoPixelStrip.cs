@@ -35,7 +35,7 @@ public class NeoPixelStrip : IDisposable
         var transmitterChannelSettings = new TransmitChannelSettings(pinNumber: pin)
         {
             EnableCarrierWave = false,
-            ClockDivider = driver.ClockDivider,
+            ResolutionHz = driver.ResolutionHz,
             IdleLevel = false,
         };
         _transmitterChannel = new TransmitterChannel(transmitterChannelSettings);
