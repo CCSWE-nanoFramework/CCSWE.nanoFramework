@@ -1,0 +1,21 @@
+name: Build, test, and publish
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  pipeline:
+    uses: CCSWE-nanoFramework/actions-nanoframework/.github/workflows/nanoframework-build-publish.yml@master
+    with:
+      solution: 'CCSWE.nanoFramework.sln'
+      publish-nuget: true
+    secrets: inherit
