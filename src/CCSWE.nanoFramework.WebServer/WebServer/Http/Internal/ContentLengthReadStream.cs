@@ -7,13 +7,13 @@ namespace CCSWE.nanoFramework.WebServer.Http.Internal;
 /// A read-only <see cref="Stream"/> that reads at most <c>length</c> bytes from the inner stream, then reports end of stream.
 /// Disposing it does not dispose the inner stream.
 /// </summary>
-internal class ContentLengthStream : Stream
+internal class ContentLengthReadStream : Stream
 {
     private readonly Stream _innerStream;
     private readonly long _length;
     private long _remaining;
 
-    public ContentLengthStream(Stream innerStream, long length)
+    public ContentLengthReadStream(Stream innerStream, long length)
     {
         ArgumentNullException.ThrowIfNull(innerStream);
 

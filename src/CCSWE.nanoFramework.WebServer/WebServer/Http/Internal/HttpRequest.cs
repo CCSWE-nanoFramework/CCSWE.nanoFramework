@@ -99,7 +99,7 @@ namespace CCSWE.nanoFramework.WebServer.Http.Internal
             }
 
             // The raw input stream doesn't end at Content-Length; reading past it blocks until the socket times out.
-            return new ContentLengthStream(inputStream, ContentLength > 0 ? ContentLength : 0);
+            return new ContentLengthReadStream(inputStream, ContentLength > 0 ? ContentLength : 0);
         }
 
         [MemberNotNull(nameof(_path))]
