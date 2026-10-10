@@ -11,6 +11,7 @@ concurrency:
 
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
   pipeline:
@@ -18,5 +19,9 @@ jobs:
     with:
       solution: 'CCSWE.nanoFramework.sln'
       publish-nuget: true
+      dependents: |
+        CoryCharlton/Emily.Clock
     secrets:
       NUGET_ORG_API_KEY: ${{ secrets.NUGET_ORG_API_KEY }}
+      AUTOMATION_APP_ID: ${{ secrets.AUTOMATION_APP_ID }}
+      AUTOMATION_APP_KEY: ${{ secrets.AUTOMATION_APP_KEY }}
