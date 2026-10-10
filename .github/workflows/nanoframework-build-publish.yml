@@ -18,4 +18,5 @@ jobs:
     with:
       solution: 'CCSWE.nanoFramework.sln'
       publish-nuget: true
-    secrets: inherit
+    secrets:
+      NUGET_ORG_API_KEY: ${{ secrets.NUGET_ORG_API_KEY }}
