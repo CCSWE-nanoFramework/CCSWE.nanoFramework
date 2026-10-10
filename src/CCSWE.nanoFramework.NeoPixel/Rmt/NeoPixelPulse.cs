@@ -3,7 +3,7 @@
 namespace CCSWE.nanoFramework.NeoPixel.Rmt
 {
     /// <summary>
-    /// Specifies the duration and level for an RMT pulse similar to <see cref="RmtCommand"/>
+    /// Specifies the duration and level for an RMT pulse similar to <see cref="RmtSymbol"/>
     /// </summary>
     public struct NeoPixelPulse
     {
